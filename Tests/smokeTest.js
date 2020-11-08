@@ -24,7 +24,7 @@ describe ('001: Smoke test', function(){
         .then(() => browser.wait(EC.presenceOf($(".category-item")), 5000))
         .then(() => homepage.clickOnFashionCategory())
         .then(() => browser.wait(EC.presenceOf($(".landing-product")), 5000))
-        .then(() => fashionCategory.clickOnBrownJacket())
+        .then(() => fashionCategory.clickOnWhiteJacket2())
         .then(() => itemPage.clickOnImageSlider())
         .then(() => itemPage.enterBid(1003))
         .then(() => itemPage.clickOnPlaceBidButton())
@@ -42,5 +42,4 @@ describe ('001: Smoke test', function(){
         .then((data) => expect(data).toBe("Congrats! you are the higest bider!"))
         .then(() => homepage.clickOnLogoutButton())
     })
-
 })
