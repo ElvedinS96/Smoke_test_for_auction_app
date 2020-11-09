@@ -3,7 +3,6 @@ var loginpage = require('../Pages/loginPage');
 var fashionCategory = require ("../Pages/fashionCategoryPage");
 var itemPage = require ("../Pages/itemPage");
 var dataJS = require("../Pages/data");
-const { landingProductLocator } = require('../Pages/data');
 
 describe ('001: Smoke test', function(){
     browser.waitForAngularEnabled(false);
