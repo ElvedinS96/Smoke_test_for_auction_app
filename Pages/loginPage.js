@@ -4,7 +4,7 @@ class loginPage {
     constructor(){
         this.title="LoginPage";
     }
-    // Getters
+    // GETTERS
     get emailField (){
         return browser.driver.findElement(by.id("email"));
     }
@@ -17,7 +17,8 @@ class loginPage {
     get loginButton (){
         return browser.driver.findElement(by.className("btn-login"));
     }
-    // Actions
+    
+    // ACTIONS
     // This method waits for email input to load
     waitForEmailInput(){
         browser.wait(dataJS.EC.presenceOf($(this.emailLocator)), 5000)

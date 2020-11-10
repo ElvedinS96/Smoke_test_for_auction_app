@@ -4,7 +4,7 @@ class ItemPage {
     constructor (){
         this.title = "ItemPage";
     }
-    //Getters
+    // GETTERS
     get bidMessage (){
         return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/div"));
     }
@@ -36,7 +36,7 @@ class ItemPage {
         return ".status-success";
     }
 
-    // Actions
+    // ACTIONS
     // This method validates if User is the highest bidder
     validateHighestBidder(data){
         return expect(data).toBe(dataJS.highestBidderMessage)
