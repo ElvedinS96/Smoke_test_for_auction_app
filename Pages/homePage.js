@@ -1,10 +1,10 @@
-var dataJS = require("../Data/data");
+var EC = protractor.ExpectedConditions;
 
 class HomePage{
     constructor(){
-        this.title= "HomePage",
-        this.EC = protractor.ExpectedConditions
+        this.title= "HomePage"
     }
+    
     // GETTERS
 
     get loginButton(){
@@ -31,12 +31,12 @@ class HomePage{
 
     waitForCategories(){
         console.log("This method waits for Category to show")
-        browser.wait(this.EC.presenceOf($(this.categoryLocator)), 5000)
+        browser.wait(EC.presenceOf($(this.categoryLocator)), 5000)
     }
 
     waitForLoginButton(){
         console.log("This method waits for link Login to show")
-        return browser.wait(this.EC.presenceOf($(this.loginButtonLocator), 5000))
+        return browser.wait(EC.presenceOf($(this.loginButtonLocator), 5000))
     }
 
     clickOnLogin(){

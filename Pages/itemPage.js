@@ -1,10 +1,11 @@
-var dataJS = require("../Data/data");
+var data = require("../Data/data"),
+    EC = protractor.ExpectedConditions;
 
 class ItemPage{
     constructor(){
-        this.title = "ItemPage",
-        this.EC = protractor.ExpectedConditions
+        this.title = "ItemPage"    
     }
+    
     // GETTERS
 
     get bidMessage(){
@@ -49,39 +50,39 @@ class ItemPage{
 
     // ACTIONS
 
-    validateHighestBidder(data){
+    validateHighestBidder(bidConfirmationText){
         console.log("This method validates if User is the highest bidder")
-        return expect(data).toBe(dataJS.highestBidderMessage)
+        return expect(bidConfirmationText).toBe(data.highestBidderMessage)
     }
 
     waitForSuccessMessage(){
         console.log("This method waits for Success Bid Message to show up")
-        return browser.wait(this.EC.presenceOf($(this.statusSuccessLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 5000);
     }
 
-    validateUsersName(data){
+    validateUsersName(userName){
         console.log("This method validates User's name after placed bid")
-        return expect(data).toBe(dataJS.userAssert);
+        return expect(userName).toBe(data.userAssert);
     }
 
-    validateUsersBid(data){
+    validateUsersBid(userBid){
         console.log("This method validates User's bid price after placed bid")
-        return expect(data).toBe(dataJS.bidAssert);
+        return expect(userBid).toBe(data.bidAssert);
     }
 
-    validateDateOfBid(data){
+    validateDateOfBid(bidDate){
         console.log("This method validates User's bid date after placed bid")
-        return expect(data).toBe(`${dataJS.d.getDate()} ${dataJS.months[dataJS.d.getMonth()]} ${dataJS.d.getFullYear()}`)
+        return expect(bidDate).toBe(`${data.d.getDate()} ${data.months[data.d.getMonth()]} ${data.d.getFullYear()}`)
     }
 
-    validateItemDetails(data){
+    validateItemDetails(itemDetails){
         console.log("This method validates Item details")
-        return expect(data).toBe(dataJS.itemDetailsAssert)
+        return expect(itemDetails).toBe(data.itemDetailsAssert)
     }
 
     waitForUserImg(){
         console.log("This method waits for User's image to show up")
-        return browser.wait(this.EC.presenceOf($(this.userImgLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.userImgLocator)), 5000);
     }
 
     getBidDate(){

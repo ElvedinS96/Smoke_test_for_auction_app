@@ -1,14 +1,14 @@
-var dataJS = require("../Data/data");
+var EC = protractor.ExpectedConditions;
 
 class FashionCategoryPage{
     constructor(){
-        this.title ="Fashion Category",
-        this.EC = protractor.ExpectedConditions
+        this.title ="Fashion Category"    
     }
+    
     // GETTERS
 
-    productItem(data){
-        return browser.actions().mouseMove(element(by.xpath(`//*[@id='root']/div/div[1]/div[3]/div/div[${data}]/div/div/a/img`)))
+    productItem(item){
+        return browser.actions().mouseMove(element(by.xpath(`//*[@id='root']/div/div[1]/div[3]/div/div[${item}]/div/div/a/img`)))
     }
 
     get productLocator(){
@@ -19,12 +19,12 @@ class FashionCategoryPage{
 
     waitForProductItem(){
         console.log("This method waits for Product Item to show up");
-        browser.wait(this.EC.presenceOf($(this.productLocator)), 5000)
+        browser.wait(EC.presenceOf($(this.productLocator)), 5000)
     }
     
-    clickOnItem(data){
+    clickOnItem(item){
         console.log("This method receives desired class item, and clicks on it");
-        return this.productItem(data).click().perform();
+        return this.productItem(item).click().perform();
     }
 }
 module.exports = new FashionCategoryPage();
