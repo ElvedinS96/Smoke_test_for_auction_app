@@ -1,8 +1,9 @@
-var dataJS = require("../data");
+var dataJS = require("../Data/data");
 
-class loginPage {
+class loginPage{
     constructor(){
-        this.title="LoginPage";
+        this.title="LoginPage",
+        this.EC = protractor.ExpectedConditions
     }
     // GETTERS
     get emailField (){
@@ -19,20 +20,20 @@ class loginPage {
     }
     
     // ACTIONS
-    // This method waits for email input to load
     waitForEmailInput(){
-        browser.wait(dataJS.EC.presenceOf($(this.emailLocator)), 5000)
+        console.log("This method waits for email input to load")
+        browser.wait(this.EC.presenceOf($(this.emailLocator)), 5000)
     }
-    // This method enters data in email field
     enterEmail(data){
+        console.log("This method enters data in email field")
         this.emailField.sendKeys(data);
     }
-    // This method enters data in password field
     enterPassword (data){
+        console.log("This method enters data in password field")
         this.passwordField.sendKeys(data);
     }
-    // This method click on Login button
     clickOnLoginButton (){
+        console.log("This method click on Login button")
         this.loginButton.click();
     }
 }

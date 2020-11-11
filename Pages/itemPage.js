@@ -1,8 +1,9 @@
-var dataJS = require("../data");
+var dataJS = require("../Data/data");
 
-class ItemPage {
+class ItemPage{
     constructor (){
-        this.title = "ItemPage";
+        this.title = "ItemPage",
+        this.EC = protractor.ExpectedConditions
     }
     // GETTERS
     get bidMessage (){
@@ -37,66 +38,66 @@ class ItemPage {
     }
 
     // ACTIONS
-    // This method validates if User is the highest bidder
     validateHighestBidder(data){
+        console.log("This method validates if User is the highest bidder")
         return expect(data).toBe(dataJS.highestBidderMessage)
     }
-    // This method waits for Success Bid Message to show up
     waitForSuccessMessage(){
-        return browser.wait(dataJS.EC.presenceOf($(this.statusSuccessLocator)), 5000);
+        console.log("This method waits for Success Bid Message to show up")
+        return browser.wait(this.EC.presenceOf($(this.statusSuccessLocator)), 5000);
     }
-    // This method validates User's name after placed bid
     validateUsersName(data){
+        console.log("This method validates User's name after placed bid")
         return expect(data).toBe(dataJS.userAssert);
     }
-    // This method validates User's bid price after placed bid
     validateUsersBid(data){
+        console.log("This method validates User's bid price after placed bid")
         return expect(data).toBe(dataJS.bidAssert);
     }
-    // This method validates User's bid date after placed bid
     validateDateOfBid(data){
+        console.log("This method validates User's bid date after placed bid")
         return expect(data).toBe(`${dataJS.d.getDate()} ${dataJS.months[dataJS.d.getMonth()]} ${dataJS.d.getFullYear()}`)
     }
-    // This method validates Item details
     validateItemDetails(data){
+        console.log("This method validates Item details")
         return expect(data).toBe(dataJS.itemDetailsAssert)
     }
-    // This method wait for User's image to show up
     waitForUserImg(){
-        return browser.wait(dataJS.EC.presenceOf($(this.userImgLocator)), 5000);
+        console.log("This method waits for User's image to show up")
+        return browser.wait(this.EC.presenceOf($(this.userImgLocator)), 5000);
     }
-    // This method gets date from User's placed bid
     getBidDate(){
+        console.log("This method gets date from User's placed bid")
         return this.bidDate.getText();
     }
-    // This method gets price from User's placed bid
     getBidPrice(){
+        console.log("This method gets price from User's placed bid")
         return this.bidPrice.getText();
     }
-    // This method gets name from User's placed bid
     getUserName(){
+        console.log("This method gets name from User's placed bid")
         return this.userName.getText();
     }
-    // This method gets Item's details
     getItemDetails(){
+        console.log("This method gets Item's details")
         return this.itemDetails.getText();
     }
-    // This method gets message that User placed a bid
     getBidConfirmationText(){
+        console.log("This method gets message that User placed a bid")
         return this.bidMessage.getText();
     }
-    // This method enters bid in input field
     enterBid(bid){
+        console.log("This method enters bid in input field")
         this.bidField.sendKeys(bid);
     }
-    // This method click on button to place bid
     clickOnPlaceBidButton(){
+        console.log("This method click on button to place bid")
         this.placeBidButton.click()
     }
-    // This method clicks on image slider and changes image
     clickOnImageSlider(){
+        console.log("This method clicks on image slider and changes image")
         this.imageSlider.click();
     }
 }
 
-module.exports = new ItemPage ();
+module.exports = new ItemPage();

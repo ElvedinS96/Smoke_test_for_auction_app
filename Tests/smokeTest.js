@@ -2,7 +2,7 @@ var homePage = require('../Pages/homePage'),
     loginPage = require('../Pages/loginPage'),
     fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
     itemPage = require ("../Pages/itemPage"),
-    dataJS = require("../data");
+    dataJS = require("../Data/data");;
 
 describe ('001: Smoke test', function(){
     browser.waitForAngularEnabled(false);
@@ -10,7 +10,7 @@ describe ('001: Smoke test', function(){
     browser.manage().window().maximize();
     
     it ("001: User is able to sign in, click on item and place a bid", function (){
-        homePage.open(dataJS.homepageLink)
+        homePage.openPageURL(dataJS.homepageLink)
             .then(() => homePage.waitForLoginButton())
             .then(() => homePage.clickOnLogin())
             .then(() => loginPage.waitForEmailInput())

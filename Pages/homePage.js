@@ -1,17 +1,19 @@
-var dataJS = require("../data");
+var dataJS = require("../Data/data");
 
-class HomePage {
-    constructor() {
-        this.title= "HomePage";
+class HomePage{
+    constructor(){
+        this.title= "HomePage",
+        this.EC = protractor.ExpectedConditions
     }
     // GETTERS
+
     get loginButton (){
         return browser.driver.findElement(by.className("header-text"));
     }
     get loginButtonLocator(){
         return ".header-text";
     }
-    get CategoryLocator(){
+    get categoryLocator(){
         return ".category-item"
     }
     get fashionCategory(){
@@ -22,29 +24,34 @@ class HomePage {
     }
     
     // ACTIONS
-    // This method waits for Category to show
     waitForCategories(){
-        browser.wait(dataJS.EC.presenceOf($(this.CategoryLocator)), 5000)
+        console.log("This method waits for Category to show")
+        browser.wait(this.EC.presenceOf($(this.categoryLocator)), 5000)
     }
-    // This method waits for link Login to show
     waitForLoginButton(){
-        return browser.wait(dataJS.EC.presenceOf($(this.loginButtonLocator), 5000))
+        console.log("This method waits for link Login to show")
+        return browser.wait(this.EC.presenceOf($(this.loginButtonLocator), 5000))
     }
-    // This method clicks on link Login
-    clickOnLogin() {
+    clickOnLogin(){
+        console.log("This method clicks on link Login")
         this.loginButton.click();
     };
-    // This method clicks on logout button
     clickOnLogoutButton(){
+        console.log("This method clicks on logout button")
         this.logoutButton.click();
     }
-    // This method clicks on Category link
     clickOnFashionCategory(){
+        console.log("This method clicks on Category link")
         this.fashionCategory.click();
     };
-    // This method opens URL
-    open (url){
+    clickOnLogin(){
+        console.log("This method clicks on link Login")
+        this.loginButton.click();
+    };
+    openPageURL (url){
+        console.log("This method opens URL")
         return browser.get(url);
     };
+    
 }
-module.exports = new HomePage ();
+module.exports = new HomePage();
