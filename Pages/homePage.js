@@ -59,7 +59,7 @@ class HomePage{
         this.loginButton.click();
     }
 
-    openPageURL (url){
+    openPageURL(url){
         console.log("This method opens URL")
         return browser.get(url);
     }
