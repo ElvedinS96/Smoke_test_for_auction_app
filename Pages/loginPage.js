@@ -6,33 +6,41 @@ class loginPage{
         this.EC = protractor.ExpectedConditions
     }
     // GETTERS
-    get emailField (){
+
+    get emailField(){
         return browser.driver.findElement(by.id("email"));
     }
-    get passwordField (){
+
+    get passwordField(){
         return browser.driver.findElement(by.id("password"));
     }
-    get emailLocator (){
+
+    get emailLocator(){
         return "#email";
     }
-    get loginButton (){
+
+    get loginButton(){
         return browser.driver.findElement(by.className("btn-login"));
     }
     
     // ACTIONS
+
     waitForEmailInput(){
         console.log("This method waits for email input to load")
         browser.wait(this.EC.presenceOf($(this.emailLocator)), 5000)
     }
+
     enterEmail(data){
         console.log("This method enters data in email field")
         this.emailField.sendKeys(data);
     }
-    enterPassword (data){
+
+    enterPassword(data){
         console.log("This method enters data in password field")
         this.passwordField.sendKeys(data);
     }
-    clickOnLoginButton (){
+    
+    clickOnLoginButton(){
         console.log("This method click on Login button")
         this.loginButton.click();
     }
