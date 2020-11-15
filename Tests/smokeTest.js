@@ -20,7 +20,7 @@ describe ('001: Smoke test', function(){
             .then(() => homePage.waitForCategories())
             .then(() => homePage.clickOnFashionCategory())
             .then(() => fashionCategoryPage.waitForProductItem())
-            .then(() => fashionCategoryPage.clickOnItem(data.whiteJacket))
+            .then(() => fashionCategoryPage.clickOnItem(data.blueJacket))
             .then(() => itemPage.clickOnImageSlider())
             .then(() => itemPage.enterBid(data.bidForSmokeTest))
             .then(() => itemPage.clickOnPlaceBidButton())

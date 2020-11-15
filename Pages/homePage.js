@@ -1,15 +1,15 @@
-var EC = protractor.ExpectedConditions;
+const Page = require("./page");
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js");
 
-class HomePage{
+
+class HomePage extends Page.Page{
     constructor(){
+        super();
         this.title= "HomePage"
     }
     
     // GETTERS
-
-    get loginButton(){
-        return browser.driver.findElement(by.className("header-text"));
-    }
 
     get loginButtonLocator(){
         return ".header-text";
@@ -19,19 +19,49 @@ class HomePage{
         return ".category-item"
     }
 
-    get fashionCategory(){
-        return browser.driver.findElement(by.css("div.category-item a"));
-    }
-
     get logoutButton(){
         return browser.driver.findElement(by.css("div.login-acccount button"));
+    }
+
+    get createAnAccount(){
+        return browser.driver.findElement(by.css("a.header-text"));
     }
     
     // ACTIONS
 
     waitForCategories(){
-        console.log("This method waits for Category to show")
-        browser.wait(EC.presenceOf($(this.categoryLocator)), 5000)
+        console.log("This method waits for Category to show");
+        return browser.wait(EC.presenceOf($(this.categoryLocator)), 5000);
+    }
+    
+    clickOnCreateAnAccount(){
+        console.log("This method clicks on Create Account link");
+        return super.clickOnCreateAnAccount();
+    }
+
+    clickOnPrivacyAndPolicy(){
+        console.log("This method clicks on Privacy and Policy link");
+        return super.clickOnPrivacyAndPolicy();
+    }
+
+    clickOnTermsAndConditions(){
+        console.log("This method clicks on Terms and Conditions links");
+        return super.clickOnTermsAndConditions();
+    }
+
+    clickOnAboutUs(){
+        console.log("This method clicks on About Us link");
+        return super.clickOnAboutUs();
+    }
+
+    getHomePageURL(){
+        console.log("This method gets HomePage URL");
+        return super.getPageURL();
+    }
+
+    validateHomePageURL(URL){
+        console.log("This method validates home page URL");
+        return expect(URL).toBe(data.homepageLink);
     }
 
     waitForLoginButton(){
@@ -39,29 +69,19 @@ class HomePage{
         return browser.wait(EC.presenceOf($(this.loginButtonLocator), 5000))
     }
 
-    clickOnLogin(){
-        console.log("This method clicks on link Login")
-        this.loginButton.click();
-    }
-
-    clickOnLogoutButton(){
-        console.log("This method clicks on logout button")
-        this.logoutButton.click();
-    }
-
     clickOnFashionCategory(){
-        console.log("This method clicks on Category link")
-        this.fashionCategory.click();
+        console.log("This method clicks on Fashion Category");
+        return super.clickOnCategory(data.fashionCategory);
     }
 
     clickOnLogin(){
-        console.log("This method clicks on link Login")
-        this.loginButton.click();
+        console.log("This method clicks on Login link");
+        return super.clickOnLogin();
     }
 
-    openPageURL(url){
-        console.log("This method opens URL")
-        return browser.get(url);
+    openPageURL(URL){
+        console.log("This method opens Home Page");
+        return super.openPageURL(URL);
     }
     
 }

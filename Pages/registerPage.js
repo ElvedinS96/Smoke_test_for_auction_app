@@ -1,92 +1,219 @@
-class RegisterPage {
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js");
+    
+class RegisterPage{
     constructor(){
         this.title="Register Page";
     }
-    get firstName (){
+
+    // GETTERS
+    get firstName(){
         return browser.driver.findElement(by.id("firstName"));
     }
-    get lastName (){
+
+    get lastName(){
         return browser.driver.findElement(by.id("lastName"));
     }
-    get emailField (){
+
+    get emailField(){
         return browser.driver.findElement(by.id("email"));
     }
+
     get passwordField(){
         return browser.driver.findElement(by.id("password"));
     }
+
     get confirmPasswordField(){
         return browser.driver.findElement(by.id("confirmPassword"));
     }
+
     get registerButton(){
         return browser.driver.findElement(by.className("btn-submit"));
     }
+
     get registrationMessage(){
         return browser.driver.findElement(by.css("div.status-content div"))
     }
+
     get hereLinkForLogin(){
-        return browser.driver.findElement(by.css("div.status-content div a"));
+        return browser.driver.findElement(by.css("div.status-content div button"));
     }
+
     get firstNameValidationMessage(){
         return browser.driver.findElement(by.css("div.form div:nth-child(2) small label"));
     }
+
     get lastNameValidationMessage(){
         return browser.driver.findElement(by.css("div.form div:nth-child(3) small label"));
     }
+
     get emailValidationMessage(){
         return browser.driver.findElement(by.css("div.form div:nth-child(4) small label"));
     }
+
     get passwordValidationMessage(){
         return browser.driver.findElement(by.css("div.form div:nth-child(5) small label"));
     }
+
     get confirmPasswordMessage(){
         return browser.driver.findElement(by.css("div.form div:nth-child(6) small label"));
     }
+
     get wordLogin(){
         return browser.driver.findElement(by.className("login-word"));
     }
+
+    get wordLoginLocator(){
+        return ".login-word"
+    }
+    
+    get statusErrorLocator(){
+        return ".status-error";
+    }
+
+    // ACTIONS
+
+    makeRandomEmail(){
+        console.log("This method makes random email");
+        return  `${data.email1}${Math.round(Math.random()*100)}${data.emailDomain}`;
+    }
+
+    waitForLoginWord(){
+        console.log("This method wait for word Login");
+        return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 5000);
+    }
+
+    waitForStatusError(){
+        console.log("This method wait for status error");
+        return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 5000);
+    }
+
     clickOnWordLogin(){
+        console.log("This method clicks on word Login");
         this.wordLogin.click();
     }
+
     getRegisterURL(){
+        console.log("This method gets Register URL");
         return browser.getCurrentUrl();
     }
+
     clickOnHereLink(){
+        console.log("This method clicks on 'Here link'");
         this.hereLinkForLogin.click();
     }
+
     getConfirmPasswordMessage(){
+        console.log("This method gets Confirm Password message");
         return this.confirmPasswordMessage.getText();
     }
+
     getPasswordValidationMessage(){
+        console.log("This method validates Password message");
         return this.passwordValidationMessage.getText();
     }
+
     getEmailValidationMessage(){
+        console.log("This method gets Email");
         return this.emailValidationMessage.getText();
     }
+
     getLastNameValidationMessage(){
+        console.log("This method gets Last name");
         return this.lastNameValidationMessage.getText();
     }
+
     getFirstNameValidationMessage(){
+        console.log("This method gets First name");
         return this.firstNameValidationMessage.getText();
     }
+
     getRegistrationMessage(){
+        console.log("This method gets Registration message");
         return this.registrationMessage.getText();
     }
-    clickOnRegisterButton(){
-        this.registerButton.click();
+
+    validateRegistrationMessage(registrationMessage){
+        console.log("This method validates Registration message");
+        return expect(registrationMessage).toBe(data.successfullRegistrationMessage)
     }
+
+    validateInvalidRegistrationMessage(invalidRegistrationMessage){
+        console.log("This method validates invalid Registration message");
+        return expect(invalidRegistrationMessage).toBe(data.usedEmailMessage);
+    }
+
+    validateRequiredFirstName(invalidFirstName){
+        console.log("This method validates invalid (empty) First Name");
+        return expect(invalidFirstName).toBe(data.firstNameRequiredMessage);
+    }
+
+    validateInvalidFirstName(invalidFirstName){
+        console.log("This method validates invalid (special characters) First Name");
+        return expect(invalidFirstName).toBe(data.firstNameWithSpecialCharacters);
+    }
+
+    validateInvalidConfirmPassword(invalidConfirmPassword){
+        console.log("This method validates invalid (empty) Confirm Password");
+        return expect(invalidConfirmPassword).toBe(data.invalidConfirmPasswordValidationMessage);
+    }
+    validateInvalidEmail(invalidEmail){
+        console.log("This method validates invalid (empty) Email");
+        return expect(invalidEmail).toBe(data.emailRequiredMessage);
+    }
+
+    validateRequiredLastName(invalidLastName){
+        console.log("This method validates invalid (empty) Last Name");
+        return expect(invalidLastName).toBe(data.lastNameRequiredMessage);
+    }
+
+    validateInvalidLastName(invalidLastName){
+        console.log("This method validates invalid (special characters) Last Name");
+        return expect(invalidLastName).toBe(data.lastNameWithSpecialCharacters);
+    }
+
+    validateInvalidPassword(invalidPassword){
+        console.log("This method validates invalid (empty) Password");
+        return expect(invalidPassword).toBe(data.passwordValidationMessage);
+    }
+
+    validateRegisterPageURL(URL){
+        console.log("This method validated entered URL");
+        return expect(URL).toBe(data.registerpageLink);
+    }
+
+    clickOnRegisterButton(){
+        console.log("This method clicks on Register button");
+        return this.registerButton.click();
+    }
+
     enterConfirmPassword(data){
+        console.log("This method enters data to Confirm Password field");
         return this.confirmPasswordField.sendKeys(data);
     }
+
     enterPassword(data){
+        console.log("This method enters data to Password field");
         return this.passwordField.sendKeys(data);
     }
-    enterEmail(data){
-        return this.emailField.sendKeys(data);
+
+    enterEmail(){
+        console.log("This method sends data to email field");
+        return this.emailField.sendKeys(this.makeRandomEmail());
     }
+
+    enterDataEmail(email2){
+        console.log("This method sends us@mail.com to email field");
+        return this.emailField.sendKeys(email2);
+    }
+
     enterFirstName(data){
+        console.log("This method enters data in First Name");
         return this.firstName.sendKeys(data);
     }
+
     enterLastName(data){
+        console.log("This method enter data in Last Name");
         return this.lastName.sendKeys(data);
     }
 

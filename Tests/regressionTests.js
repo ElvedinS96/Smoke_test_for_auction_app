@@ -1,301 +1,253 @@
-var homepage = require('../Pages/homePage');
-var loginpage = require('../Pages/loginPage');
-var fashionCategory = require ("../Pages/fashionCategoryPage");
-var itemPage = require ("../Pages/itemPage");
-var registerPage = require ("../Pages/registerPage");
-var aboutUs = require("../Pages/aboutUs");
-var termsandconditions = require("../Pages/termsAndConditions");
-var privacyAndPolicy = require ("../Pages/privacyAndPolicy");
+var homePage = require('../Pages/homePage.js'),
+    loginPage = require('../Pages/loginPage'),
+    fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
+    itemPage = require ("../Pages/itemPage"),
+    registerPage = require ("../Pages/registerPage"),
+    aboutUs = require("../Pages/aboutUs"),
+    termsAndConditionsPage = require("../Pages/termsAndConditions"),
+    privacyAndPolicyPage = require ("../Pages/privacyAndPolicy"),
+    data = require("../Data/data.js");
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
-var EC = protractor.ExpectedConditions;
 
-describe ("002: Registration", function (){
+  describe("002: Registration", function(){
     beforeEach(() => {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
-        .then(() => homepage.clickOnCreateAnAccont())
+        homePage.openPageURL(data.homepageLink)
+        .then(() => homePage.clickOnCreateAnAccount())
     })
-    
-    var random1 = Math.round(Math.random()*100);
-    var random2 = Math.round(Math.random()*100);
 
-    it ("001: User is able to create account with valid credentials", function (){
-        var firstName="Tester";
-        var lastName="123";
-        var email = `gigedov${random1}${random2}@getnada.com`;
-        var password ="testing1";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-success")), 5000))
-        .then(() => registerPage.getRegistrationMessage())
-        .then((data) => expect(data).toBe("You are registered! Login here"))
-    })
+    it ("001: User is able to create account with valid credentials", function(){
+        registerPage.enterFirstName(data.firstNameTester)
+            .then(() => registerPage.enterLastName(data.lastNameTester))
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.passwordTester))
+            .then(() => registerPage.enterConfirmPassword(data.passwordTester))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => itemPage.waitForSuccessMessage())
+            .then(() => registerPage.getRegistrationMessage())
+            .then((registrationMessage) => registerPage.validateRegistrationMessage(registrationMessage))
+    }) 
 
     it ("002: User isn't able to create account with invalid credentials", function (){
-        registerPage.enterFirstName("     ")
-        .then(() => registerPage.enterLastName("     "))
-        .then(() => registerPage.enterEmail("gigedov@getnada"))
-        .then(() => registerPage.enterPassword("     "))
-        .then(() => registerPage.enterConfirmPassword("     "))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-error")), 5000))
-        .then(() => registerPage.getRegistrationMessage())
-        .then((data) => expect(data).toBe("User with given email already exists"))
+        registerPage.enterFirstName(data.fiveSpaces)
+            .then(() => registerPage.enterLastName(data.fiveSpaces))
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.fiveSpaces))
+            .then(() => registerPage.enterConfirmPassword(data.fiveSpaces))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getFirstNameValidationMessage())
+            .then((invalidFirstName) => registerPage.validateRequiredFirstName(invalidFirstName))
+            .then(() => registerPage.getLastNameValidationMessage())
+            .then((invalidLastName) => registerPage.validateRequiredLastName(invalidLastName))
+            .then(() => registerPage.getPasswordValidationMessage())
+            .then((invalidPassword) => registerPage.validateInvalidPassword(invalidPassword))
     })
 
     it ("003: User isn't able to create account with invalid characters", function (){
-        var firstName="$";
-        var lastName="$";
-        var email = `wok${random1}${random2}@mail.com`;
-        var password ="%%%%%";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-success")), 5000))
-        .then(() => registerPage.getRegistrationMessage())
-        .then((data) => expect(data).toBe("You are registered! Login here"))
+        registerPage.enterFirstName(data.dataWithInvalidCharacters)
+            .then(() => registerPage.enterLastName(data.dataWithInvalidCharacters))
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.fivePercentSigns))
+            .then(() => registerPage.enterConfirmPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getFirstNameValidationMessage())
+            .then((invalidFirstName) => registerPage.validateInvalidFirstName(invalidFirstName))
+            .then(() => registerPage.getLastNameValidationMessage())
+            .then((invalidLastName) => registerPage.validateInvalidLastName(invalidLastName))
     })
     it ("004: User isn't able to create account with empty field for 'First Name'", function(){
-        var lastName="$";
-        var email = `wok1@mail.com`;
-        var password ="%%%%%";
-        registerPage.enterLastName(lastName)
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => registerPage.getFirstNameValidationMessage())
-        .then((data) => expect(data).toBe("First Name is required"))
+        registerPage.enterLastName(data.lastNameTester)
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.fivePercentSigns))
+            .then(() => registerPage.enterConfirmPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getFirstNameValidationMessage())
+            .then((invalidFirstName) => registerPage.validateRequiredFirstName(invalidFirstName))
     });
     it ("005: User isn't able to create account with empty field for 'Last Name'", function (){
-        var firstName="$";
-        var email = `wok1@mail.com`;
-        var password ="%%%%%";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => registerPage.getLastNameValidationMessage())
-        .then((data) => expect(data).toBe("Last Name is required"))
+        registerPage.enterFirstName(data.firstNameTester)
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.fivePercentSigns))
+            .then(() => registerPage.enterConfirmPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getLastNameValidationMessage())
+            .then((invalidLastName) => registerPage.validateRequiredLastName(invalidLastName))
     });
     it ("006: User isn't able to create account with empty field for 'Email'", function(){
-        var firstName= "$";
-        var lastName = "$";
-        var password = "%%%%%";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => registerPage.getEmailValidationMessage())
-        .then((data) => expect(data).toBe("Invalid email"))
+        registerPage.enterFirstName(data.firstNameTester)
+            .then(() => registerPage.enterLastName(data.lastNameTester))
+            .then(() => registerPage.enterPassword(data.fivePercentSigns))
+            .then(() => registerPage.enterConfirmPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getEmailValidationMessage())
+            .then((invalidEmail) => registerPage.validateInvalidEmail(invalidEmail))
     });
     it ("007: User isn't able to create account with empty field for 'Password'", function(){
-        var firstName= "$";
-        var lastName = "$";
-        var password = "%%%%%";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => registerPage.getPasswordValidationMessage())
-        .then((data) => expect(data).toBe("Password must be longer than 5 letters"))
-    })
+        registerPage.enterFirstName(data.firstNameTester)
+            .then(() => registerPage.enterLastName(data.lastNameTester))
+            .then(() => registerPage.enterConfirmPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getPasswordValidationMessage())
+            .then((invalidPassword) => registerPage.validateInvalidPassword(invalidPassword))
+    });
     it("008: User isn't able to create account with empty field for 'Confirm Pasword'", function(){
-        var firstName= "$";
-        var lastName = "$";
-        var email = `wok1@mail.com`;
-        var password = "%%%%%";
-        registerPage.enterFirstName(firstName)
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => registerPage.getConfirmPasswordMessage())
-        .then((data) => expect(data).toBe("Password is not matching"))
-    })
+        registerPage.enterFirstName(data.firstNameTester)
+            .then(() => registerPage.enterLastName(data.lastNameTester))
+            .then(() => registerPage.enterEmail())
+            .then(() => registerPage.enterPassword(data.fivePercentSigns))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => registerPage.getConfirmPasswordMessage())
+            .then((invalidConfirmPassword) => registerPage.validateInvalidConfirmPassword(invalidConfirmPassword))
+    }) 
 });
 describe("003: Login", function(){
     
     beforeEach(() => {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
+        homePage.openPageURL(data.homepageLink);
         })
-    afterEach(() =>{
-        homepage.clickOnLogoutButton();
+    afterEach(() => {
+        homePage.clickOnLogoutButton();
     })
-    var random1 = Math.round(Math.random()*100);
-    var random2 = Math.round(Math.random()*100);
-
     it("001: User is able to log in after creating account", function(){
-        var firstName="$";
-        var lastName="$";
-        var email = `wok1${random1}${random2}@mail.com`;
-        var password ="%%%%%";
-        homepage.clickOnCreateAnAccont()
-        .then(() =>  registerPage.enterFirstName(firstName))
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-success")), 5000))
-        .then(() => registerPage.clickOnHereLink())
-        .then(() => browser.wait(EC.presenceOf($(".form-title")), 5000))
-        .then(() => loginpage.enterEmail(email))
-        .then(() => loginpage.enterPassword(password))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.wait(EC.presenceOf($(".have-account")), 5000))
-        .then(() => registerPage.getRegisterURL())
-        .then((data) => expect(data).toBe("https://auct-app2-frontend.herokuapp.com/register"))
-        }); 
+        homePage.clickOnCreateAnAccount()
+            .then(() => registerPage.enterFirstName(data.firstNameTester))
+            .then(() => registerPage.enterLastName(data.lastNameTester))
+            .then(() => registerPage.enterDataEmail(data.email2))
+            .then(() => registerPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => registerPage.enterConfirmPassword(data.passwordUserRafaNadal))
+            .then(() => registerPage.clickOnRegisterButton())
+            .then(() => itemPage.waitForSuccessMessage())
+            .then(() => registerPage.clickOnHereLink())
+            .then(() => loginPage.waitForFormTitle())
+            .then(() => loginPage.enterEmail(data.email2))
+            .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => homePage.waitForCategories())
+            .then(() => homePage.getHomePageURL())
+            .then((URL) => homePage.validateHomePageURL(URL))
+        });   
 
     it("002: User is able to log in from 'Register' page", function(){
-        var firstName="$";
-        var lastName="$";
-        var email = `wok146${random1}${random2}@mail.com`;
-        var password ="%%%%%";
-        homepage.clickOnCreateAnAccont()
-        .then(() =>  registerPage.enterFirstName(firstName))
-        .then(() => registerPage.enterLastName(lastName))
-        .then(() => registerPage.enterEmail(email))
-        .then(() => registerPage.enterPassword(password))
-        .then(() => registerPage.enterConfirmPassword(password))
-        .then(() => registerPage.clickOnRegisterButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-success")), 5000))
-        .then(() => registerPage.clickOnWordLogin())
-        .then(() => browser.wait(EC.presenceOf($(".form-title")), 5000))
-        .then(() => loginpage.enterEmail(email))
-        .then(() => loginpage.enterPassword(password))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.wait(EC.presenceOf($(".have-account")), 5000))
-        .then(() => registerPage.getRegisterURL())
-        .then((data) => expect(data).toBe("https://auct-app2-frontend.herokuapp.com/register"))
+        homePage.clickOnCreateAnAccount()
+            .then(() => registerPage.clickOnWordLogin())
+            .then(() => loginPage.waitForFormTitle())
+            .then(() => loginPage.enterEmail(data.userRafaNadal))
+            .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => registerPage.waitForLoginWord())
+            .then(() => registerPage.getRegisterURL())
+            .then((URL) => registerPage.validateRegisterPageURL(URL))
     })
-    it ("003: User is able to log in from 'Create an account' form", function(){
-        var userName = "rafa@mail.com";
-        var password = "password";
-        homepage.clickOnCreateAnAccont()
-        .then (() =>homepage.clickOnLogin())
-        .then(() => loginpage.enterEmail(userName))
-        .then(() => loginpage.enterPassword(password))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.wait(EC.presenceOf($(".have-account")), 5000))
-        .then(() => loginpage.getLoginURL())
-        .then((data) => expect(data).toBe("https://auct-app2-frontend.herokuapp.com/register"))
-    }) 
-    it ("004: User isn't able to log in without password", function(){
-        var userName = "rafa@mail.com"
-        homepage.clickOnLogin()
-        .then(() => loginpage.enterEmail(userName))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.sleep(2000))
-        .then(() => loginpage.getLoginValidationMessage())
-        .then((data) => expect(data).toBe("Invalid username or password"))
+    it("003: User is able to log in from 'Create an account' form", function(){
+       
+        homePage.clickOnCreateAnAccount()
+            .then (() =>homePage.clickOnLogin())
+            .then(() => loginPage.enterEmail(data.userRafaNadal))
+            .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => homePage.waitForCategories())
+            .then(() => homePage.getHomePageURL())
+            .then((URL) => homePage.validateHomePageURL(URL))
+    })
+    it("004: User isn't able to log in without password", function(){
+        homePage.clickOnLogin()
+            .then(() => loginPage.enterEmail(data.userRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => browser.sleep(2000))
+            .then(() => loginPage.getLoginValidationMessage())
+            .then((email) => loginPage.validateMissingField(email))
     })
     it("005: User isn't able to log in without email", function(){
-        var password= "password";
-        homepage.clickOnLogin()
-        .then(() => loginpage.enterPassword(password))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.sleep(2000))
-        .then(() => loginpage.getLoginValidationMessage())
-        .then((data) => expect(data).toBe("Invalid username or password"))
-    })
+        homePage.clickOnLogin()
+            .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => browser.sleep(2000))
+            .then(() => loginPage.getLoginValidationMessage())
+            .then((password) => loginPage.validateMissingField(password))
+    }) 
 })
 describe("004: Bidding", function(){
     beforeEach(()=> {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
-        .then(() => homepage.clickOnLogin())
-        .then(() => loginpage.enterEmail("rafa@mail.com"))
-        .then(() => loginpage.enterPassword("password"))
-        .then(() => loginpage.clickOnLoginButton())
-        .then(() => browser.wait(EC.presenceOf($(".category-item")), 5000))
+        homePage.openPageURL(data.homepageLink)
+            .then(() => homePage.clickOnLogin())
+            .then(() => loginPage.enterEmail(data.userRafaNadal))
+            .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => homePage.waitForCategories())
     })
     afterEach(() =>{
-        homepage.clickOnLogoutButton();
+        homePage.clickOnLogoutButton();
     })
-    it ("001: User is able to make a bid with decimal values", function (){
-        var d = new Date();
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        homepage.clickOnFashionCategory()
-        .then(() => browser.wait(EC.presenceOf($(".landing-product")), 5000))
-        .then(() => fashionCategory.clickOnBrownJacket())
-        .then(() => itemPage.enterBid(400.25))
-        .then(() => itemPage.clickOnPlaceBidButton())
-        .then(() => browser.wait(EC.presenceOf($(".bider-name-img")), 5000))
-        .then(() => itemPage.getUserName())
-        .then((data) => expect(data).toBe("Rafa Nadal"))
-        .then(() => itemPage.getBidPrice())
-        .then((data) => expect(data).toBe("$400.25.00"))
-        .then(() => itemPage.getBidDate())
-        .then((data) => expect(data).toBe(`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`))
+     it ("001: User is able to make a bid with decimal values", function (){
+         homePage.clickOnFashionCategory()
+            .then(() => fashionCategoryPage.waitForProductItem())
+            .then(() => fashionCategoryPage.clickOnItem(data.brownJacket))
+            .then(() => itemPage.enterBid(data.bidWithDecimalPlaces))
+            .then(() => itemPage.clickOnPlaceBidButton())
+            .then(() => itemPage.waitForUserImg())
+            .then(() => itemPage.getUserName())
+            .then((userName) => itemPage.validateUsersName(userName))
+            .then(() => itemPage.getBidPrice())
+            .then((bidPrice) => itemPage.validateBidWithDecimalPlaces(bidPrice))
+            .then(() => itemPage.getBidDate())
+            .then((bidDate) => itemPage.validateDateOfBid(bidDate)) 
     });
-    it("002: User is able to make a bid with round values", function(){
-        var d = new Date();
-        var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        homepage.clickOnFashionCategory()
-        .then(() => browser.wait(EC.presenceOf($(".landing-product")), 5000))
-        .then(() => fashionCategory.clickOnBlueJacket())
-        .then(() => itemPage.enterBid(5000))
-        .then(() => itemPage.clickOnPlaceBidButton())
-        .then(() => browser.wait(EC.presenceOf($(".bider-name-img")), 5000))
-        .then(() => itemPage.getUserName())
-        .then((data) => expect(data).toBe("Rafa Nadal"))
-        .then(() => itemPage.getBidPrice())
-        .then((data) => expect(data).toBe("$5000.00"))
-        .then(() => itemPage.getBidDate())
-        .then((data) => expect(data).toBe(`${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`))
-    })
-    it("003: User isn't able to make bid which is lower than starting price", function(){
-        homepage.clickOnFashionCategory()
-        .then(() => browser.wait(EC.presenceOf($(".landing-product")), 5000))
-        .then(() => fashionCategory.clickOnWhiteJacket())
-        .then(() => itemPage.enterBid(50))
-        .then(() => itemPage.clickOnPlaceBidButton())
-        .then(() => browser.wait(EC.presenceOf($(".status-info")), 5000))
-        .then(() => itemPage.getBidConfirmationText())
-        .then((data) => expect(data).toBe("There are higher bids than yours. You could give a second try!"))
-    })
+     it("002: User is able to make a bid with round values", function(){
+        homePage.clickOnFashionCategory()
+            .then(() => fashionCategoryPage.waitForProductItem())
+            .then(() => fashionCategoryPage.clickOnItem(data.blueJacket))
+            .then(() => itemPage.enterBid(data.fiveThousandDollars))
+            .then(() => itemPage.clickOnPlaceBidButton())
+            .then(() => itemPage.waitForUserImg())
+            .then(() => itemPage.getUserName())
+            .then((userName) => itemPage.validateUsersName(userName))
+            .then(() => itemPage.getBidPrice())
+            .then((bidPrice) => itemPage.validateHigherBid(bidPrice))
+            .then(() => itemPage.getBidDate())
+            .then((bidDate) => itemPage.validateDateOfBid(bidDate))
+    }) 
+     it("003: User isn't able to make bid which is lower than starting price", function(){
+        homePage.clickOnFashionCategory()
+            .then(() => fashionCategoryPage.waitForProductItem())
+            .then(() => fashionCategoryPage.clickOnItem(data.whiteJacket))
+            .then(() => itemPage.enterBid(data.fiftyDollars))
+            .then(() => itemPage.clickOnPlaceBidButton())
+            .then(() => itemPage.waitForStatusInfo())
+            .then(() => itemPage.getBidConfirmationText())
+            .then((confirmationText) => itemPage.validateLowerThanStartingBid(confirmationText))
+    }) 
 })
-describe("005: Abouts Us", function (){
+ describe("005: Abouts Us", function (){
     beforeEach(() => {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
+        homePage.openPageURL(data.homepageLink)
         })
     it ("001: User is able to open 'About Us' section", function (){
-        homepage.clickOnAboutUs()
-        .then(() => browser.wait(EC.presenceOf($(".helper")), 5000))
-        .then(() => aboutUs.getAboutParagraph())
-        .then((data) => expect(data).toBe("About Us") )
+        homePage.clickOnAboutUs()
+            .then(() => aboutUs.waitForAboutUsParagraph())
+            .then(() => aboutUs.getAboutParagraph())
+            .then((aboutUsParagraph) => aboutUs.validateAboutParagraph(aboutUsParagraph))
     })
 });
 describe("006: Terms and Conditions", function (){
     beforeEach(() => {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
+        homePage.openPageURL(data.homepageLink)
         })
     it ("001: User is able to open 'Terms and Conditions' section", function (){
-        homepage.clickOnTermsAndConditions()
-        .then(() => browser.wait(EC.presenceOf($(".helper")), 5000))
-        .then(() => termsandconditions.getIntroductionParagraph())
-        .then((data) => expect(data).toBe("Introduction"))
+        homePage.clickOnTermsAndConditions()
+            .then(() => termsAndConditionsPage.waitForAboutParagraph())
+            .then(() => termsAndConditionsPage.getIntroductionParagraph())
+            .then((introductionParagraph) => termsAndConditionsPage.validateTitleParagraph(introductionParagraph))
     })
 })
 describe("007: Privacy and Policy", function (){
     beforeEach(() => {
-        homepage.open("https://auct-app2-frontend.herokuapp.com/")
+        homePage.openPageURL(data.homepageLink)
         })
     it ("001: User is able to open 'Privacy and Policy' section", function (){
-        homepage.clickOnPrivacyAndPolicy()
-        .then(() => browser.wait(EC.presenceOf($(".helper")), 5000))
-        .then(() => privacyAndPolicy.getSomeTitleParagraph())
-        .then((data) => expect(data).toBe("Some title here"))
-    })
+        homePage.clickOnPrivacyAndPolicy()
+            .then(() => privacyAndPolicyPage.waitForHelperParagraph())
+            .then(() => privacyAndPolicyPage.getSomeTitleParagraph())
+            .then((titleParagraph) => privacyAndPolicyPage.validateTitleParagraph(titleParagraph))
+    }) 
 })

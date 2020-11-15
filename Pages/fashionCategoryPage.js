@@ -19,7 +19,7 @@ class FashionCategoryPage{
 
     waitForProductItem(){
         console.log("This method waits for Product Item to show up");
-        browser.wait(EC.presenceOf($(this.productLocator)), 5000)
+        return browser.wait(EC.presenceOf($(this.productLocator)), 5000)
     }
     
     clickOnItem(item){

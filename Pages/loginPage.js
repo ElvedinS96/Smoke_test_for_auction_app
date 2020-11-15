@@ -1,6 +1,7 @@
-var EC = protractor.ExpectedConditions;
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js")
 
-class loginPage{
+class LoginPage{
     constructor(){
         this.title="LoginPage"    
     }
@@ -10,7 +11,9 @@ class loginPage{
     get emailField(){
         return browser.driver.findElement(by.id("email"));
     }
-
+    get formTitleLocator(){
+        return ".form-title"
+    }
     get passwordField(){
         return browser.driver.findElement(by.id("password"));
     }
@@ -22,27 +25,45 @@ class loginPage{
     get loginButton(){
         return browser.driver.findElement(by.className("btn-login"));
     }
+
+    get validationMessage(){
+        return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/small/label"));
+    }
     
     // ACTIONS
 
+    getLoginValidationMessage(){
+        console.log("This method gets Login validation message");
+        return this.validationMessage.getText();
+    }
+
+    waitForFormTitle(){
+        console.log("This method wait for Form title");
+        return browser.wait(EC.presenceOf($(this.formTitleLocator), 5000));
+    }
+
+    validateMissingField(field){
+        console.log("This method validates missing field");
+        return expect(field).toBe(data.invalidUsernameOrEmail);
+    }
     waitForEmailInput(){
-        console.log("This method waits for email input to load")
-        browser.wait(EC.presenceOf($(this.emailLocator)), 5000)
+        console.log("This method waits for email input to load");
+        return browser.wait(EC.presenceOf($(this.emailLocator)), 5000);
     }
 
     enterEmail(email){
-        console.log("This method enters data in email field")
-        this.emailField.sendKeys(email);
+        console.log("This method enters data in email field");
+        return this.emailField.sendKeys(email);
     }
 
     enterPassword(password){
-        console.log("This method enters data in password field")
-        this.passwordField.sendKeys(password);
+        console.log("This method enters data in password field");
+        return this.passwordField.sendKeys(password);
     }
     
     clickOnLoginButton(){
-        console.log("This method click on Login button")
-        this.loginButton.click();
+        console.log("This method clicks on Login button");
+        return this.loginButton.click();
     }
 }
-module.exports = new loginPage();
+module.exports = new LoginPage()

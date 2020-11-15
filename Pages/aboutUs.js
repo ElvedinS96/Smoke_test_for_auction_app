@@ -1,12 +1,28 @@
-class AboutUs {
+const Page = require("./page");
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js");
+    
+class AboutUs extends Page.Page{
     constructor(){
+        super();
         this.title = "About Us"
     }
-    get aboutParagraph(){
-        return browser.driver.findElement(by.css(".helper div h2"));
+
+    // ACTIONS
+
+    waitForAboutUsParagraph(){
+        console.log("This method waits for About Us paragraph");
+        return super.waitForParagraph();
     }
+
     getAboutParagraph(){
-        return this.aboutParagraph.getText();
+        console.log("This method gets text from paragraph");
+        return super.getParagraph();
+    }
+
+    validateAboutParagraph(aboutParagraph){
+        console.log("This method validates about paragraph")
+        return expect(aboutParagraph).toBe(data.aboutUsParagraph)
     }
 }
 module.exports = new AboutUs ();
