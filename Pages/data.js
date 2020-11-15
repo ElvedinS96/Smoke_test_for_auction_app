@@ -7,7 +7,7 @@ class Data{
         this.headerText= ".header-text",
         this.emailLocator = "#email",
         this.userRafaNadal = "rafa@mail.com",
-        this.dataWithEmptySpaces = "     "
+        this.dataWithEmptySpaces = "     ",
         this.passwordUserRafaNadal ="password",
         this.categoryItemLocator=".category-item",
         this.landingProductLocator=".landing-product",
