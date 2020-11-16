@@ -1,30 +1,19 @@
-var EC = protractor.ExpectedConditions;
+const Category = require("./category");
 
-class FashionCategoryPage{
+class FashionCategoryPage extends Category.Category{
     constructor(){
+        super();
         this.title ="Fashion Category"    
     }
-    
-    // GETTERS
 
-    productItem(item){
-        return browser.actions().mouseMove(element(by.xpath(`//*[@id='root']/div/div[1]/div[3]/div/div[${item}]/div/div/a/img`)))
-    }
-
-    get productLocator(){
-        return ".landing-product";
-    }
-    
     // ACTIONS
 
     waitForProductItem(){
-        console.log("This method waits for Product Item to show up");
-        return browser.wait(EC.presenceOf($(this.productLocator)), 5000)
+        return super.waitForProductItem();
     }
     
     clickOnItem(item){
-        console.log("This method receives desired class item, and clicks on it");
-        return this.productItem(item).click().perform();
+        return super.clickOnItem(item);
     }
 }
 module.exports = new FashionCategoryPage();

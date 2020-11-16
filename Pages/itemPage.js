@@ -135,7 +135,7 @@ class ItemPage extends Page.Page{
     }
 
     clickOnPlaceBidButton(){
-        console.log("This method click on button to place bid");
+        console.log("This method clicks on button to place bid");
         return this.placeBidButton.click()
     }
     
