@@ -1,13 +1,13 @@
 exports.config = {
     framework : "jasmine",
     seleniumAddress: 'http://localhost:4444/wd/hub',
-<<<<<<< HEAD
-    specs: [//'./Tests/smokeTest.js'
-    "./Tests/regressionTests.js"
+    specs: ["./Tests/biddingTests.js",
+    "./Tests/aboutUsTests.js",
+    "./Tests/loginTests.js",
+    "./Tests/privacyAndPolicyTests.js",
+    "./Tests/registrationTests.js",
+    "./Tests/termsAndConditionsTests.js"
   ],
-=======
-    specs: ["./Tests/regressionTests.js"],
->>>>>>> e0b9158... Added data page
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000
       }
