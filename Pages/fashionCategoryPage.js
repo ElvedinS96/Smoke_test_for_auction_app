@@ -5,15 +5,5 @@ class FashionCategoryPage extends Category.Category{
         super();
         this.title ="Fashion Category"    
     }
-
-    // ACTIONS
-
-    waitForProductItem(){
-        return super.waitForProductItem();
-    }
-    
-    clickOnItem(item){
-        return super.clickOnItem(item);
-    }
 }
 module.exports = new FashionCategoryPage();

@@ -30,7 +30,7 @@ describe("003: Login", function(){
             .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
             .then(() => loginPage.clickOnLoginButton())
             .then(() => homePage.waitForCategories())
-            .then(() => homePage.getHomePageURL())
+            .then(() => homePage.getPageURL())
             .then((URL) => homePage.validateHomePageURL(URL))
         });   
 
@@ -42,18 +42,17 @@ describe("003: Login", function(){
             .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
             .then(() => loginPage.clickOnLoginButton())
             .then(() => registerPage.waitForLoginWord())
-            .then(() => registerPage.getRegisterURL())
+            .then(() => registerPage.getPageURL())
             .then((URL) => registerPage.validateRegisterPageURL(URL))
     })
     it("003: User is able to log in from 'Create an account' form", function(){
-       
         homePage.clickOnCreateAnAccount()
-            .then (() =>homePage.clickOnLogin())
+            .then(() => homePage.clickOnLogin())
             .then(() => loginPage.enterEmail(data.userRafaNadal))
             .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
             .then(() => loginPage.clickOnLoginButton())
             .then(() => homePage.waitForCategories())
-            .then(() => homePage.getHomePageURL())
+            .then(() => homePage.getPageURL())
             .then((URL) => homePage.validateHomePageURL(URL))
     })
     it("004: User isn't able to log in without password", function(){

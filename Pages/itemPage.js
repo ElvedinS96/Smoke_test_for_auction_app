@@ -57,7 +57,7 @@ class ItemPage extends Page.Page{
 
     waitForStatusInfo(){
         console.log("This method waits for info status to show up")
-        return browser.wait(EC.presenceOf($(this.statusInfoLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.statusInfoLocator)), 7000);
     }
     validateHighestBidder(bidConfirmationText){
         console.log("This method validates if User is the highest bidder")
@@ -69,7 +69,7 @@ class ItemPage extends Page.Page{
     }
     waitForSuccessMessage(){
         console.log("This method waits for Success Bid Message to show up");
-        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 7000);
     }
 
     validateUsersName(userName){
@@ -101,7 +101,7 @@ class ItemPage extends Page.Page{
 
     waitForUserImg(){
         console.log("This method waits for User's image to show up");
-        return browser.wait(EC.presenceOf($(this.userImgLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.userImgLocator)), 7000);
     }
 
     getBidDate(){

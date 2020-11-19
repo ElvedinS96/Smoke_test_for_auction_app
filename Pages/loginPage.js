@@ -39,7 +39,7 @@ class LoginPage{
 
     waitForFormTitle(){
         console.log("This method wait for Form title");
-        return browser.wait(EC.presenceOf($(this.formTitleLocator), 5000));
+        return browser.wait(EC.presenceOf($(this.formTitleLocator), 7000));
     }
 
     validateMissingField(field){
@@ -48,7 +48,7 @@ class LoginPage{
     }
     waitForEmailInput(){
         console.log("This method waits for email input to load");
-        return browser.wait(EC.presenceOf($(this.emailLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.emailLocator)), 7000);
     }
 
     enterEmail(email){

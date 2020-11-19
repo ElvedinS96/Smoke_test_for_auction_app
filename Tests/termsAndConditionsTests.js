@@ -11,8 +11,8 @@ describe("006: Terms and Conditions", function (){
         })
     it ("001: User is able to open 'Terms and Conditions' section", function (){
         homePage.clickOnTermsAndConditions()
-            .then(() => termsAndConditionsPage.waitForAboutParagraph())
-            .then(() => termsAndConditionsPage.getIntroductionParagraph())
+            .then(() => termsAndConditionsPage.waitForParagraph())
+            .then(() => termsAndConditionsPage.getParagraph())
             .then((introductionParagraph) => termsAndConditionsPage.validateTitleParagraph(introductionParagraph))
     })
 })

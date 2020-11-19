@@ -1,6 +1,5 @@
 const Page = require("./page");
-var EC = protractor.ExpectedConditions,
-    data = require("../Data/data.js")
+var data = require("../Data/data.js")
 
 
 class TermsAndConditions extends Page.Page{
@@ -11,16 +10,6 @@ class TermsAndConditions extends Page.Page{
     }
 
     // ACTIONS
-
-    waitForAboutParagraph(){
-        console.log("This method waits for About paragraph");
-        return super.waitForParagraph();
-    }
-
-    getIntroductionParagraph(){
-        console.log("This method gets Introduction paragraph");
-        return super.getParagraph();
-    }
 
     validateTitleParagraph(introductionParagraph){
         console.log("This method validates Introduction paragraph");

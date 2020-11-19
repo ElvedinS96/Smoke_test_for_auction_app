@@ -55,7 +55,7 @@ class Page{
     }
 
     waitForParagraph(){
-        console.log("This method wait for paragraph");
+        console.log("This method waits for paragraph");
         return browser.wait(EC.presenceOf($(this.helperLocator)), 5000);
     }
 
@@ -65,17 +65,17 @@ class Page{
     }
 
     clickOnPrivacyAndPolicy(){
-        console.log("This method click on 'Privacy and Policy' link");
+        console.log("This method clicks on 'Privacy and Policy' link");
         return this.privacyAndPolicy.click();
     }
 
     clickOnTermsAndConditions(){
-        console.log("This method click on 'Terms and Conditions' link");
+        console.log("This method clicks on 'Terms and Conditions' link");
         return this.termsAndConditions.click();
     }
 
     clickOnAboutUs(){
-        console.log("This method click on 'About Us' link");
+        console.log("This method clicks on 'About Us' link");
         return this.aboutUs.click();
     }
 

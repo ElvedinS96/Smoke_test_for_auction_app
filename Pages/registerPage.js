@@ -1,8 +1,10 @@
+const Page = require("./page");
 var EC = protractor.ExpectedConditions,
     data = require("../Data/data.js");
     
-class RegisterPage{
+class RegisterPage extends Page.Page{
     constructor(){
+        super();
         this.title="Register Page";
     }
 
@@ -80,22 +82,17 @@ class RegisterPage{
 
     waitForLoginWord(){
         console.log("This method wait for word Login");
-        return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 7000);
     }
 
     waitForStatusError(){
         console.log("This method wait for status error");
-        return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 5000);
+        return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 7000);
     }
 
     clickOnWordLogin(){
         console.log("This method clicks on word Login");
         this.wordLogin.click();
-    }
-
-    getRegisterURL(){
-        console.log("This method gets Register URL");
-        return browser.getCurrentUrl();
     }
 
     clickOnHereLink(){

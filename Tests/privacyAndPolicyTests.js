@@ -11,8 +11,8 @@ describe("007: Privacy and Policy", function (){
         })
     it ("001: User is able to open 'Privacy and Policy' section", function (){
         homePage.clickOnPrivacyAndPolicy()
-            .then(() => privacyAndPolicyPage.waitForHelperParagraph())
-            .then(() => privacyAndPolicyPage.getSomeTitleParagraph())
+            .then(() => privacyAndPolicyPage.waitForParagraph())
+            .then(() => privacyAndPolicyPage.getParagraph())
             .then((titleParagraph) => privacyAndPolicyPage.validateTitleParagraph(titleParagraph))
     }) 
 })

@@ -23,34 +23,11 @@ class Category extends Page.Page{
         return this.productItem(item).click().perform();
     }
 
-    clickOnLogin(){
-        return super.clickOnLogin();
-    }
-
-    clickOnLogoutButton(){
-      return super.clickOnLogoutButton();
-    }
-
     waitForProductItem(){
         console.log("This method waits for Product Item to show up");
-        return browser.wait(EC.presenceOf($(this.productLocator)), 5000)
+        return browser.wait(EC.presenceOf($(this.productLocator)), 7000)
     }
 
-    clickOnCreateAnAccount(){
-        return super.clickOnCreateAnAccount();
-    }
-
-    clickOnPrivacyAndPolicy(){
-       return super.clickOnPrivacyAndPolicy()
-    }
-
-    clickOnTermsAndConditions(){
-        return super.clickOnTermsAndConditions();
-    }
-
-    clickOnAboutUs(){
-        return super.clickOnAboutUs();
-    }
 }
 module.exports = {
     Category: Category

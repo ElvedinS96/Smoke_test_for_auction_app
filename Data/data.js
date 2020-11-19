@@ -10,7 +10,7 @@ class Data{
         this.fiveSpaces="     ",
         this.email1="gigedov23",
         this.emailDomain="@getnada.com",
-        this.email2="ap9@mail.com"
+        this.email2="apt5@mail.com"
         this.userRafaNadal = "rafa@mail.com",
         this.passwordUserRafaNadal ="password",
         this.bidForSmokeTest=5000,

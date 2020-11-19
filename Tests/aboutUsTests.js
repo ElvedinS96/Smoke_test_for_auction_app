@@ -11,8 +11,8 @@ describe("005: Abouts Us", function (){
         })
     it ("001: User is able to open 'About Us' section", function (){
         homePage.clickOnAboutUs()
-            .then(() => aboutUs.waitForAboutUsParagraph())
-            .then(() => aboutUs.getAboutParagraph())
+            .then(() => aboutUs.waitForParagraph())
+            .then(() => aboutUs.getParagraph())
             .then((aboutUsParagraph) => aboutUs.validateAboutParagraph(aboutUsParagraph))
     })
 });
