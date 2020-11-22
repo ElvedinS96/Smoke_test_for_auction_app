@@ -59,17 +59,20 @@ class ItemPage extends Page.Page{
         console.log("This method waits for info status to show up")
         return browser.wait(EC.presenceOf($(this.statusInfoLocator)), 7000);
     }
+
     validateHighestBidder(bidConfirmationText){
         console.log("This method validates if User is the highest bidder")
         return expect(bidConfirmationText).toBe(data.highestBidderMessage)
     }
+
     validateLowerThanStartingBid(confirmationText){
         console.log("This method validates that bid is lower than starting");
         return expect(confirmationText).toBe(data.notHighestBidMessage)
     }
+
     waitForSuccessMessage(){
         console.log("This method waits for Success Bid Message to show up");
-        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 7000);
+        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 15000);
     }
 
     validateUsersName(userName){
@@ -143,6 +146,7 @@ class ItemPage extends Page.Page{
         console.log("This method clicks on image slider and changes image");
         return this.imageSlider.click();
     }
+
 }
 
 module.exports = new ItemPage();

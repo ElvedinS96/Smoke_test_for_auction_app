@@ -6,9 +6,20 @@ exports.config = {
     "./Tests/loginTests.js",
     "./Tests/privacyAndPolicyTests.js",
     "./Tests/registrationTests.js",
-    "./Tests/termsAndConditionsTests.js"
+    "./Tests/termsAndConditionsTests.js",
+    "./Tests/newArrivalsTest.js",
+    "./Tests/topRatedTest.js",
+    "./Tests/lastChanceTest.js",
+    "./Tests/shopTests.js"
   ],
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000
-      }
+      },
+    capabilities: {
+        browserName: 'chrome',
+      
+      chromeOptions: {
+          args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
+         }
+    }
   }

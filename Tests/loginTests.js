@@ -71,4 +71,13 @@ describe("003: Login", function(){
             .then(() => loginPage.getLoginValidationMessage())
             .then((password) => loginPage.validateMissingField(password))
     }) 
+    it("006: User isn't able to log in with other User's password", function(){
+        homePage.clickOnLogin()
+            .then(() => loginPage.enterEmail(data.userRafaNadal))
+            .then(() => loginPage.enterPassword(data.password2))
+            .then(() => loginPage.clickOnLoginButton())
+            .then(() => browser.sleep(2000))
+            .then(() => loginPage.getLoginValidationMessage())
+            .then((password) => loginPage.validateMissingField(password))
+    })
 })

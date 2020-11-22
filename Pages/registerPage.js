@@ -77,7 +77,11 @@ class RegisterPage extends Page.Page{
 
     makeRandomEmail(){
         console.log("This method makes random email");
-        return  `${data.email1}${Math.round(Math.random()*100)}${data.emailDomain}`;
+        return  `${data.email1}${Math.round(Math.random()*100)}6${Math.round(Math.random()*100)}${data.emailDomain}`;
+    }
+    makeRandomEmailWithoutdomain(dataEmail){
+        console.log("This method makes random email without domain");
+        return  `${data.email1}${Math.round(Math.random()*100)}${dataEmail}`;
     }
 
     waitForLoginWord(){
@@ -198,8 +202,13 @@ class RegisterPage extends Page.Page{
         console.log("This method sends data to email field");
         return this.emailField.sendKeys(this.makeRandomEmail());
     }
+    enterEmailWithoutDomain(emailData){
+        console.log("This method sends email without domain to email field");
+        return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(emailData));
+    }
 
     enterDataEmail(email2){
+        // This method had to be developed this way, because data sent through registration is used for the login, and data is static
         console.log("This method sends us@mail.com to email field");
         return this.emailField.sendKeys(email2);
     }

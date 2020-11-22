@@ -42,6 +42,10 @@ class Page{
     get paragraph(){
         return browser.driver.findElement(by.css(".helper h2"));
     }
+
+    get shopLink(){
+        return browser.driver.findElement(by.css(".header-nav :nth-child(2)"));
+    }
     // ACTIONS 
     
     getDate(){
@@ -104,6 +108,11 @@ class Page{
         console.log("This method clicks on logout button");
         return this.logoutButton.click();
     }
+
+    clickOnShop(){
+        return this.shopLink.click();
+    }
+    
 }
 
 module.exports = {

@@ -1,8 +1,10 @@
+const Page = require("./page");
 var EC = protractor.ExpectedConditions,
     data = require("../Data/data.js")
 
-class LoginPage{
+class LoginPage extends Page.Page{
     constructor(){
+        super();
         this.title="LoginPage"    
     }
 
@@ -64,6 +66,11 @@ class LoginPage{
     clickOnLoginButton(){
         console.log("This method clicks on Login button");
         return this.loginButton.click();
+    }
+
+    validateLoginPageURL(URL){
+        console.log("This method validates Login page URL");
+        return expect(URL).toBe(data.loginpageLink);
     }
 }
 module.exports = new LoginPage()
