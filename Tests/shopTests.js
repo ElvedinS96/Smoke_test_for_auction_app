@@ -13,7 +13,7 @@ describe("013: Shop", function(){
             .then(() => homePage.clickOnShop())
             .then(() => shopPage.waitForShop())
     });
-    /*it("001: User is able to open 'Shop'", function(){
+    it("001: User is able to open 'Shop'", function(){
         shopPage.getPageURL()
             .then((shopURL) => shopPage.validateShopPageURL(shopURL));
     });
@@ -49,7 +49,7 @@ describe("013: Shop", function(){
             .then(() => shopPage.clickOnFashionFilter(data.comuputerFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
-    }); */
+    });
     it("007: User is able to filter by Price", function(){
         shopPage.moveLeftSlider(200)
     })

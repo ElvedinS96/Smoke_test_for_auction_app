@@ -47,7 +47,7 @@ class Shop extends Page.Page{
     moveLeftSlider(number){
         this.leftSliderButton.click();
         for(let i=0;i<number;i++){
-            return this.leftSliderButton.sendKeys(protractor.Key.ARROW_RIGHT)
+           this.leftSliderButton.sendKeys(protractor.Key.ARROW_RIGHT)
         }
     }
 
