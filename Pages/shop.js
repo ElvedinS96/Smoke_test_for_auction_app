@@ -17,6 +17,14 @@ class Shop extends Page.Page{
         return browser.driver.findElement(by.css(`.shop-page-grid :nth-child(${itemNumber})`))
     }
 
+    get bidButton(){
+        return browser.driver.findElement(by.className("shop-bid-button"))
+    }
+
+    get bidButtonLocator(){
+        return ".shop-bid-button";
+    }
+
     get listButton(){
         return browser.driver.findElement(by.css(".shop-header-view span:last-child"));
     }
@@ -41,14 +49,36 @@ class Shop extends Page.Page{
 
     // ACTIONS
 
+    clickOnBidButton(){
+        return this.bidButton.click();
+    }
+
     clickOnFashionFilter(number){
         return this.filterNumber(number).click();
     }
+
+    clickOnLeftSlider(){
+        console.log("This method clicks on left slider")
+        return this.leftSliderButton.click();
+    }
+
+    clickOnRightSlider(){
+        console.log("This method clicks on right slider")
+        return this.rightSliderButton.click();
+    }
+
     moveLeftSlider(number){
-        this.leftSliderButton.click();
-        for(let i=0;i<number;i++){
+        for(let i=1;i<number;i++){
            this.leftSliderButton.sendKeys(protractor.Key.ARROW_RIGHT)
         }
+        return this.leftSliderButton.sendKeys(protractor.Key.ARROW_RIGHT)
+    }
+
+    moverightSlider(number){
+        for(let i=1;i<number;i++){
+           this.rightSliderButton.sendKeys(protractor.Key.ARROW_LEFT)
+        }
+        return this.rightSliderButton.sendKeys(protractor.Key.ARROW_LEFT)
     }
 
     hoverOnItemInGridView(itemNumber){
@@ -65,6 +95,10 @@ class Shop extends Page.Page{
     waitForShop(){
         console.log("This method wait for Shop to load")
         return browser.wait(EC.presenceOf($(this.shopGrid)), 7000); 
+    }
+
+    waitForBidButton(){
+        return browser.wait(EC.presenceOf($(this.bidButtonLocator)), 7000); 
     }
 
     validateShopPageURL(URL){

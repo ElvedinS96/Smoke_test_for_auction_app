@@ -22,6 +22,9 @@ class Data{
         this.password1="password1",
         this.password2="password2",
         this.bidForSmokeTest=5000,
+        this.oneHundredFifty=150,
+        this.titleJacket="Jacket"
+        this.eightHundred=800,
         this.fiveThousandDollars=5000,
         this.sixThousandDollars=6000,
         this.bidWithDecimalPlaces=40000.25,

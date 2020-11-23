@@ -12,9 +12,6 @@ describe("003: Login", function(){
     beforeEach(() => {
         homePage.openPageURL(data.homepageLink);
         })
-    afterEach(() => {
-        homePage.clickOnLogoutButton();
-    })
     it("001: User is able to log in after creating account", function(){
         homePage.clickOnCreateAnAccount()
             .then(() => registerPage.enterFirstName(data.firstNameTester))
@@ -79,5 +76,8 @@ describe("003: Login", function(){
             .then(() => browser.sleep(2000))
             .then(() => loginPage.getLoginValidationMessage())
             .then((password) => loginPage.validateMissingField(password))
+    })
+    afterEach(() => {
+        homePage.clickOnLogoutButton();
     })
 })

@@ -23,21 +23,10 @@ class HomePage extends Page.Page{
         return browser.driver.findElement(by.css(".home-nav button:nth-child(3)"));
     }
 
-    get loginButtonLocator(){
-        return ".header-text";
-    }
-
     get categoryLocator(){
         return ".category-item"
     }
 
-    get logoutButton(){
-        return browser.driver.findElement(by.css("div.login-acccount button"));
-    }
-
-    get createAnAccount(){
-        return browser.driver.findElement(by.css("a.header-text"));
-    }
     get firstItemForLinks(){
         return browser.driver.findElement(by.css(".arrivals div div div div a"));
     }
@@ -59,17 +48,17 @@ class HomePage extends Page.Page{
     }
 
     clickOnNewArrivalsButton(){
-        console.log("This method click on New Arrivals button");
+        console.log("This method clicks on New Arrivals button");
         return this.newArrivalsButton.click();
     }
 
     clickOnTopRatedButton(){
-        console.log("This method click on Top Rated button");
+        console.log("This method clicks on Top Rated button");
         return this.topRatedButton.click();
     }
 
     clickOnLastChanceButton(){
-        console.log("This method click on Last Chance button");
+        console.log("This method clicks on Last Chance button");
         return this.lastChanceButton.click();
     }
 
@@ -81,11 +70,6 @@ class HomePage extends Page.Page{
     validateHomePageURL(URL){
         console.log("This method validates home page URL");
         return expect(URL).toBe(data.homepageLink);
-    }
-
-    waitForLoginButton(){
-        console.log("This method waits for link Login to show")
-        return browser.wait(EC.presenceOf($(this.loginButtonLocator), 7000))
     }
 
     clickOnFashionCategory(){

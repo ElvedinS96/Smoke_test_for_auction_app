@@ -13,9 +13,11 @@ class LoginPage extends Page.Page{
     get emailField(){
         return browser.driver.findElement(by.id("email"));
     }
+
     get formTitleLocator(){
         return ".form-title"
     }
+    
     get passwordField(){
         return browser.driver.findElement(by.id("password"));
     }

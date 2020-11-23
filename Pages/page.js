@@ -46,6 +46,7 @@ class Page{
     get shopLink(){
         return browser.driver.findElement(by.css(".header-nav :nth-child(2)"));
     }
+
     // ACTIONS 
     
     getDate(){
@@ -113,6 +114,10 @@ class Page{
         return this.shopLink.click();
     }
     
+    waitForLoginButton(){
+        console.log("This method waits for link Login to show")
+        return browser.wait(EC.presenceOf($(this.loginButtonLocator), 7000))
+    }
 }
 
 module.exports = {

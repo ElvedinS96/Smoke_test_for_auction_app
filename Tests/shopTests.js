@@ -2,6 +2,7 @@ var homePage = require('../Pages/homePage.js'),
     data = require("../Data/data.js"),
     itemPage = require ("../Pages/itemPage"),
     shopPage= require("../Pages/shop");
+const shop = require('../Pages/shop');
 
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
@@ -21,10 +22,12 @@ describe("013: Shop", function(){
         shopPage.clickOnListViewButton()
             .then(() => shopPage.getListViewButtonAttribute())
             .then((attribute) => shopPage.validateItemAttribute(attribute))
-        })
-     it("003: User is able to open item in grid view", function(){
-        shopPage.hoverOnItemInGridView(data.itemNumber)
-            .then(() => shopPage.clickOnHoveredItem())
+        }) 
+    it("003: User is able to open item in list view", function(){
+        shopPage.clickOnListViewButton()
+             .then(() => shopPage.waitForBidButton())
+            .then(() => shopPage.clickOnBidButton())
+            .then(() => itemPage.waitForItemDetails())
             .then(() => itemPage.getItemDetails())
             .then((itemDetails) => itemPage.validateItemDetails(itemDetails))
     }) 
@@ -49,9 +52,12 @@ describe("013: Shop", function(){
             .then(() => shopPage.clickOnFashionFilter(data.comuputerFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
-    });
+    }); 
     it("007: User is able to filter by Price", function(){
-        shopPage.moveLeftSlider(200)
+        shopPage.clickOnLeftSlider()
+            .then(() => shopPage.moveLeftSlider(200))
+            .then(() => shopPage.clickOnRightSlider())
+            .then(() => shopPage.moverightSlider(200))
     })
 
 })

@@ -1,5 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-    aboutUs = require("../Pages/aboutUs"),
+    footer = require("../Pages/footer.js"),
     data = require("../Data/data.js");
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
@@ -11,8 +11,8 @@ describe("005: Abouts Us", function (){
         })
     it ("001: User is able to open 'About Us' section", function (){
         homePage.clickOnAboutUs()
-            .then(() => aboutUs.waitForParagraph())
-            .then(() => aboutUs.getParagraph())
-            .then((aboutUsParagraph) => aboutUs.validateAboutParagraph(aboutUsParagraph))
+            .then(() => footer.waitForParagraph())
+            .then(() => footer.getParagraph())
+            .then((aboutUsParagraph) => footer.validateAboutParagraph(aboutUsParagraph))
     })
 });

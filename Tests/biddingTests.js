@@ -16,10 +16,7 @@ describe("004: Bidding", function(){
             .then(() => loginPage.clickOnLoginButton())
             .then(() => homePage.waitForCategories())
     })
-    afterEach(() =>{
-        homePage.clickOnLogoutButton();
-    })
-     it ("001: User is able to make a bid with decimal values", function (){
+    it("001: User is able to make a bid with decimal values", function (){
          homePage.clickOnFashionCategory()
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(data.blackJacket))
@@ -33,7 +30,7 @@ describe("004: Bidding", function(){
             .then(() => itemPage.getBidDate())
             .then((bidDate) => itemPage.validateDateOfBid(bidDate)) 
     });
-     it("002: User is able to make a bid with round values", function(){
+    it("002: User is able to make a bid with round values", function(){
         homePage.clickOnFashionCategory()
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(data.blackJacket2))
@@ -47,7 +44,7 @@ describe("004: Bidding", function(){
             .then(() => itemPage.getBidDate())
             .then((bidDate) => itemPage.validateDateOfBid(bidDate))
     }) 
-     it("003: User isn't able to make bid which is lower than starting price", function(){
+    it("003: User isn't able to make bid which is lower than starting price", function(){
         homePage.clickOnFashionCategory()
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(data.brownJacket))
@@ -56,7 +53,7 @@ describe("004: Bidding", function(){
             .then(() => itemPage.waitForStatusInfo())
             .then(() => itemPage.getBidConfirmationText())
             .then((confirmationText) => itemPage.validateLowerThanStartingBid(confirmationText))
-    }) 
+    })
     it("004: User is able to over-bid another User", function(){
         homePage.clickOnFashionCategory()
             .then(() => fashionCategoryPage.waitForProductItem())
@@ -81,14 +78,17 @@ describe("004: Bidding", function(){
     })
     it("005: Non-logged User can't place bid", function(){
         homePage.clickOnLogoutButton()
-        .then(() => homePage.waitForLoginButton())
-        .then(() => homePage.clickOnFashionCategory())
-        .then(() => fashionCategoryPage.waitForProductItem())
-        .then(() => fashionCategoryPage.clickOnItem(data.blueJacket))
-        .then(() => itemPage.enterBid(data.fiveThousandDollars))
-        .then(() => itemPage.clickOnPlaceBidButton())
-        .then(() => loginPage.waitForFormTitle())
-        .then(() => loginPage.getPageURL())
-        .then((loginURL) => loginPage.validateLoginPageURL(loginURL))
+            .then(() => homePage.waitForLoginButton())
+            .then(() => homePage.clickOnFashionCategory())
+            .then(() => fashionCategoryPage.waitForProductItem())
+            .then(() => fashionCategoryPage.clickOnItem(data.blueJacket))
+            .then(() => itemPage.enterBid(data.fiveThousandDollars))
+            .then(() => itemPage.clickOnPlaceBidButton())
+            .then(() => loginPage.waitForFormTitle())
+            .then(() => loginPage.getPageURL())
+            .then((loginURL) => loginPage.validateLoginPageURL(loginURL))
+    })
+    afterEach(() =>{
+        homePage.clickOnLogoutButton();
     })
 })

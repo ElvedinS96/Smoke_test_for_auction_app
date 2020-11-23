@@ -1,5 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-    privacyAndPolicyPage = require ("../Pages/privacyAndPolicy"),
+    footer = require("../Pages/footer.js"),
     data = require("../Data/data.js");
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
@@ -11,8 +11,8 @@ describe("007: Privacy and Policy", function (){
         })
     it ("001: User is able to open 'Privacy and Policy' section", function (){
         homePage.clickOnPrivacyAndPolicy()
-            .then(() => privacyAndPolicyPage.waitForParagraph())
-            .then(() => privacyAndPolicyPage.getParagraph())
-            .then((titleParagraph) => privacyAndPolicyPage.validateTitleParagraph(titleParagraph))
+            .then(() => footer.waitForParagraph())
+            .then(() => footer.getParagraph())
+            .then((titleParagraph) => footer.validateTitleParagraph(titleParagraph))
     }) 
 })

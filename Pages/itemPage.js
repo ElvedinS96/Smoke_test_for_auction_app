@@ -18,6 +18,10 @@ class ItemPage extends Page.Page{
         return browser.driver.findElement(by.className("bid-input"));
     }
 
+    get itemTitle(){
+        return browser.driver.findElement(by.css(".product-right h2"));
+    }
+
     get placeBidButton(){
         return browser.driver.findElement(by.className("bid-arrow"));
     }
@@ -28,6 +32,14 @@ class ItemPage extends Page.Page{
 
     get itemDetails(){
         return browser.driver.findElement(by.css("div.product-details p"));
+    }
+
+    get itemDetailsLocator(){
+        return "div.product-details p"
+    }
+
+    get placeBidButtonLocator(){
+        return ".basic-button"
     }
 
     get userName(){
@@ -53,7 +65,20 @@ class ItemPage extends Page.Page{
         return ".status-info";
     }
 
+
     // ACTIONS
+
+    waitForItemDetails(){
+        return browser.wait(EC.presenceOf($(this.placeBidButtonLocator)), 7000);
+    }
+    getItemTitle(){
+        console.log("This method gets Item title");
+        return this.itemTitle.getText();
+    }
+
+    validateTitleJacket(title){
+        return expect(title.split(" ")[1]).toBe(data.titleJacket);
+    }
 
     waitForStatusInfo(){
         console.log("This method waits for info status to show up")
@@ -84,14 +109,17 @@ class ItemPage extends Page.Page{
         console.log("This method validates User's bid price after placed bid");
         return expect(userBid).toBe(data.bidAssert);
     }
+
     validateHigherBid(userBid){
         console.log("This method validates User's bid price after placed bid");
         return expect(userBid).toBe(data.bidAssertFiveThousandDollars);
     }
+
     validateBidWithDecimalPlaces(userBid){
         console.log("This method validates User's bid price with decimal places after placed bid");
         return expect(userBid).toBe(data.bidAssertWithDecimalPlaces);
     }
+
     validateDateOfBid(bidDate){
         console.log("This method validates User's bid date after placed bid")
         return expect(bidDate).toBe(`${super.getDate().getDate()} ${data.months[super.getDate().getMonth()]} ${super.getDate().getFullYear()}`);

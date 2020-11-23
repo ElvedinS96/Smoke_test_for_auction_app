@@ -1,5 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-    termsAndConditionsPage = require("../Pages/termsAndConditions"),
+    footer = require("../Pages/footer.js"),
     data = require("../Data/data.js");
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
@@ -11,8 +11,8 @@ describe("006: Terms and Conditions", function (){
         })
     it ("001: User is able to open 'Terms and Conditions' section", function (){
         homePage.clickOnTermsAndConditions()
-            .then(() => termsAndConditionsPage.waitForParagraph())
-            .then(() => termsAndConditionsPage.getParagraph())
-            .then((introductionParagraph) => termsAndConditionsPage.validateTitleParagraph(introductionParagraph))
+            .then(() => footer.waitForParagraph())
+            .then(() => footer.getParagraph())
+            .then((introductionParagraph) => footer.validateTitleParagraph(introductionParagraph))
     })
 })
