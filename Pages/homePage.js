@@ -32,11 +32,18 @@ class HomePage extends Page.Page{
     }
 
     get featureCollectionItems(){
-        return browser.driver.findElement(by.css(".feature-collection div div div div div a")); 
+        return browser.driver.findElement(by.css("#home-feature-single-collection div div a")); 
     }
+
+    get featureCollectionProduct(){
+        return browser.driver.findElement(by.css("#feature-products-list div div"))
+}
     
     // ACTIONS
     
+    clickOnFeatureCollectionProduct(){
+        return this.featureCollectionProduct.click();
+    }
     clickonFeatureCollectionItem(){
         console.log("This method clicks on first item of Feature Collection");
         return this.featureCollectionItems.click();

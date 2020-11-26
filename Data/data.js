@@ -12,7 +12,7 @@ class Data{
         this.fiveSpaces="     ",
         this.email1="gigedov2",
         this.emailDomain="@getnada.com",
-        this.email2="ait@mail.com",
+        this.email2="ait2@mail.com",
         this.emailWithoutDomain="@live",
         this.emailWithoutAt="live.com",
         this.userRafaNadal = "rafa@mail.com",
@@ -22,13 +22,15 @@ class Data{
         this.password1="password1",
         this.password2="password2",
         this.bidForSmokeTest=5000,
-        this.oneHundredFifty=150,
-        this.titleJacket="Jacket"
-        this.eightHundred=800,
+        this.twoHundredDolars="$200",
+        this.titleJacket="Jacket",
+        this.titleDress="Dress",
+        this.nineHundredDolars="$900",
         this.fiveThousandDollars=5000,
         this.sixThousandDollars=6000,
         this.bidWithDecimalPlaces=40000.25,
         this.fiftyDollars=50,
+        this.hundred=100,
         this.userAssert ="Rafa Nadal",
         this.bidAssert="$5000.00",
         this.bidAssertFiveThousandDollars="$5000.00",
@@ -44,7 +46,7 @@ class Data{
         this.blackJacket3=6,
         this.blackJacket4=7,
         this.gridItemNumber=1,
-        this.fashionFilter=1,
+        this.fashionCategoryFilter=1,
         this.accessoriesFilter=2,
         this.jewelryFilter=3,
         this.shoesFilter=4,
@@ -70,7 +72,8 @@ class Data{
         this.passwordValidationMessage ="Password can't be white spaces",
         this.invalidConfirmPasswordValidationMessage ="Password is not matching",
         this.firstNameWithSpecialCharacters ="First Name cannot contain special characters",
-        this.lastNameWithSpecialCharacters = "Last Name cannot contain special characters"
+        this.lastNameWithSpecialCharacters = "Last Name cannot contain special characters",
+        this.featureCollectionLink="https://auct-app2-frontend.herokuapp.com/products?category=1&feature=true"
     }
 }
 module.exports = new Data();

@@ -1,8 +1,13 @@
 var homePage = require('../Pages/homePage.js'),
+    
     loginPage = require('../Pages/loginPage'),
+    
     itemPage = require ("../Pages/itemPage"),
+    
     registerPage = require ("../Pages/registerPage"),
+    
     data = require("../Data/data.js");
+    
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
@@ -38,9 +43,9 @@ describe("003: Login", function(){
             .then(() => loginPage.enterEmail(data.userRafaNadal))
             .then(() => loginPage.enterPassword(data.passwordUserRafaNadal))
             .then(() => loginPage.clickOnLoginButton())
-            .then(() => registerPage.waitForLoginWord())
-            .then(() => registerPage.getPageURL())
-            .then((URL) => registerPage.validateRegisterPageURL(URL))
+            .then(() => homePage.waitForCategories())
+            .then(() => homePage.getPageURL())
+            .then((URL) => homePage.validateHomePageURL(URL))
     })
     it("003: User is able to log in from 'Create an account' form", function(){
         homePage.clickOnCreateAnAccount()

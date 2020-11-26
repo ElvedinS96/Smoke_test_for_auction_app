@@ -10,16 +10,18 @@ exports.config = {
     "./Tests/newArrivalsTest.js",
     "./Tests/topRatedTest.js",
     "./Tests/lastChanceTest.js",
-    "./Tests/shopTests.js"
+    "./Tests/shopTests.js",
+    "./Tests/featureCollectionTest.js",
+    "./Tests/featureProductsTest.js"
   ],
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000
       },
-    capabilities: {
+    /* capabilities: {
         browserName: 'chrome',
       
       chromeOptions: {
           args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
          }
-    }
+    } */
   }

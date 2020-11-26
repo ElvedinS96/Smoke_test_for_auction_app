@@ -1,4 +1,5 @@
 const Page = require("./page");
+
 var  data = require("../Data/data.js");
 
 class Footer extends Page.Page{
@@ -10,18 +11,21 @@ class Footer extends Page.Page{
     // ACTIONS
 
     validateTitleParagraph(titleParagraph){
-        console.log("This method validates Title paragraph");
-        return expect(titleParagraph).toBe(data.someTitleHere);
+        console.log("This method validates title paragraph");
+        switch(titleParagraph){
+
+            case "Some title here":
+                return expect(titleParagraph).toBe(data.someTitleHere);
+
+            case "Introduction":
+                return expect(titleParagraph).toBe(data.introductionParagraph);
+
+            case "About Us":
+                return expect(titleParagraph).toBe(data.aboutUsParagraph);
+        }
     }
 
-    validateTitleParagraph(introductionParagraph){
-        console.log("This method validates Introduction paragraph");
-        return expect(introductionParagraph).toBe(data.introductionParagraph);
-    }
 
-    validateAboutParagraph(aboutParagraph){
-        console.log("This method validates about paragraph")
-        return expect(aboutParagraph).toBe(data.aboutUsParagraph)
-    }
+
 }
 module.exports = new Footer();

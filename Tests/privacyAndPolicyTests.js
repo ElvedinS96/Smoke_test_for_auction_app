@@ -1,6 +1,9 @@
 var homePage = require('../Pages/homePage.js'),
+    
     footer = require("../Pages/footer.js"),
+    
     data = require("../Data/data.js");
+    
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();

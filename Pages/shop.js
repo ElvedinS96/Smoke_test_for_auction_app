@@ -32,9 +32,34 @@ class Shop extends Page.Page{
     get gridBidButton(){
         return browser.driver.findElement(by.css(".overlay div"))
     }
-
+    
     filterNumber(number){
-        return browser.driver.findElement(by.xpath(`//*[@id='root']/div/div[1]/div[4]/div/div[1]/div[1]/div[2]/div[${number}]/div[1]`))
+        var value;
+        switch(number){
+            case 1:
+                value= browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(1)"));
+                return value;
+            case 2:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(2)"));
+            case 3:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(3)"));
+            case 4:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(4)"));
+            case 5:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(5)"));
+            case 6:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(6)"));
+            case 7:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(7)"));
+            case 8:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(8)"));
+            case 9:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(9)"));
+            case 10:
+                return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(10)"));
+            
+            default:  return browser.driver.findElement(by.css("#shop-filter-cat-single:nth-child(2)"));
+            }
     }
 
     get leftSliderButton(){
@@ -45,29 +70,82 @@ class Shop extends Page.Page{
         return browser.driver.findElement(by.className("rc-slider-handle-2"));
     }
 
+    get jacketShopFilter(){
+        return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :last-child"));
+    }
+
+    get dressShopFilter(){
+        return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :first-child"))
+    }
+
+    get labelPricesFromFilterByPrice(){
+        return browser.driver.findElement(by.css("#shop-filters-price-prices label"));
+    }
+
+    get selectedFilterPopUp(){
+        return browser.driver.findElement(by.className("active-name"))
+    }
+
     
 
     // ACTIONS
 
+    getTextFromSelectedFilterPopUp(){
+        console.log("This method gets text from selected filter pop up");
+        return this.selectedFilterPopUp.getText();
+    }
+
+    validateTextFromSelectedFilterPopUp(filterText){
+        console.log("This method validates text from selected filter pop up");
+        return expect(filterText).toBe(data.titleJacket)
+    }
+
+    clickOnDressShopFilter(){
+        console.log("This method clicks on Dress filter from Product categories filter");
+        return this.dressShopFilter.click();
+    }
+
+    clickOnJacketShopFilter(){
+        console.log("This method clicks on jacket filter in Shop");
+        return this.jacketShopFilter.click();
+    }
+
+    getPricesFromFilterByPrice(){
+        console.log("This method gets prices bellow slider in Filter by Price");
+        return this.labelPricesFromFilterByPrice.getText();
+    }
+
+    validatePricesFromFilterByPrice(prices){
+        console.log("This method validates prices from Filter by Price");
+        if(prices.split(" ")[0] === data.twoHundredDolars && prices.split(" ")[2] === data.nineHundredDolars){
+            return expect(true).toBe(true);
+        } else{
+            return expect(true).toBe(false);
+        }
+    }
+
     clickOnBidButton(){
+        console.log("This method clicks on bid button");
         return this.bidButton.click();
     }
 
-    clickOnFashionFilter(number){
+    clickOnCategoryFilter(number){
+        console.log("This method clicks on Fashion Filter");
         return this.filterNumber(number).click();
     }
 
     clickOnLeftSlider(){
-        console.log("This method clicks on left slider")
+        console.log("This method clicks on left slider");
         return this.leftSliderButton.click();
     }
 
     clickOnRightSlider(){
-        console.log("This method clicks on right slider")
+        console.log("This method clicks on right slider");
         return this.rightSliderButton.click();
     }
 
     moveLeftSlider(number){
+        console.log("This method moves left price slider to the right");
         for(let i=1;i<number;i++){
            this.leftSliderButton.sendKeys(protractor.Key.ARROW_RIGHT)
         }
@@ -75,29 +153,26 @@ class Shop extends Page.Page{
     }
 
     moverightSlider(number){
+        console.log("This method moves right price slider to the left");
+
         for(let i=1;i<number;i++){
            this.rightSliderButton.sendKeys(protractor.Key.ARROW_LEFT)
         }
         return this.rightSliderButton.sendKeys(protractor.Key.ARROW_LEFT)
     }
 
-    hoverOnItemInGridView(itemNumber){
-        return browser.actions().mouseMove(this.elementsInGridView(itemNumber)).perform();
-    }
-
-    clickOnHoveredItem(){
-        return this.gridBidButton.click()
-    }
-
     clickOnListViewButton(){
+        console.log("This method clicks on List view button");
         return this.listButton.click();
     }
+
     waitForShop(){
-        console.log("This method wait for Shop to load")
+        console.log("This method wait for Shop to load");
         return browser.wait(EC.presenceOf($(this.shopGrid)), 7000); 
     }
 
     waitForBidButton(){
+        console.log("This method wait for Bid button");
         return browser.wait(EC.presenceOf($(this.bidButtonLocator)), 7000); 
     }
 
@@ -107,7 +182,7 @@ class Shop extends Page.Page{
     }
 
     getListViewButtonAttribute(){
-        console.log("This method gets item attribute")
+        console.log("This method gets item attribute");
         return this.listButton.getAttribute("class");
     }
 

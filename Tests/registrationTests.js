@@ -1,15 +1,11 @@
 var homePage = require('../Pages/homePage.js'),
+    
     itemPage = require ("../Pages/itemPage"),
+    
     registerPage = require ("../Pages/registerPage"),
+    
     data = require("../Data/data.js");
-browser.waitForAngularEnabled(false);
-browser.ignoreSynchronization = true;
-browser.manage().window().maximize();
-
-var homePage = require('../Pages/homePage.js'),
-    itemPage = require ("../Pages/itemPage"),
-    registerPage = require ("../Pages/registerPage"),
-    data = require("../Data/data.js");
+    
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
@@ -32,7 +28,7 @@ describe("002: Registration", function(){
             .then((registrationMessage) => registerPage.validateRegistrationMessage(registrationMessage))
     }) 
 
-    it ("002: User isn't able to create account with invalid credentials", function (){
+    it ("002: User isn't able to create account with invalid credentials", function(){
         registerPage.enterFirstName(data.fiveSpaces)
             .then(() => registerPage.enterLastName(data.fiveSpaces))
             .then(() => registerPage.enterEmail())

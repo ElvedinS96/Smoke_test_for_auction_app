@@ -1,6 +1,9 @@
 var homePage = require('../Pages/homePage.js'),
-    itemPage = require ("../Pages/itemPage"),
+    
+    fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
+    
     data = require("../Data/data.js");
+    
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
@@ -10,9 +13,8 @@ describe("012: Feature Collection", function(){
         homePage.openPageURL(data.homepageLink)
             .then(() => homePage.waitForLoginButton())
             .then(() => homePage.clickonFeatureCollectionItem())
-            .then(() => homePage.clickonFirstItemForLinks())
-            .then(() => itemPage.getItemDetails())
-            .then((itemDetails)=> itemPage.validateItemDetails(itemDetails))
+            .then(() => homePage.getPageURL())
+            .then((pageURL) => fashionCategoryPage.validateCollectionURL(pageURL))
 
     })
 })

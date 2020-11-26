@@ -79,6 +79,7 @@ class RegisterPage extends Page.Page{
         console.log("This method makes random email");
         return  `${data.email1}${Math.round(Math.random()*100)}6${Math.round(Math.random()*100)}${data.emailDomain}`;
     }
+
     makeRandomEmailWithoutdomain(dataEmail){
         console.log("This method makes random email without domain");
         return  `${data.email1}${Math.round(Math.random()*100)}${dataEmail}`;
@@ -96,19 +97,34 @@ class RegisterPage extends Page.Page{
 
     clickOnWordLogin(){
         console.log("This method clicks on word Login");
-        this.wordLogin.click();
+        return this.wordLogin.click();
     }
 
     clickOnHereLink(){
         console.log("This method clicks on 'Here link'");
-        this.hereLinkForLogin.click();
+        return this.hereLinkForLogin.click();
     }
 
     getConfirmPasswordMessage(){
         console.log("This method gets Confirm Password message");
         return this.confirmPasswordMessage.getText();
     }
+    
+    getValidationMessage(field){
+        switch(field){
+            case "password":
+                return this.passwordValidationMessage.getText();
 
+            case "email":
+                return this.emailValidationMessage.getText();
+
+            case "lastName":
+                return this.lastNameValidationMessage.getText();
+
+            case "firstName":
+                return this.firstNameValidationMessage.getText();
+        }
+    }
     getPasswordValidationMessage(){
         console.log("This method validates Password message");
         return this.passwordValidationMessage.getText();
@@ -209,7 +225,7 @@ class RegisterPage extends Page.Page{
 
     enterDataEmail(email2){
         // This method had to be developed this way, because data sent through registration is used for the login, and data is static
-        console.log("This method sends us@mail.com to email field");
+        console.log(`This method sends ${email2} to email field`);
         return this.emailField.sendKeys(email2);
     }
 
