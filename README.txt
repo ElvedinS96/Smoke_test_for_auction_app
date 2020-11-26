@@ -1,4 +1,4 @@
-These are tests for the application, which on of the ABH Intern coded, and it's deployed on this link:
+These are tests for the application, which on of the ABH Intern coded, and it's deployed on this link :
 https://auct-app2-frontend.herokuapp.com/ 
 
 Test Case can be found on this link: 
