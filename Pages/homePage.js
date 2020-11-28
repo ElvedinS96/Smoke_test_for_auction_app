@@ -40,7 +40,11 @@ class HomePage extends Page.Page{
 }
     
     // ACTIONS
-    
+    clickOnElement(element){
+        switch (element){
+            
+        }
+    }
     clickOnFeatureCollectionProduct(){
         return this.featureCollectionProduct.click();
     }
