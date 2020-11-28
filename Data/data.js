@@ -13,10 +13,10 @@ class Data{
         this.emptyString="",
         this.makeEmailWithoutDomain="Make email without domain",
         this.sendStaticEmail="Send static email",
-        this.emailWithoutat="Email without @"
+        this.emailWithoutat="Email without @",
         this.email1="gigedov2",
         this.emailDomain="@getnada.com",
-        this.email2="aip2@mail.com",
+        this.email2="ar@mail.com",
         this.emailWithoutDomain="@live",
         this.emailWithoutAt="live.com",
         this.userRafaNadal = "rafa@mail.com",
