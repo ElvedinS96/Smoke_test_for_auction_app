@@ -16,7 +16,7 @@ class Data{
         this.emailWithoutat="Email without @"
         this.email1="gigedov2",
         this.emailDomain="@getnada.com",
-        this.email2="aip@mail.com",
+        this.email2="aip2@mail.com",
         this.emailWithoutDomain="@live",
         this.emailWithoutAt="live.com",
         this.userRafaNadal = "rafa@mail.com",
@@ -64,7 +64,12 @@ class Data{
         this.lastNameTitle="lastName",
         this.emailTitle="email",
         this.passwordTitle="password",
-        this.confirmPasswordTitle="confirmPassword"
+        this.wordLoginTitle="Login word",
+        this.hereLinkTitle="Here Link",
+        this.statusErrorTitle="Status error",
+        this.registerButtonTitle="Register button",
+        this.registrationMessageTitle="Registration message",
+        this.confirmPasswordTitle="confirmPassword",
         this.listViewButtonAttribute="span-active",
         this.itemDetailsAssert="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
         this.highestBidderMessage="Congrats! You are the highest bidder!",

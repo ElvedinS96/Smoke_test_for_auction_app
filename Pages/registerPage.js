@@ -87,24 +87,26 @@ class RegisterPage extends Page.Page{
         return  `${data.email1}${Math.round(Math.random()*100)}${dataEmail}`;
     }
 
-    waitForLoginWord(){
-        console.log("This method wait for word Login");
-        return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 7000);
+    waitForElement(element){
+        console.log("This method waits for element from Registration page");
+        switch(element){
+            case data.wordLoginTitle:
+                return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 7000);
+            case data.statusErrorTitle:
+                return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 7000);   
+        }
     }
-
-    waitForStatusError(){
-        console.log("This method wait for status error");
-        return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 7000);
-    }
-
-    clickOnWordLogin(){
-        console.log("This method clicks on word Login");
-        return this.wordLogin.click();
-    }
-
-    clickOnHereLink(){
-        console.log("This method clicks on 'Here link'");
-        return this.hereLinkForLogin.click();
+    
+    clickOnElement(element){
+        console.log("This method clicks on element from Registration page");
+        switch(element){
+            case data.wordLoginTitle:
+                return this.wordLogin.click();
+            case data.hereLinkTitle:
+                return this.hereLinkForLogin.click();
+            case data.registerButtonTitle:
+                return this.registerButton.click();
+        }
     }
 
     validateInputMessages(){
@@ -117,6 +119,8 @@ class RegisterPage extends Page.Page{
             .then((invalidPassword) => this.validateInvalidPassword(invalidPassword))
             .then(() => { return this.getValidationMessage(data.confirmPasswordTitle)})
             .then((invalidConfirmPassword) => this.validateConfirmPassword(invalidConfirmPassword))
+            .then(() => this.getValidationMessage(data.registrationMessageTitle))
+            .then((registrationMessage) => { return this.validateRegistrationMessage(registrationMessage)})
     }
 
     getValidationMessage(field){
@@ -136,6 +140,9 @@ class RegisterPage extends Page.Page{
 
             case data.firstNameTitle:
                 return this.firstNameValidationMessage.getText();
+            
+            case data.registrationMessageTitle:
+                return this.registrationMessage.getText();
         }
     }
 
@@ -146,33 +153,35 @@ class RegisterPage extends Page.Page{
             .then(() => {
                 if(email === data.makeEmailWithoutDomain){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutDomain));
-                }else if(email=data.sendStaticEmail){
+                }else if(email === data.sendStaticEmail){
                     console.log(`This method sends ${data.email2} to email field`);
                     return this.emailField.sendKeys(data.email2);
-                } else if(email === data.emailWithoutat)
-                return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
-                else if(email === data.emailTitle){
-                    return this.enterEmail();
+                }else if(email === data.emailWithoutat){
+                    return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
+                }else if(email === data.emailTitle){
+                    return this.enterEmail(data.emptyString);
                 }
             })
             .then(() => this.passwordField.sendKeys(passwordData))
             .then(() => this.confirmPasswordField.sendKeys(confirmPasswordData))
-            .then(() => this.clickOnRegisterButton())
+            .then(() => this.clickOnElement(data.registerButtonTitle))
     }
 
-    enterEmail(){
-        console.log("This method sends data to email field");
-        return this.emailField.sendKeys(this.makeRandomEmail());
-    }
-
-    getRegistrationMessage(){
-        console.log("This method gets Registration message");
-        return this.registrationMessage.getText();
+    enterEmail(email){
+        if(email===data.email2){
+            console.log(`This method sends ${email2} to email field`);
+            return this.emailField.sendKeys(email2);
+        }else{
+            console.log("This method sends data to email field");
+            return this.emailField.sendKeys(this.makeRandomEmail());
+        }
     }
 
     validateRegistrationMessage(registrationMessage){
-        console.log("This method validates Registration message");
-        return expect(registrationMessage).toBe(data.successfullRegistrationMessage)
+        if (registrationMessage === data.successfullRegistrationMessage){
+            console.log("This method validates Registration message");
+            return expect(registrationMessage).toBe(data.successfullRegistrationMessage);
+        }
     }
 
     validateInvalidRegistrationMessage(invalidRegistrationMessage){
@@ -196,6 +205,7 @@ class RegisterPage extends Page.Page{
     
         }
     }
+
     validateInvalidEmail(invalidEmail){
         console.log("This method validates invalid (empty) Email");
         return expect(invalidEmail).toBe(data.emailRequiredMessage);
@@ -220,23 +230,5 @@ class RegisterPage extends Page.Page{
         console.log("This method validated entered URL");
         return expect(URL).toBe(data.registerpageLink);
     }
-
-    /* enterEmailWithoutDomain(emailData){
-        console.log("This method sends email without domain to email field");
-        return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(emailData));
-    } */
-
-    enterDataEmail(email2){
-        // This method had to be developed this way, because data sent through registration is used for the login, and data is static
-        console.log(`This method sends ${email2} to email field`);
-        return this.emailField.sendKeys(email2);
-    }
-
-    clickOnRegisterButton(){
-        console.log("This method clicks on Register button");
-        return this.registerButton.click();
-    }
-    
-
 }
 module.exports = new RegisterPage();
