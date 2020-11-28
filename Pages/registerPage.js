@@ -1,5 +1,7 @@
 const Page = require("./page");
+
 var EC = protractor.ExpectedConditions,
+    
     data = require("../Data/data.js");
     
 class RegisterPage extends Page.Page{
@@ -105,44 +107,62 @@ class RegisterPage extends Page.Page{
         return this.hereLinkForLogin.click();
     }
 
-    getConfirmPasswordMessage(){
-        console.log("This method gets Confirm Password message");
-        return this.confirmPasswordMessage.getText();
+    validateInputMessages(){
+        console.log("This method validates input messages");
+        return this.getValidationMessage(data.firstNameTitle)
+            .then((invalidFirstName) => this.validateFirstName(invalidFirstName))
+            .then(() => { return this.getValidationMessage(data.lastNameTitle)})
+            .then((invalidLastName) => this.validateLastName(invalidLastName))
+            .then(() => { return this.getValidationMessage(data.passwordTitle)})
+            .then((invalidPassword) => this.validateInvalidPassword(invalidPassword))
+            .then(() => { return this.getValidationMessage(data.confirmPasswordTitle)})
+            .then((invalidConfirmPassword) => this.validateConfirmPassword(invalidConfirmPassword))
     }
-    
+
     getValidationMessage(field){
+        console.log(`This method gets ${field} field message`)
         switch(field){
-            case "password":
+            case data.passwordTitle:
                 return this.passwordValidationMessage.getText();
 
-            case "email":
+            case data.confirmPasswordTitle:
+                return this.confirmPasswordMessage.getText();
+
+            case data.emailTitle:
                 return this.emailValidationMessage.getText();
 
-            case "lastName":
+            case data.lastNameTitle:
                 return this.lastNameValidationMessage.getText();
 
-            case "firstName":
+            case data.firstNameTitle:
                 return this.firstNameValidationMessage.getText();
         }
     }
-    getPasswordValidationMessage(){
-        console.log("This method validates Password message");
-        return this.passwordValidationMessage.getText();
+
+    registrateAnAccount(firstNameData,lastNameData,email,passwordData,confirmPasswordData){
+        console.log("This method enters data in First Name, Last Name, Email, Password and Confirm Password")
+        return this.firstName.sendKeys(firstNameData)
+            .then(() => this.lastName.sendKeys(lastNameData))
+            .then(() => {
+                if(email === data.makeEmailWithoutDomain){
+                    return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutDomain));
+                }else if(email=data.sendStaticEmail){
+                    console.log(`This method sends ${data.email2} to email field`);
+                    return this.emailField.sendKeys(data.email2);
+                } else if(email === data.emailWithoutat)
+                return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
+                else if(email === data.emailTitle){
+                    return this.enterEmail();
+                }
+            })
+            .then(() => this.passwordField.sendKeys(passwordData))
+            .then(() => this.confirmPasswordField.sendKeys(confirmPasswordData))
+            .then(() => this.clickOnRegisterButton())
     }
 
-    getEmailValidationMessage(){
-        console.log("This method gets Email");
-        return this.emailValidationMessage.getText();
-    }
-
-    getLastNameValidationMessage(){
-        console.log("This method gets Last name");
-        return this.lastNameValidationMessage.getText();
-    }
-
-    getFirstNameValidationMessage(){
-        console.log("This method gets First name");
-        return this.firstNameValidationMessage.getText();
+    enterEmail(){
+        console.log("This method sends data to email field");
+        return this.emailField.sendKeys(this.makeRandomEmail());
     }
 
     getRegistrationMessage(){
@@ -160,38 +180,40 @@ class RegisterPage extends Page.Page{
         return expect(invalidRegistrationMessage).toBe(data.usedEmailMessage);
     }
 
-    validateRequiredFirstName(invalidFirstName){
-        console.log("This method validates invalid (empty) First Name");
-        return expect(invalidFirstName).toBe(data.firstNameRequiredMessage);
+    validateFirstName(invalidFirstName){
+        console.log("This method validates invalid od required name message")
+        if(invalidFirstName === data.firstNameWithSpecialCharacters){
+            return expect(invalidFirstName).toBe(data.firstNameWithSpecialCharacters);
+        } else if (invalidFirstName === data.firstNameRequiredMessage){
+            return expect(invalidFirstName).toBe(data.firstNameRequiredMessage);
+        }
     }
 
-    validateInvalidFirstName(invalidFirstName){
-        console.log("This method validates invalid (special characters) First Name");
-        return expect(invalidFirstName).toBe(data.firstNameWithSpecialCharacters);
-    }
-
-    validateInvalidConfirmPassword(invalidConfirmPassword){
-        console.log("This method validates invalid (empty) Confirm Password");
-        return expect(invalidConfirmPassword).toBe(data.invalidConfirmPasswordValidationMessage);
+    validateConfirmPassword(invalidConfirmPassword){
+        if(invalidConfirmPassword === data.invalidConfirmPasswordValidationMessage){
+            console.log("This method validates invalid (empty) Confirm Password");
+            return expect(invalidConfirmPassword).toBe(data.invalidConfirmPasswordValidationMessage);
+    
+        }
     }
     validateInvalidEmail(invalidEmail){
         console.log("This method validates invalid (empty) Email");
         return expect(invalidEmail).toBe(data.emailRequiredMessage);
     }
-
-    validateRequiredLastName(invalidLastName){
-        console.log("This method validates invalid (empty) Last Name");
-        return expect(invalidLastName).toBe(data.lastNameRequiredMessage);
-    }
-
-    validateInvalidLastName(invalidLastName){
-        console.log("This method validates invalid (special characters) Last Name");
-        return expect(invalidLastName).toBe(data.lastNameWithSpecialCharacters);
+    validateLastName(invalidLastName){
+        console.log("This method validates Last Name field")
+        if(invalidLastName === data.lastNameWithSpecialCharacters){
+            return expect(invalidLastName).toBe(data.lastNameWithSpecialCharacters);
+        } else if(invalidLastName === data.lastNameRequiredMessage){
+            return expect(invalidLastName).toBe(data.lastNameRequiredMessage);
+        }
     }
 
     validateInvalidPassword(invalidPassword){
-        console.log("This method validates invalid (empty) Password");
-        return expect(invalidPassword).toBe(data.passwordValidationMessage);
+        if(invalidPassword === "invalidPassword"){
+            console.log("This method validates invalid (empty) Password");
+            return expect(invalidPassword).toBe(data.passwordValidationMessage);
+        }
     }
 
     validateRegisterPageURL(URL){
@@ -199,29 +221,10 @@ class RegisterPage extends Page.Page{
         return expect(URL).toBe(data.registerpageLink);
     }
 
-    clickOnRegisterButton(){
-        console.log("This method clicks on Register button");
-        return this.registerButton.click();
-    }
-
-    enterConfirmPassword(data){
-        console.log("This method enters data to Confirm Password field");
-        return this.confirmPasswordField.sendKeys(data);
-    }
-
-    enterPassword(data){
-        console.log("This method enters data to Password field");
-        return this.passwordField.sendKeys(data);
-    }
-
-    enterEmail(){
-        console.log("This method sends data to email field");
-        return this.emailField.sendKeys(this.makeRandomEmail());
-    }
-    enterEmailWithoutDomain(emailData){
+    /* enterEmailWithoutDomain(emailData){
         console.log("This method sends email without domain to email field");
         return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(emailData));
-    }
+    } */
 
     enterDataEmail(email2){
         // This method had to be developed this way, because data sent through registration is used for the login, and data is static
@@ -229,15 +232,11 @@ class RegisterPage extends Page.Page{
         return this.emailField.sendKeys(email2);
     }
 
-    enterFirstName(data){
-        console.log("This method enters data in First Name");
-        return this.firstName.sendKeys(data);
+    clickOnRegisterButton(){
+        console.log("This method clicks on Register button");
+        return this.registerButton.click();
     }
-
-    enterLastName(data){
-        console.log("This method enter data in Last Name");
-        return this.lastName.sendKeys(data);
-    }
+    
 
 }
 module.exports = new RegisterPage();
