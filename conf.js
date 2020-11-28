@@ -1,5 +1,5 @@
 exports.config = {
-    directConnect: true,
+    /* directConnect: true, */
     framework : "jasmine",
     specs: ["./Tests/biddingTests.js",
     "./Tests/aboutUsTests.js",
@@ -16,12 +16,12 @@ exports.config = {
   ],
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000
-      },
-    capabilities: {
+      }/*,
+     capabilities: {
         browserName: 'chrome',
       
       chromeOptions: {
           args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
          }
-    }
+    } */
   }

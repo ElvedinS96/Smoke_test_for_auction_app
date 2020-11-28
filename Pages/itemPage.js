@@ -97,7 +97,7 @@ class ItemPage extends Page.Page{
 
     waitForSuccessMessage(){
         console.log("This method waits for Success Bid Message to show up");
-        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 15000);
+        return browser.wait(EC.presenceOf($(this.statusSuccessLocator)), 10000);
     }
 
     validateUsersName(userName){
