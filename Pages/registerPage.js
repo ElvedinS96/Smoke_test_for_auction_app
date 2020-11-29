@@ -11,6 +11,7 @@ class RegisterPage extends Page.Page{
     }
 
     // GETTERS
+
     get firstName(){
         return browser.driver.findElement(by.id("firstName"));
     }
@@ -92,6 +93,7 @@ class RegisterPage extends Page.Page{
         switch(element){
             case data.wordLoginTitle:
                 return browser.wait(EC.presenceOf($(this.wordLoginLocator)), 7000);
+
             case data.statusErrorTitle:
                 return browser.wait(EC.presenceOf($(this.statusErrorLocator)), 7000);   
         }
@@ -102,8 +104,10 @@ class RegisterPage extends Page.Page{
         switch(element){
             case data.wordLoginTitle:
                 return this.wordLogin.click();
+
             case data.hereLinkTitle:
                 return this.hereLinkForLogin.click();
+
             case data.registerButtonTitle:
                 return this.registerButton.click();
         }
@@ -153,11 +157,14 @@ class RegisterPage extends Page.Page{
             .then(() => {
                 if(email === data.makeEmailWithoutDomain){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutDomain));
+
                 }else if(email === data.sendStaticEmail){
                     console.log(`This method sends ${data.email2} to email field`);
                     return this.emailField.sendKeys(data.email2);
+
                 }else if(email === data.emailWithoutat){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
+
                 }else if(email === data.emailTitle){
                     return this.enterEmail(data.emptyString);
                 }
@@ -171,6 +178,7 @@ class RegisterPage extends Page.Page{
         if(email===data.email2){
             console.log(`This method sends ${email2} to email field`);
             return this.emailField.sendKeys(email2);
+
         }else{
             console.log("This method sends data to email field");
             return this.emailField.sendKeys(this.makeRandomEmail());
@@ -202,7 +210,6 @@ class RegisterPage extends Page.Page{
         if(invalidConfirmPassword === data.invalidConfirmPasswordValidationMessage){
             console.log("This method validates invalid (empty) Confirm Password");
             return expect(invalidConfirmPassword).toBe(data.invalidConfirmPasswordValidationMessage);
-    
         }
     }
 
@@ -210,6 +217,7 @@ class RegisterPage extends Page.Page{
         console.log("This method validates invalid (empty) Email");
         return expect(invalidEmail).toBe(data.emailRequiredMessage);
     }
+    
     validateLastName(invalidLastName){
         console.log("This method validates Last Name field")
         if(invalidLastName === data.lastNameWithSpecialCharacters){

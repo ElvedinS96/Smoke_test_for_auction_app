@@ -40,37 +40,31 @@ class HomePage extends Page.Page{
 }
     
     // ACTIONS
+
     clickOnElement(element){
+        console.log(`This method clicks on ${element} title`)
         switch (element){
-            
+            case data.featureCollectionProductsTitle:
+                return this.featureCollectionProduct.click();
+
+            case data.featureCollectionCollectionTitle:
+                return this.featureCollectionItems.click();
+
+            case data.firstItemForLinksTitle:
+                return this.firstItemForLinks.click();
+
+            case data.newArrivalsTitle:
+                return this.newArrivalsButton.click();
+
+            case data.topRatedTitle:
+                return this.topRatedButton.click();
+
+            case data.lastChanceTitle:
+                return this.lastChanceButton.click();
+                
+            case data.fashionCategoryTitle:
+                return super.clickOnCategory(data.fashionCategory);
         }
-    }
-    clickOnFeatureCollectionProduct(){
-        return this.featureCollectionProduct.click();
-    }
-    clickonFeatureCollectionItem(){
-        console.log("This method clicks on first item of Feature Collection");
-        return this.featureCollectionItems.click();
-    }
-
-    clickonFirstItemForLinks(){
-        console.log("This method clicks on first item of New Arrival, Top Rated, Last Chance links");
-        return this.firstItemForLinks.click();
-    }
-
-    clickOnNewArrivalsButton(){
-        console.log("This method clicks on New Arrivals button");
-        return this.newArrivalsButton.click();
-    }
-
-    clickOnTopRatedButton(){
-        console.log("This method clicks on Top Rated button");
-        return this.topRatedButton.click();
-    }
-
-    clickOnLastChanceButton(){
-        console.log("This method clicks on Last Chance button");
-        return this.lastChanceButton.click();
     }
 
     waitForCategories(){
@@ -78,15 +72,10 @@ class HomePage extends Page.Page{
         return browser.wait(EC.presenceOf($(this.categoryLocator)), 7000);
     }
 
-    validateHomePageURL(URL){
+    validateHomePageURL(){
         console.log("This method validates home page URL");
-        return expect(URL).toBe(data.homepageLink);
+        this.getPageURL()
+        .then((URL) => { return expect(URL).toBe(data.homepageLink) });
     }
-
-    clickOnFashionCategory(){
-        console.log("This method clicks on Fashion Category");
-        return super.clickOnCategory(data.fashionCategory);
-    }
-    
 }
 module.exports = new HomePage();

@@ -18,7 +18,7 @@ describe("002: Registration", function(){
 
     it("001: User is able to create account with valid credentials", function(){
         registerPage.registrateAnAccount(data.firstNameTester,data.lastNameTester,data.emailTitle,data.passwordTester,data.passwordTester)
-            .then(() => itemPage.waitForSuccessMessage())
+            .then(() => itemPage.waitForElement(data.successMessage))
             .then(() => registerPage.validateInputMessages())    
     }) 
     it("002: User isn't able to create account with invalid credentials", function(){

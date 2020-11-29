@@ -6,9 +6,13 @@ class FashionCategoryPage extends Category.Category{
         super();
         this.title ="Fashion Category"    
     }
-    validateCollectionURL(URL){
+
+    // ACTIONS
+    
+    validateCollectionURL(){
         console.log("This method validates collection URL");
-        return expect(URL).toBe(data.featureCollectionLink);
+        this.getPageURL()
+        .then((URL) => { return expect(URL).toBe(data.featureCollectionLink) });
     }
 }
 module.exports = new FashionCategoryPage();

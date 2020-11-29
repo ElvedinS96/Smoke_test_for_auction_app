@@ -1,4 +1,5 @@
 const Page = require("./page");
+
 var EC = protractor.ExpectedConditions;
 
 class Category extends Page.Page{
@@ -20,6 +21,7 @@ class Category extends Page.Page{
     // ACTIONS
 
     clickOnItem(item){
+        console.log(`This method clicks on ${item} item`)
         return this.productItem(item).click().perform();
     }
 

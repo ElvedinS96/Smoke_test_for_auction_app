@@ -1,4 +1,6 @@
-var EC = protractor.ExpectedConditions;
+var EC = protractor.ExpectedConditions,
+
+    data = require("../Data/data.js");
 
 class Page{
     constructor(){
@@ -53,35 +55,32 @@ class Page{
         console.log("This method gets date");
         return new Date();
     }
+    
+    clickOnLinks(element){
+        console.log(`This method clicks on ${element} title`)
+        switch(element){
+            case data.createAnAccountTitle:
+                return this.createAnAccount.click();
+            
+            case data.privacyAndPolictyTitle:
+                return this.privacyAndPolicy.click();
+            
+            case data.termsAndConditionstitle:
+                return this.termsAndConditions.click();
 
-    getParagraph(){
-        console.log("This method gets text from paragraph");
-        return this.paragraph.getText();
-    }
+            case data.aboutUsParagraph:
+                return this.aboutUs.click();
 
-    waitForParagraph(){
-        console.log("This method waits for paragraph");
-        return browser.wait(EC.presenceOf($(this.helperLocator)), 5000);
-    }
+            case data.loginLinkTitle:
+                return this.loginLink.click();
 
-    clickOnCreateAnAccount(){
-        console.log("This method clicks on Create an account link");
-        return this.createAnAccount.click();
-    }
+            case data.logoutButtonTitle:
+                return this.logoutButton.click();
+            
+            case data.shopTitle:
+                return this.shopLink.click();
 
-    clickOnPrivacyAndPolicy(){
-        console.log("This method clicks on 'Privacy and Policy' link");
-        return this.privacyAndPolicy.click();
-    }
-
-    clickOnTermsAndConditions(){
-        console.log("This method clicks on 'Terms and Conditions' link");
-        return this.termsAndConditions.click();
-    }
-
-    clickOnAboutUs(){
-        console.log("This method clicks on 'About Us' link");
-        return this.aboutUs.click();
+        }    
     }
 
     openPageURL(url){
@@ -99,24 +98,27 @@ class Page{
         //Category number starts with 1
         return browser.driver.findElement(by.xpath(`//*[@id='root']/div/div[1]/div[2]/div[1]/div/div[1]/div/div[${categoryNumber}]/div/a`)).click();
     }
-
-    clickOnLogin(){
-        console.log("This method clicks on link Login");
-        return this.loginLink.click();
-    }
-
-    clickOnLogoutButton(){
-        console.log("This method clicks on logout button");
-        return this.logoutButton.click();
-    }
-
-    clickOnShop(){
-        return this.shopLink.click();
-    }
     
     waitForLoginButton(){
         console.log("This method waits for link Login to show")
         return browser.wait(EC.presenceOf($(this.loginButtonLocator), 7000))
+    }
+
+    validateTitleParagraph(){
+        console.log("This method validates title paragraph");
+        return browser.wait(EC.presenceOf($(this.helperLocator)), 5000)
+            .then(() => { return this.paragraph.getText() })
+            .then((titleParagraph) => {
+                if(titleParagraph === data.someTitleHere){
+                    return expect(titleParagraph).toBe(data.someTitleHere);   
+
+                } else if(titleParagraph === data.introductionParagraph){
+                    return expect(titleParagraph).toBe(data.introductionParagraph);
+                    
+                } else if(titleParagraph === data.aboutUsParagraph){
+                    return expect(titleParagraph).toBe(data.aboutUsParagraph);
+                }
+            })
     }
 }
 

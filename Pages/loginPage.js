@@ -1,7 +1,10 @@
 const Page = require("./page");
-var EC = protractor.ExpectedConditions,
-    data = require("../Data/data.js")
 
+var EC = protractor.ExpectedConditions,
+
+    data = require("../Data/data.js"),
+
+    homePage = require('../Pages/homePage.js');
 class LoginPage extends Page.Page{
     constructor(){
         super();
@@ -36,43 +39,35 @@ class LoginPage extends Page.Page{
     
     // ACTIONS
 
-    getLoginValidationMessage(){
-        console.log("This method gets Login validation message");
-        return this.validationMessage.getText();
+    validateLoginMessage(){
+        console.log("This method validates login message")
+        return this.validationMessage.getText()
+            .then((field) => expect(field).toBe(data.invalidUsernameOrEmail))
     }
 
-    waitForFormTitle(){
-        console.log("This method wait for Form title");
-        return browser.wait(EC.presenceOf($(this.formTitleLocator), 7000));
+    waitForElement(element){
+        if(element === data.emailInputTitle){
+            console.log("This method waits for email input to load");
+            return browser.wait(EC.presenceOf($(this.emailLocator)), 7000);
+        }else if(element === data.formTitle){
+            console.log("This method wait for Form title");
+            return browser.wait(EC.presenceOf($(this.formTitleLocator), 7000));
+        }
     }
 
-    validateMissingField(field){
-        console.log("This method validates missing field");
-        return expect(field).toBe(data.invalidUsernameOrEmail);
-    }
-    waitForEmailInput(){
-        console.log("This method waits for email input to load");
-        return browser.wait(EC.presenceOf($(this.emailLocator)), 7000);
-    }
-
-    enterEmail(email){
-        console.log("This method enters data in email field");
-        return this.emailField.sendKeys(email);
+    logIn(email,password,waitForCategories=data.booleanTrue){
+    // waitForCategories=data.booleanTrue means that this method should wait for Categories to load on lading page, if log in is successsful, and if log in isn't successfull, then method shoulnd't wait for Categories, because they won't show
+        console.log("This method sends data do Email, Password and clicks on login button");
+        return this.emailField.sendKeys(email)
+            .then(() => this.passwordField.sendKeys(password))
+            .then(() => this.loginButton.click())
+            .then(() => { if(waitForCategories) homePage.waitForCategories()} )
     }
 
-    enterPassword(password){
-        console.log("This method enters data in password field");
-        return this.passwordField.sendKeys(password);
-    }
-    
-    clickOnLoginButton(){
-        console.log("This method clicks on Login button");
-        return this.loginButton.click();
-    }
-
-    validateLoginPageURL(URL){
+    validateLoginPageURL(){
         console.log("This method validates Login page URL");
-        return expect(URL).toBe(data.loginpageLink);
+        this.getPageURL()
+            .then((URL) => { return expect(URL).toBe(data.loginpageLink) });
     }
 }
 module.exports = new LoginPage()

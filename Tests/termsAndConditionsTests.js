@@ -1,7 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-    
-    footer = require("../Pages/footer.js"),
-    
+        
     data = require("../Data/data.js");
     
 browser.waitForAngularEnabled(false);
@@ -12,10 +10,8 @@ describe("006: Terms and Conditions", function (){
     beforeEach(() => {
         homePage.openPageURL(data.homepageLink)
         })
-    it ("001: User is able to open 'Terms and Conditions' section", function (){
+    it ("001: User is able to open 'Terms and Conditions' section", function(){
         homePage.clickOnTermsAndConditions()
-            .then(() => footer.waitForParagraph())
-            .then(() => footer.getParagraph())
-            .then((introductionParagraph) => footer.validateTitleParagraph(introductionParagraph))
+            .then(() => homePage.validateTitleParagraph())
     })
 })

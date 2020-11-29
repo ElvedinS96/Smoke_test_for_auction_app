@@ -1,5 +1,7 @@
 const Page = require("./page");
+
 var EC = protractor.ExpectedConditions,
+
     data = require("../Data/data.js");
 
 class Shop extends Page.Page{
@@ -13,6 +15,7 @@ class Shop extends Page.Page{
     get shopGrid(){
         return ".shop-page-grid";
     }
+    
     elementsInGridView(itemNumber){
         return browser.driver.findElement(by.css(`.shop-page-grid :nth-child(${itemNumber})`))
     }
