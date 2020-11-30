@@ -23,7 +23,5 @@
     "gulp-webdriver": "^4.0.0",
     "protractor": "^7.0.0"
   },
-  "dependencies": {
-    "yargs": "^16.1.1"
-  }
+  "dependencies": {}
 }
