@@ -9,6 +9,14 @@ class Page{
 
     // GETTERS
 
+    get searchBarInput(){
+        return browser.driver.findElement(by.css(".search input"));
+    }
+
+    get searchIcon(){
+        return browser.driver.findElement(by.css(".search button"));
+    }
+
     get aboutUs(){
         return browser.driver.findElement(by.linkText("About Us"))
     }
@@ -83,6 +91,16 @@ class Page{
         }    
     }
 
+    searchForItems(itemTitle,searchType){
+        console.log("This method enters item in the search bar, and searches it");
+        return this.searchBarInput.sendKeys(itemTitle)
+            .then(() => {
+                if(searchType === data.searchByClickOnIcon){
+                    return this.searchIcon.click();
+                }
+            })
+    }
+
     openPageURL(url){
         console.log("This method opens URL");
         return browser.get(url);
@@ -103,6 +121,7 @@ class Page{
         console.log("This method waits for link Login to show")
         return browser.wait(EC.presenceOf($(this.loginButtonLocator), 7000))
     }
+
 
     validateTitleParagraph(){
         console.log("This method validates title paragraph");

@@ -13,7 +13,7 @@ browser.manage().window().maximize();
 describe("013: Shop", function(){
     beforeEach(()=> {
         homePage.openPageURL(data.homepageLink)
-            .then(() => homePage.clickOnShop())
+            .then(() => homePage.clickOnLinks(data.shopTitle))
             .then(() => shopPage.waitForShop())
     });
     /* it("001: User is able to open 'Shop'", function(){
@@ -54,7 +54,7 @@ describe("013: Shop", function(){
             .then(() => shopPage.clickOnFashionFilter(data.comuputerFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
             .then(() => shopPage.clickOnFashionFilter(data.gardenFilter))
-    });  */
+    }); 
     it("006: User isn't able to open two filters from 'Product categories'", function(){
         shopPage.clickOnCategoryFilter(data.fashionCategoryFilter)
             .then(() => shopPage.clickOnDressShopFilter())
@@ -64,13 +64,13 @@ describe("013: Shop", function(){
             .then(() => shopPage.getTextFromSelectedFilterPopUp())
             .then((itemTitle) => shopPage.validateTextFromSelectedFilterPopUp(itemTitle))
     })
-    /* it("007: User is able to filter by Price", function(){
+    it("007: User is able to filter by Price", function(){
         shopPage.clickOnLeftSlider()
             .then(() => shopPage.moveLeftSlider(data.hundred))
             .then(() => shopPage.clickOnRightSlider())
             .then(() => shopPage.moverightSlider(data.hundred))
-    })
-    it("008: User is able to use filter  'Fashion' from 'Product categories'", function(){
+    })*/
+    /*it("008: User is able to use filter  'Fashion' from 'Product categories'", function(){
         shopPage.clickOnListViewButton()
             .then(() => shopPage.clickOnFashionFilter(data.fashionFilter))
             .then(() => shopPage.clickOnJacketShopFilter())

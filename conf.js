@@ -1,6 +1,6 @@
 exports.config = {
-    directConnect: true,
-    //seleniumAddress: 'http://localhost:4444/wd/hub',
+    /* directConnect: true, */
+    /* seleniumAddress: 'http://localhost:4444/wd/hub', */
     framework : "jasmine",
     specs: ["./Tests/biddingTests.js",
     "./Tests/aboutUsTests.js",
@@ -13,8 +13,10 @@ exports.config = {
     "./Tests/lastChanceTest.js",
     "./Tests/shopTests.js",
     "./Tests/featureCollectionTest.js",
-    "./Tests/featureProductsTest.js"
+    "./Tests/featureProductsTest.js",
+    "./Tests/searchBarTests.js"
   ],
+  seleniumServerJar: "C:/Users/zsadi/AppData/Roaming/npm/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar",
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000
       },

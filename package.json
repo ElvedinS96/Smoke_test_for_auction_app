@@ -4,7 +4,8 @@
   "description": "These are tests for the application, which on of the ABH Intern coded, and it's deployed on this link:\r https://auct-app2-frontend.herokuapp.com/",
   "main": "conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webdriver-update": "webdriver-manager update"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/ElvedinS96/Smoke_test_for_auction_app/issues"
   },
-  "homepage": "https://github.com/ElvedinS96/Smoke_test_for_auction_app#readme"
+  "homepage": "https://github.com/ElvedinS96/Smoke_test_for_auction_app#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-protractor": "^4.1.1",
+    "gulp-webdriver": "^4.0.0",
+    "protractor": "^7.0.0"
+  },
+  "dependencies": {
+    "yargs": "^16.1.1"
+  }
 }

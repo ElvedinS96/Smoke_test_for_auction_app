@@ -1,4 +1,5 @@
 const Category = require("./category");
+
 var data = require("../Data/data.js");
 
 class FashionCategoryPage extends Category.Category{

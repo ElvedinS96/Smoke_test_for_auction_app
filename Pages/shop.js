@@ -97,10 +97,17 @@ class Shop extends Page.Page{
         console.log("This method gets text from selected filter pop up");
         return this.selectedFilterPopUp.getText();
     }
-
+    validateElements(){
+        return this.getTextFromSelectedFilterPopUp()
+            .then((filterText) => this.validateTextFromSelectedFilterPopUp(filterText))
+    }
     validateTextFromSelectedFilterPopUp(filterText){
         console.log("This method validates text from selected filter pop up");
-        return expect(filterText).toBe(data.titleJacket)
+        if(filterText === data.titleJacket){
+            return expect(filterText).toBe(data.titleJacket)
+        }else if(filterText === data.colorToSearch){
+            return expect(filterText).toBe(data.colorToSearch)
+        }   
     }
 
     clickOnDressShopFilter(){
@@ -190,7 +197,7 @@ class Shop extends Page.Page{
     }
 
     validateItemAttribute(attribute){
-        console.log("This method validates ites attribute");
+        console.log("This method validates attribute");
         return expect(attribute).toBe(data.listViewButtonAttribute);
     }
 
