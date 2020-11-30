@@ -13,7 +13,7 @@ browser.manage().window().maximize();
 describe("002: Registration", function(){
     beforeEach(() => {
         homePage.openPageURL(data.homepageLink)
-        .then(() => homePage.clickOnCreateAnAccount())
+        .then(() => homePage.clickOnLinks(data.createAnAccountTitle))
     })
 
     it("001: User is able to create account with valid credentials", function(){

@@ -1,7 +1,5 @@
-var webdriver = require('gulp-webdriver');
 var gulp = require("gulp");
 var protractor = require("gulp-protractor").protractor;
-var webdriver_standalone = require("gulp-protractor").webdriver_standalone;
 
 
 gulp.task("Registration tests", function(){
