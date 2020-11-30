@@ -16,12 +16,6 @@ exports.config = {
     "./Tests/featureProductsTest.js",
     "./Tests/searchBarTests.js"
   ],
-  
-  localSeleniumStandaloneOpts:{
-    port: 4455,
-    args:['-browserTimeout=60']
-
-  },
   seleniumServerJar: "C:/Users/zsadi/AppData/Roaming/npm/node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.141.59.jar",
     jasmineNodeOpts: {
       defaultTimeoutInterval: 2500000

@@ -26,7 +26,7 @@ gulp.task("Registration tests", function(){
     .pipe(protractor({
         configFile: "conf.js",
         args: [
-            '--baseUrl', 'http://127.0.0.1:4455']
+            '--baseUrl', 'http://127.0.0.1:8000']
     }))
     .on('error', function(e) { throw e })
 })
