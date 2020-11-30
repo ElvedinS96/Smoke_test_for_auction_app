@@ -21,5 +21,10 @@ describe("015: Search bar", function(){
             shop.searchForItems(data.titleJacket,data.searchByClickOnIcon)
             .then(() => shop.validateElements())
     })
+    it("003: User is able to search data by pressing 'ENTER'", function(){
+        shop.searchForItems(data.titleJacket,data.searchByKeyEnter)
+        .then(() => shop.validateElements())
+})
+
 
 })

@@ -97,6 +97,8 @@ class Page{
             .then(() => {
                 if(searchType === data.searchByClickOnIcon){
                     return this.searchIcon.click();
+                }else if(searchType === data.searchByKeyEnter){
+                    return this.searchBarInput.sendKeys(protractor.Key.ENTER);
                 }
             })
     }
