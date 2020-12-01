@@ -4,7 +4,7 @@
   "description": "These are tests for the application, which on of the ABH Intern coded, and it's deployed on this link:\r https://auct-app2-frontend.herokuapp.com/",
   "main": "conf.js",
   "scripts": {
-    "test": "gulp 'Registration tests'",
+    "test": "gulp",
     "webdriver-update": "webdriver-manager update"
   },
   "repository": {

@@ -2,7 +2,7 @@ var gulp = require("gulp");
 var protractor = require("gulp-protractor").protractor;
 
 
-gulp.task("Registration tests", function(){
+gulp.task("default", function(){
     return gulp.src(["./Tests/registrationTests.js"])
     .pipe(protractor({
         configFile: "conf.js",
