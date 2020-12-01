@@ -21,4 +21,6 @@ gulp.task("Search bar tests", function(){
     }))
     .on('error', function(e) { throw e })
 })
-
+gulp.task('install', function install(done) {
+    spawnCmd('webdriver-manager', ['update', '--versions.chrome=latest'], done);
+    });
