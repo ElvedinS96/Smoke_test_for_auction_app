@@ -4,7 +4,7 @@
   "description": "These are tests for the application, which on of the ABH Intern coded, and it's deployed on this link:\r https://auct-app2-frontend.herokuapp.com/",
   "main": "conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gulp 'Registration tests'",
     "webdriver-update": "webdriver-manager update"
   },
   "repository": {
