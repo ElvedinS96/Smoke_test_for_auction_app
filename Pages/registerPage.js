@@ -1,7 +1,5 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions,
-    
     data = require("../Data/data.js");
     
 class RegisterPage extends Page.Page{
@@ -12,69 +10,22 @@ class RegisterPage extends Page.Page{
 
     // GETTERS
 
-    get firstName(){
-        return browser.driver.findElement(by.id("firstName"));
-    }
-
-    get lastName(){
-        return browser.driver.findElement(by.id("lastName"));
-    }
-
-    get emailField(){
-        return browser.driver.findElement(by.id("email"));
-    }
-
-    get passwordField(){
-        return browser.driver.findElement(by.id("password"));
-    }
-
-    get confirmPasswordField(){
-        return browser.driver.findElement(by.id("confirmPassword"));
-    }
-
-    get registerButton(){
-        return browser.driver.findElement(by.className("btn-submit"));
-    }
-
-    get registrationMessage(){
-        return browser.driver.findElement(by.css("div.status-content div"))
-    }
-
-    get hereLinkForLogin(){
-        return browser.driver.findElement(by.css("div.status-content div button"));
-    }
-
-    get firstNameValidationMessage(){
-        return browser.driver.findElement(by.css("div.form div:nth-child(2) small label"));
-    }
-
-    get lastNameValidationMessage(){
-        return browser.driver.findElement(by.css("div.form div:nth-child(3) small label"));
-    }
-
-    get emailValidationMessage(){
-        return browser.driver.findElement(by.css("div.form div:nth-child(4) small label"));
-    }
-
-    get passwordValidationMessage(){
-        return browser.driver.findElement(by.css("div.form div:nth-child(5) small label"));
-    }
-
-    get confirmPasswordMessage(){
-        return browser.driver.findElement(by.css("div.form div:nth-child(6) small label"));
-    }
-
-    get wordLogin(){
-        return browser.driver.findElement(by.className("login-word"));
-    }
-
-    get wordLoginLocator(){
-        return ".login-word"
-    }
-    
-    get statusErrorLocator(){
-        return ".status-error";
-    }
+    get firstName(){ return browser.driver.findElement(by.id("firstName")); }
+    get lastName(){ return browser.driver.findElement(by.id("lastName")); }
+    get emailField(){ return browser.driver.findElement(by.id("email")); }
+    get passwordField(){ return browser.driver.findElement(by.id("password")); }
+    get confirmPasswordField(){ return browser.driver.findElement(by.id("confirmPassword")); }
+    get registerButton(){ return browser.driver.findElement(by.className("btn-submit")); }
+    get registrationMessage(){ return browser.driver.findElement(by.css("div.status-content div")); }
+    get hereLinkForLogin(){ return browser.driver.findElement(by.css("div.status-content div button")); }
+    get firstNameValidationMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(2) small label")); }
+    get lastNameValidationMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(3) small label")); }
+    get emailValidationMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(4) small label")); }
+    get passwordValidationMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(5) small label")); }
+    get confirmPasswordMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(6) small label")); }
+    get wordLogin(){ return browser.driver.findElement(by.className("login-word")); }
+    get wordLoginLocator(){ return ".login-word" }
+    get statusErrorLocator(){ return ".status-error"; }
 
     // ACTIONS
 

@@ -1,10 +1,8 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions,
-
     data = require("../Data/data.js"),
-
     homePage = require('../Pages/homePage.js');
+
 class LoginPage extends Page.Page{
     constructor(){
         super();
@@ -13,29 +11,12 @@ class LoginPage extends Page.Page{
 
     // GETTERS
 
-    get emailField(){
-        return browser.driver.findElement(by.id("email"));
-    }
-
-    get formTitleLocator(){
-        return ".form-title"
-    }
-    
-    get passwordField(){
-        return browser.driver.findElement(by.id("password"));
-    }
-
-    get emailLocator(){
-        return "#email";
-    }
-
-    get loginButton(){
-        return browser.driver.findElement(by.className("btn-login"));
-    }
-
-    get validationMessage(){
-        return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/small/label"));
-    }
+    get emailField(){ return browser.driver.findElement(by.id("email")); }
+    get formTitleLocator(){ return ".form-title"; }
+    get passwordField(){ return browser.driver.findElement(by.id("password")); }
+    get emailLocator(){ return "#email"; }
+    get loginButton(){ return browser.driver.findElement(by.className("btn-login")); }
+    get validationMessage(){ return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/small/label")); }
     
     // ACTIONS
 

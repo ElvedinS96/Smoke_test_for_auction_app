@@ -9,53 +9,22 @@ class Page{
 
     // GETTERS
 
-    get searchBarInput(){
-        return browser.driver.findElement(by.css(".search input"));
-    }
-
-    get searchIcon(){
-        return browser.driver.findElement(by.css(".search button"));
-    }
-
-    get aboutUs(){
-        return browser.driver.findElement(by.linkText("About Us"))
-    }
-
-    get loginLink(){
-        return browser.driver.findElement(by.className("header-text"));
-    }
-
-    get privacyAndPolicy(){
-        return browser.driver.findElement(by.linkText("Privacy and Policy"));
-    }
-
-    get termsAndConditions(){
-        return browser.driver.findElement(by.linkText("Terms and Conditions"));
-    }
-
-    get loginButtonLocator(){
-        return ".header-text";
-    }
-
-    get logoutButton(){
-        return browser.driver.findElement(by.css("div.login-acccount button"));
-    }
-
-    get createAnAccount(){
-        return browser.driver.findElement(by.css("a.header-text"));
-    }
-
-    get helperLocator(){
-        return ".helper";
-    }
-
-    get paragraph(){
-        return browser.driver.findElement(by.css(".helper h2"));
-    }
-
-    get shopLink(){
-        return browser.driver.findElement(by.css(".header-nav :nth-child(2)"));
-    }
+    get searchBarInput(){ return browser.driver.findElement(by.css(".search input")); }
+    get searchIcon(){ return browser.driver.findElement(by.css(".search button")); }
+    get aboutUs(){ return browser.driver.findElement(by.linkText("About Us")); }
+    get loginLink(){ return browser.driver.findElement(by.className("header-text")); }
+    get privacyAndPolicy(){ return browser.driver.findElement(by.linkText("Privacy and Policy")); }
+    get termsAndConditions(){ return browser.driver.findElement(by.linkText("Terms and Conditions")); }
+    get loginButtonLocator(){ return ".header-text"; }
+    get logoutButton(){ return browser.driver.findElement(by.css("div.login-acccount button")); }
+    get createAnAccount(){ return browser.driver.findElement(by.css("a.header-text")); }
+    get helperLocator(){ return ".helper"; }
+    get paragraph(){ return browser.driver.findElement(by.css(".helper h2")); }
+    get shopLink(){ return browser.driver.findElement(by.css(".header-nav :nth-child(2)")); }
+    get myAccountLink(){ return browser.driver.findElement(by.css(".my-account-header")); }
+    get profileLink(){ return browser.driver.findElement(by.css(".dropdown-content :nth-child(1)")); }
+    get yourBidsLink(){ return browser.driver.findElement(by.css(".dropdown-content :nth-child(2)")); }
+    get settingsLink(){ return browser.driver.findElement(by.css(".dropdown-content :nth-child(3)")); }
 
     // ACTIONS 
     
@@ -87,6 +56,18 @@ class Page{
             
             case data.shopTitle:
                 return this.shopLink.click();
+            
+            case data.myAccountTitle:
+                return browser.actions().mouseMove(this.myAccountLink).perform();
+            
+            case data.profileLinkTitle:
+                return this.profileLink.click();
+
+            case data.yourBidsTitle:
+                return this.yourBidsLink.click();
+            
+            case data.settingsTitle:
+                return this.settingsLink.click();
 
         }    
     }

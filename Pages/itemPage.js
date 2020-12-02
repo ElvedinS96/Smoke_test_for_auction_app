@@ -12,61 +12,20 @@ class ItemPage extends Page.Page{
     
     // GETTERS
 
-    get bidMessage(){
-        return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/div"));
-    }
-
-    get bidField(){
-        return browser.driver.findElement(by.className("bid-input"));
-    }
-
-    get itemTitle(){
-        return browser.driver.findElement(by.css(".product-right h2"));
-    }
-
-    get placeBidButton(){
-        return browser.driver.findElement(by.className("bid-arrow"));
-    }
-
-    get imageSlider(){
-        return browser.driver.findElement(by.className("default-nav"));
-    }
-
-    get itemDetails(){
-        return browser.driver.findElement(by.css("div.product-details p"));
-    }
-
-    get itemDetailsLocator(){
-        return "div.product-details p"
-    }
-
-    get placeBidButtonLocator(){
-        return ".basic-button"
-    }
-
-    get userName(){
-        return browser.driver.findElement(by.className("bider-name-text"));
-    }
-
-    get bidPrice(){
-        return browser.driver.findElement(by.css("tr.bider-row td:nth-child(4)"));
-    }
-
-    get bidDate(){
-        return browser.driver.findElement(by.css("tr.bider-row td:nth-child(3)"));
-    }
-
-    get userImgLocator(){
-        return ".bider-name-img";
-    }
-
-    get statusSuccessLocator(){
-        return ".status-success";
-    }
-    get statusInfoLocator(){
-        return ".status-info";
-    }
-
+    get bidMessage(){ return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/div")); }
+    get bidField(){ return browser.driver.findElement(by.className("bid-input")); }
+    get itemTitle(){ return browser.driver.findElement(by.css(".product-right h2")); }
+    get placeBidButton(){ return browser.driver.findElement(by.className("bid-arrow")); }
+    get imageSlider(){ return browser.driver.findElement(by.className("default-nav")); }
+    get itemDetails(){ return browser.driver.findElement(by.css("div.product-details p")); }
+    get itemDetailsLocator(){ return "div.product-details p"; }
+    get placeBidButtonLocator(){ return ".basic-button"; }
+    get userName(){ return browser.driver.findElement(by.className("bider-name-text")); }
+    get bidPrice(){ return browser.driver.findElement(by.css("tr.bider-row td:nth-child(4)")); }
+    get bidDate(){ return browser.driver.findElement(by.css("tr.bider-row td:nth-child(3)")); }
+    get userImgLocator(){ return ".bider-name-img"; }
+    get statusSuccessLocator(){ return ".status-success"; }
+    get statusInfoLocator(){ return ".status-info"; }
 
     // ACTIONS
 

@@ -13,33 +13,13 @@ class HomePage extends Page.Page{
     
     // GETTERS
 
-    get newArrivalsButton(){
-        return browser.driver.findElement(by.css(".home-nav button:nth-child(1)"));
-    }
-
-    get topRatedButton(){
-        return browser.driver.findElement(by.css(".home-nav button:nth-child(2)"));
-    }
-
-    get lastChanceButton(){
-        return browser.driver.findElement(by.css(".home-nav button:nth-child(3)"));
-    }
-
-    get categoryLocator(){
-        return ".category-item"
-    }
-
-    get firstItemForLinks(){
-        return browser.driver.findElement(by.css(".arrivals div div div div a"));
-    }
-
-    get featureCollectionItems(){
-        return browser.driver.findElement(by.css("#home-feature-single-collection div div a")); 
-    }
-
-    get featureCollectionProduct(){
-        return browser.driver.findElement(by.css("#feature-products-list div div"))
-}
+    get newArrivalsButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(1)")); }
+    get topRatedButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(2)")); }
+    get lastChanceButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(3)")); }
+    get firstItemForLinks(){ return browser.driver.findElement(by.css(".arrivals div div div div a")); }
+    get featureCollectionItems(){ return browser.driver.findElement(by.css("#home-feature-single-collection div div a")); }
+    get featureCollectionProduct(){ return browser.driver.findElement(by.css("#feature-products-list div div")); }
+    get categoryLocator(){ return ".category-item"; }
     
     // ACTIONS
 

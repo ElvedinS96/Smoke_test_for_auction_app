@@ -12,29 +12,17 @@ class Shop extends Page.Page{
 
     // GETTERS
 
-    get shopGrid(){
-        return ".shop-page-grid";
-    }
+    get shopGrid(){ return ".shop-page-grid"; }
     
-    elementsInGridView(itemNumber){
-        return browser.driver.findElement(by.css(`.shop-page-grid :nth-child(${itemNumber})`))
-    }
+    elementsInGridView(itemNumber){ return browser.driver.findElement(by.css(`.shop-page-grid :nth-child(${itemNumber})`)); }
 
-    get bidButton(){
-        return browser.driver.findElement(by.className("shop-bid-button"))
-    }
+    get bidButton(){ return browser.driver.findElement(by.className("shop-bid-button")); }
 
-    get bidButtonLocator(){
-        return ".shop-bid-button";
-    }
+    get bidButtonLocator(){ return ".shop-bid-button"; }
 
-    get listButton(){
-        return browser.driver.findElement(by.css(".shop-header-view span:last-child"));
-    }
+    get listButton(){ return browser.driver.findElement(by.css(".shop-header-view span:last-child")); }
 
-    get gridBidButton(){
-        return browser.driver.findElement(by.css(".overlay div"))
-    }
+    get gridBidButton(){ return browser.driver.findElement(by.css(".overlay div")); }
     
     filterNumber(number){
         var value;
@@ -65,29 +53,17 @@ class Shop extends Page.Page{
             }
     }
 
-    get leftSliderButton(){
-        return browser.driver.findElement(by.className("rc-slider-handle-1"));
-    }
+    get leftSliderButton(){ return browser.driver.findElement(by.className("rc-slider-handle-1")); }
 
-    get rightSliderButton(){
-        return browser.driver.findElement(by.className("rc-slider-handle-2"));
-    }
+    get rightSliderButton(){ return browser.driver.findElement(by.className("rc-slider-handle-2")); }
 
-    get jacketShopFilter(){
-        return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :last-child"));
-    }
+    get jacketShopFilter(){ return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :last-child")); }
 
-    get dressShopFilter(){
-        return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :first-child"))
-    }
+    get dressShopFilter(){ return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :first-child")) }
 
-    get labelPricesFromFilterByPrice(){
-        return browser.driver.findElement(by.css("#shop-filters-price-prices label"));
-    }
+    get labelPricesFromFilterByPrice(){ return browser.driver.findElement(by.css("#shop-filters-price-prices label")); }
 
-    get selectedFilterPopUp(){
-        return browser.driver.findElement(by.className("active-name"))
-    }
+    get selectedFilterPopUp(){ return browser.driver.findElement(by.className("active-name")) }
 
     
 
