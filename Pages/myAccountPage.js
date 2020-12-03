@@ -9,7 +9,6 @@ class MyAccountPage extends Page.Page{
         this.title="My Account Page";
     }
     // GETTERS
-    
     get profileHeading(){ return browser.driver.findElement(by.className("profile-heading")); }
     get yourBidsTable(){ return browser.driver.findElement(by.className("user-bids-item")); }
     get settingsForm(){ return browser.driver.findElement(by.className("settings-heading")); }
@@ -23,7 +22,6 @@ class MyAccountPage extends Page.Page{
 
 
     // ACTIONS
-
     getElementValidation(element){
         console.log(`This method gets ${element} title`);
         switch(element){

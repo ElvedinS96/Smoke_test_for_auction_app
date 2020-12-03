@@ -9,12 +9,10 @@ class Category extends Page.Page{
     }
 
     // GETTERS
-
     get productLocator(){ return ".landing-product"; }
     productItem(item){ return browser.actions().mouseMove(element(by.xpath(`//*[@id='root']/div/div[1]/div[3]/div/div[${item}]/div/div/a/img`))); }
 
     // ACTIONS
-
     clickOnItem(item){
         console.log(`This method clicks on ${item} item`)
         return this.productItem(item).click().perform();

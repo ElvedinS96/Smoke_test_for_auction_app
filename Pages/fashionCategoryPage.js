@@ -9,7 +9,6 @@ class FashionCategoryPage extends Category.Category{
     }
 
     // ACTIONS
-    
     validateCollectionURL(){
         console.log("This method validates collection URL");
         this.getPageURL()

@@ -10,7 +10,6 @@ class LoginPage extends Page.Page{
     }
 
     // GETTERS
-
     get emailField(){ return browser.driver.findElement(by.id("email")); }
     get formTitleLocator(){ return ".form-title"; }
     get passwordField(){ return browser.driver.findElement(by.id("password")); }
@@ -19,7 +18,6 @@ class LoginPage extends Page.Page{
     get validationMessage(){ return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/small/label")); }
     
     // ACTIONS
-
     validateLoginMessage(){
         console.log("This method validates login message")
         return this.validationMessage.getText()

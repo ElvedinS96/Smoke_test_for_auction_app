@@ -9,7 +9,6 @@ class RegisterPage extends Page.Page{
     }
 
     // GETTERS
-
     get firstName(){ return browser.driver.findElement(by.id("firstName")); }
     get lastName(){ return browser.driver.findElement(by.id("lastName")); }
     get emailField(){ return browser.driver.findElement(by.id("email")); }
@@ -28,7 +27,6 @@ class RegisterPage extends Page.Page{
     get statusErrorLocator(){ return ".status-error"; }
 
     // ACTIONS
-
     makeRandomEmail(){
         console.log("This method makes random email");
         return  `${data.email1}${Math.round(Math.random()*100)}6${Math.round(Math.random()*100)}${data.emailDomain}`;

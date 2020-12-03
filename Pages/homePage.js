@@ -12,7 +12,6 @@ class HomePage extends Page.Page{
     }
     
     // GETTERS
-
     get newArrivalsButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(1)")); }
     get topRatedButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(2)")); }
     get lastChanceButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(3)")); }
@@ -22,7 +21,6 @@ class HomePage extends Page.Page{
     get categoryLocator(){ return ".category-item"; }
     
     // ACTIONS
-
     clickOnElement(element){
         console.log(`This method clicks on ${element} title`)
         switch (element){

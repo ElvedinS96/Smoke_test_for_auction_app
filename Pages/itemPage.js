@@ -11,7 +11,6 @@ class ItemPage extends Page.Page{
     }
     
     // GETTERS
-
     get bidMessage(){ return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/div")); }
     get bidField(){ return browser.driver.findElement(by.className("bid-input")); }
     get itemTitle(){ return browser.driver.findElement(by.css(".product-right h2")); }
@@ -28,7 +27,6 @@ class ItemPage extends Page.Page{
     get statusInfoLocator(){ return ".status-info"; }
 
     // ACTIONS
-
     waitForElement(element){
         console.log("This method waits for element");
         switch(element){

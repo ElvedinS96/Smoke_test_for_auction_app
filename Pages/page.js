@@ -8,7 +8,6 @@ class Page{
     }
 
     // GETTERS
-
     get searchBarInput(){ return browser.driver.findElement(by.css(".search input")); }
     get searchIcon(){ return browser.driver.findElement(by.css(".search button")); }
     get aboutUs(){ return browser.driver.findElement(by.linkText("About Us")); }
@@ -27,7 +26,6 @@ class Page{
     get settingsLink(){ return browser.driver.findElement(by.css(".dropdown-content :nth-child(3)")); }
 
     // ACTIONS 
-    
     getDate(){
         console.log("This method gets date");
         return new Date();
