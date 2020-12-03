@@ -25,4 +25,3 @@ exports.config = {
         args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
        }
   } */
-}
