@@ -1,7 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-
     shop = require("../Pages/shop")
-    
     data = require("../Data/data.js");
 
 browser.waitForAngularEnabled(false);
@@ -14,17 +12,12 @@ describe("015: Search bar", function(){
             .then(() => homePage.clickOnLinks(data.shopTitle))
     })
     it("001: User is able to search for items by color", function(){
-            shop.searchForItems(data.colorToSearch,data.searchByClickOnIcon)
-            .then(() => shop.validateElements())
+        shop.searchAndValidateElements(data.colorToSearch,data.searchByClickOnIcon)
     })
     it("002: User is able to search for items by item title", function(){
-            shop.searchForItems(data.titleJacket,data.searchByClickOnIcon)
-            .then(() => shop.validateElements())
+        shop.searchAndValidateElements(data.titleJacket,data.searchByClickOnIcon)
     })
     it("003: User is able to search data by pressing 'ENTER'", function(){
-        shop.searchForItems(data.titleJacket,data.searchByKeyEnter)
-        .then(() => shop.validateElements())
-})
-
-
+        shop.searchAndValidateElements(data.titleJacket,data.searchByKeyEnter)
+    })
 })

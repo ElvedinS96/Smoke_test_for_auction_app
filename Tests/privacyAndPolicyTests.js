@@ -1,5 +1,4 @@
 var homePage = require('../Pages/homePage.js'),
-        
     data = require("../Data/data.js");
     
 browser.waitForAngularEnabled(false);

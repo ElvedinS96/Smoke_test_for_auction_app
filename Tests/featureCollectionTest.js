@@ -1,7 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
-    
     fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
-    
     data = require("../Data/data.js");
     
 browser.waitForAngularEnabled(false);

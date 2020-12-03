@@ -1,7 +1,5 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions,
-
     data = require("../Data/data.js");
 
 
@@ -58,4 +56,5 @@ class HomePage extends Page.Page{
         .then((URL) => { return expect(URL).toBe(data.homepageLink) });
     }
 }
+
 module.exports = new HomePage();

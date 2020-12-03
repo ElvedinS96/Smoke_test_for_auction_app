@@ -1,11 +1,6 @@
 var myAccountPage = require("../Pages/myAccountPage"),
-
     homePage = require("../Pages/homePage"),
-
-    EC = protractor.ExpectedConditions,
-
     loginPage = require('../Pages/loginPage'),
-    
     data = require("../Data/data.js");
 
 browser.waitForAngularEnabled(false);

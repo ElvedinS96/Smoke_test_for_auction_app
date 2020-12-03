@@ -1,7 +1,5 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions, 
-
     data = require("../Data/data.js");
 
 class ItemPage extends Page.Page{
@@ -64,7 +62,7 @@ class ItemPage extends Page.Page{
         }
     }
     
-    validateBidElements(bidStatus=data.booleanTrue){
+    validateBidElements(bidStatus=true){
     //bidStatus=data.booleanTrue means that in the bid table there is at least one bid, and we can get User's name, price and bid date, and if bidStatus=data.booleanFalse is set, that means there is no bid in the table, and method getElementValidation() shouldn't try to get those elements
         return this.getElementValidation(data.bidConfirmationTextTitle)
             .then((elementValidation) => this.validateHighestBidder(elementValidation))

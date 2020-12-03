@@ -34,7 +34,7 @@ class LoginPage extends Page.Page{
         }
     }
 
-    logIn(email,password,waitForCategories=data.booleanTrue){
+    logIn(email,password,waitForCategories=true){
     // waitForCategories=data.booleanTrue means that this method should wait for Categories to load on lading page, if log in is successsful, and if log in isn't successfull, then method shoulnd't wait for Categories, because they won't show
         console.log("This method sends data do Email, Password and clicks on login button");
         return this.emailField.sendKeys(email)
@@ -49,4 +49,5 @@ class LoginPage extends Page.Page{
             .then((URL) => { return expect(URL).toBe(data.loginpageLink) });
     }
 }
+
 module.exports = new LoginPage()

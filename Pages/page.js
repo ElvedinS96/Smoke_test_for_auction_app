@@ -1,5 +1,4 @@
 var EC = protractor.ExpectedConditions,
-
     data = require("../Data/data.js");
 
 class Page{
@@ -124,4 +123,4 @@ class Page{
 
 module.exports = {
     Page: Page
- }
+}

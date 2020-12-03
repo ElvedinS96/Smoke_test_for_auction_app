@@ -1,5 +1,4 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions,
     data = require("../Data/data");
 

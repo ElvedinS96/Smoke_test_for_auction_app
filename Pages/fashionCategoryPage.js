@@ -1,5 +1,4 @@
 const Category = require("./category");
-
 var data = require("../Data/data.js");
 
 class FashionCategoryPage extends Category.Category{
@@ -15,4 +14,5 @@ class FashionCategoryPage extends Category.Category{
         .then((URL) => { return expect(URL).toBe(data.featureCollectionLink) });
     }
 }
+
 module.exports = new FashionCategoryPage();

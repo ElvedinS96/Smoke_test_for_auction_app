@@ -188,4 +188,5 @@ class RegisterPage extends Page.Page{
         return expect(URL).toBe(data.registerpageLink);
     }
 }
+
 module.exports = new RegisterPage();

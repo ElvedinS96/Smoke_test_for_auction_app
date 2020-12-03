@@ -26,4 +26,4 @@ class Category extends Page.Page{
 }
 module.exports = {
     Category: Category
- }
+}

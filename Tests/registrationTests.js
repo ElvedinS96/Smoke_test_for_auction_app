@@ -1,9 +1,6 @@
 var homePage = require('../Pages/homePage.js'),
-    
     itemPage = require ("../Pages/itemPage"),
-    
     registerPage = require ("../Pages/registerPage"),
-    
     data = require("../Data/data.js");
     
 browser.waitForAngularEnabled(false);
