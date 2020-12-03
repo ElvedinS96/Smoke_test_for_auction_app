@@ -19,7 +19,7 @@ describe("016: My Account", function(){
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
             .then(() => myAccountPage.clickOnLinks(data.myAccountTitle));
     })
-    /* it("001: User is able to open 'Profile' page", function(){
+    it("001: User is able to open 'Profile' page", function(){
         myAccountPage.clickOnLinks(data.profileLinkTitle)
             .then(() => myAccountPage.validateElement(data.profileHeadingTitle))
     }) 
@@ -79,7 +79,7 @@ describe("016: My Account", function(){
         myAccountPage.clickOnLinks(data.profileLinkTitle)
             .then(() => myAccountPage.clickOnElement(data.settingsButton))
             .then(() => myAccountPage.validateElement(data.settingsTitle))
-    })*/
+    })
     it("012: User is able to open 'Settings' page from 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.yourBidsTitle)
             .then(() => myAccountPage.clickOnElement(data.settingsButton))
