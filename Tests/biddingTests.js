@@ -16,7 +16,7 @@ describe("004: Bidding", function(){
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
     })
     it("001: User is able to make a bid with decimal values", function (){
-        UITasks.bidOnItemFromFashionCategory(data.blackJacket,data.bidWithDecimalPlaces)
+        UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }); 
     it("002: User is able to make a bid with round values", function(){

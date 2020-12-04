@@ -13,7 +13,8 @@ exports.config = {
   "./Tests/featureCollectionTest.js",
   "./Tests/featureProductsTest.js",
   "./Tests/searchBarTests.js",
-  "./Tests/myAccountTests.js"
+  "./Tests/myAccountTests.js",
+  "./Tests/smokeTest.js"
 ],
   jasmineNodeOpts: {
     defaultTimeoutInterval: 2500000
