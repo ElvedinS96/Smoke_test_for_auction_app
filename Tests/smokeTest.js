@@ -11,7 +11,6 @@ describe ("001: Smoke test", function(){
     
     it ("001: User is able to sign in, click on item and place a bid", function (){
         homePage.openPageURL(data.homepageLink)
-            .then(() => homePage.waitForLoginButton())
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
             .then(() => loginPage.waitForElement(data.emailInputTitle))
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))

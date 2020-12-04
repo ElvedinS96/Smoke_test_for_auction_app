@@ -55,6 +55,11 @@ class HomePage extends Page.Page{
         this.getPageURL()
         .then((URL) => { return expect(URL).toBe(data.homepageLink) });
     }
+
+    openPageURL(URL){
+        return super.openPageURL(URL)
+            .then(() => this.waitForLoginButton())
+    }
 }
 
 module.exports = new HomePage();

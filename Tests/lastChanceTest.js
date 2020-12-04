@@ -9,7 +9,6 @@ browser.manage().window().maximize();
 describe("010: Last Chance", function(){
     it("001: User is able to open item from 'Last Chance' section", function(){
         homePage.openPageURL(data.homepageLink)
-            .then(() => homePage.waitForLoginButton())
             .then(() => homePage.clickOnElement(data.lastChanceTitle))
             .then(() => homePage.clickOnElement(data.firstItemForLinksTitle))
             .then(() => itemPage.validateBidElements(data.booleanFalse))

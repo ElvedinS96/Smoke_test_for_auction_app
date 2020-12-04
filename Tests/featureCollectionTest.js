@@ -9,7 +9,6 @@ browser.manage().window().maximize();
 describe("012: Feature Collection", function(){
     it("001: User is able to open item from 'Feature Collection' section", function(){
         homePage.openPageURL(data.homepageLink)
-            .then(() => homePage.waitForLoginButton())
             .then(() => homePage.clickOnElement(data.featureCollectionCollectionTitle))
             .then(() => fashionCategoryPage.validateCollectionURL())
     })
