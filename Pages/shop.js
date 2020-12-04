@@ -101,7 +101,8 @@ class Shop extends Page.Page{
     testCategoriesFilters(){
         for(let i=1;i<=10;i++){
             console.log("This method clicks on Category Filters");
-                return this.filterNumber(i).click();
+                return this.filterNumber(i).click()
+                    .then(() => browser.sleep(1000))
         }
     }
 

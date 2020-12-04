@@ -80,4 +80,7 @@ describe("016: My Account", function(){
             .then(() => myAccountPage.clickOnElement(data.settingsButton))
             .then(() => myAccountPage.validateElement(data.settingsTitle))
     })
+    it("013: User is able to see his bids in 'Your Bids' section", function(){
+        
+    })
 })

@@ -80,6 +80,11 @@ class ItemPage extends Page.Page{
             .then((elementValidation) => this.validateItemDetails(elementValidation))
     }
 
+    waitAndValidateElement(elementToWait,boolean){
+        return this.waitForElement(elementToWait)
+            .then(() => this.validateBidElements(boolean))
+    }
+
     clickOnElement(element){
         if(element === data.bidButtonTitle){
             console.log("This method clicks on button to place bid");
