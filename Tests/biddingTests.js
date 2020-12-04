@@ -15,7 +15,7 @@ describe("004: Bidding", function(){
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
     })
-    /* it("001: User is able to make a bid with decimal values", function (){
+    it("001: User is able to make a bid with decimal values", function (){
         UITasks.bidOnItemFromFashionCategory(data.blackJacket,data.bidWithDecimalPlaces)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }); 
@@ -30,7 +30,7 @@ describe("004: Bidding", function(){
     it("004: User is able to over-bid another User", function(){
         UITasks.userOverBid()
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
-    })*/
+    })
     it("005: Non-logged User can't place bid", function(){
         homePage.clickOnLinks(data.logoutButtonTitle)
             .then(() => homePage.waitForLoginButton())
