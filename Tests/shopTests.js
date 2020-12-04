@@ -28,10 +28,10 @@ describe("013: Shop", function(){
             .then(() => shopPage.clickOnElement(data.bidButtonShopTitle))
             .then(() => itemPage.waitForElement(data.itemDetailsTitle))
             .then(() => itemPage.validateBidElements(false))
-    })
-    /* it("005: User is able to open and close filters from 'Product categories'", function(){
+    }) 
+    it("005: User is able to open and close filters from 'Product categories'", function(){
         shopPage.testCategoriesFilters();
-    });  */
+    }); 
     it("006: User isn't able to open two filters from 'Product categories'", function(){
         shopPage.clickOnCategoryFilter(data.fashionCategoryFilter)
             .then(() => shopPage.clickOnElement(data.dressShopFilter))
@@ -42,13 +42,7 @@ describe("013: Shop", function(){
         shopPage.clickAndMoveSlider(data.leftSlider,data.hundred)
             .then(() => shopPage.clickAndMoveSlider(data.rightSlider,data.hundred))
     })
-    /* it("008: User is able to use filter  'Fashion' from 'Product categories'", function(){
-        shopPage.clickOnElement(data.listViewButton)
-            .then(() => shopPage.clickOnFashionFilter(data.fashionFilter))
-            .then(() => shopPage.clickOnElement(data.jacketShopFilter))
-            .then(() => shopPage.waitForElement(data.bidButtonTitle))
-            .then(() => shopPage.clickOnElement(data.bidButtonShopTitle))
-            .then(() => itemPage.waitForElement(data.itemDetailsTitle))
-            .then(() => validateBidElements(false))
-    }) */
+    it("008: User is able to use filter 'Fashion' from 'Product categories'", function(){
+        shopPage.filterAndClickOnItem(data.listViewButton,data.categoriesFilterTitle,data.jacketShopFilter,data.bidButtonTitle,data.bidButtonShopTitle,data.itemDetailsTitle,false)
+    })
 })

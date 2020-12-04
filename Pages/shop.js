@@ -1,6 +1,7 @@
 const Page = require("./page");
 var EC = protractor.ExpectedConditions,
-    data = require("../Data/data.js");
+    data = require("../Data/data.js"),
+    itemPage = require ("../Pages/itemPage");
 
 class Shop extends Page.Page{
     constructor(){
@@ -21,13 +22,20 @@ class Shop extends Page.Page{
     get dressShopFilter(){ return browser.driver.findElement(by.css("#shop-filter-sub-list-inside :first-child")) }
     get labelPricesFromFilterByPrice(){ return browser.driver.findElement(by.css("#shop-filters-price-prices label")); }
     get selectedFilterPopUp(){ return browser.driver.findElement(by.className("active-name")) }
-    /* filterNumber(number){
-        for(let i=1;i<=number;i++){
-            if(number === i){ return browser.driver.findElement(by.css(`#shop-filter-cat-single:nth-child(${number})`)); }
-        }
-    } */
+    filterNumber(number){ return browser.driver.findElement(by.css(`#shop-filter-cat-single:nth-child(${number})`)); }
     
     // ACTIONS
+    filterAndClickOnItem(viewButton,category,categoryFilter,button,bidButton,itemDetails,boolean){
+        console.log("This method clicks on category on shop page, clicks on filter, waits for elements to filter, click on bid button, and verifies that item is opened")
+        return this.clickOnElement(viewButton)
+            .then(() => this.clickOnElement(category))
+            .then(() => this.clickOnElement(categoryFilter))
+            .then(() => this.waitForElement(button))
+            .then(() => this.clickOnElement(bidButton))
+            .then(() => itemPage.waitForElement(itemDetails))
+            .then(() => itemPage.validateBidElements(boolean))
+    }
+    
     getElement(element){
         switch(element){
             case data.textFromFilterPopUp:
@@ -84,22 +92,21 @@ class Shop extends Page.Page{
             case data.jacketShopFilter:
                 return this.jacketShopFilter.click()
                     .then(() => browser.sleep(2000));
+            
+            case data.categoriesFilterTitle:
+                return this.filterNumber(1).click()
         }
     }
 
-    /* testCategoriesFilters(){
+    testCategoriesFilters(){
         for(let i=1;i<=10;i++){
             console.log("This method clicks on Category Filters");
-            return this.filterNumber(i).click();
+                return this.filterNumber(i).click();
         }
     }
 
-    clickOnCategoryFilter(number){
-        console.log("This method clicks on Category Filters");
-        return this.filterNumber(number).click();
-    } */
-
     clickAndMoveSlider(slider,number){
+        console.log("This method clicks and moves both sliders on filter by price")
         if (slider === data.leftSlider){
             return this.leftSliderButton.click()
                 .then(() =>{
@@ -120,6 +127,7 @@ class Shop extends Page.Page{
     }
     
     waitForElement(element){
+        console.log("This method waits for element to load")
         switch(element){
             case data.waitForShopTitle:
                 return browser.wait(EC.presenceOf($(this.shopGrid)), 7000); 
