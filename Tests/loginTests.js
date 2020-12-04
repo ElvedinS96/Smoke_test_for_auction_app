@@ -20,24 +20,20 @@ describe("003: Login", function(){
             .then(() => registerPage.clickOnElement(data.hereLinkTitle))
             .then(() => loginPage.waitForElement(data.formTitle))
             .then(() => loginPage.logIn(data.email2,data.passwordUserRafaNadal))
-            .then(() => homePage.getPageURL())
-            .then((URL) => homePage.validateHomePageURL(URL))
+            .then(() => homePage.validateHomePageURL())
     }); 
-
     it("002: User is able to log in from 'Register' page", function(){
         homePage.clickOnLinks(data.createAnAccountTitle)
             .then(() => registerPage.clickOnElement(data.wordLoginTitle))
             .then(() => loginPage.waitForElement(data.formTitle))
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
-            .then(() => homePage.getPageURL())
-            .then((URL) => homePage.validateHomePageURL(URL))
+            .then(() => homePage.validateHomePageURL())
     }) 
     it("003: User is able to log in from 'Create an account' form", function(){
         homePage.clickOnLinks(data.createAnAccountTitle)
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
-            .then(() => homePage.getPageURL())
-            .then((URL) => homePage.validateHomePageURL(URL))
+            .then(() => homePage.validateHomePageURL())
     })
     it("004: User isn't able to log in without password", function(){
         homePage.clickOnLinks(data.loginLinkTitle)
