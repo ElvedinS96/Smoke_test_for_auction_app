@@ -2,7 +2,7 @@ var homePage = require('../Pages/homePage.js'),
     data = require("../Data/data.js"),
     itemPage = require ("../Pages/itemPage"),
     shopPage= require("../Pages/shop"),
-    UITasks = require("../Pages/UITasks");
+    UITasks = require("../Tasks/UITasks");
 
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;

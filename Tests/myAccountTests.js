@@ -2,7 +2,7 @@ var myAccountPage = require("../Pages/myAccountPage"),
     homePage = require("../Pages/homePage"),
     loginPage = require('../Pages/loginPage'),
     data = require("../Data/data.js"),
-    UITasks = require("../Pages/UITasks"),
+    UITasks = require("../Tasks/UITasks"),
     itemPage = require("../Pages/itemPage");
     
 browser.waitForAngularEnabled(false);
