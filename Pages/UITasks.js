@@ -20,15 +20,15 @@ class UITasks {
     }
 
     userOverBid(){
-        homePage.clickOnElement(data.fashionCategoryTitle)
+        return homePage.clickOnElement(data.fashionCategoryTitle)
             .then(() => fashionCategoryPage.waitForProductItem())
-            .then(() => fashionCategoryPage.clickOnItem(data.blueJacket))
+            .then(() => fashionCategoryPage.clickOnItem(data.brownJacket))
             .then(() => itemPage.enterBid(data.fiveThousandDollars))
             .then(() => homePage.clickOnLinks(data.logoutButtonTitle))
             .then(() => homePage.openPageURL(data.homepageLink))
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
             .then(() => loginPage.logIn(data.userTester1,data.passwordTester1))
-            .then(() => this.bidOnItemFromFashionCategory(data.blueJacket,data.sixThousandDollars))
+            .then(() => this.bidOnItemFromFashionCategory(data.brownJacket,data.sixThousandDollars))
     }
 
     updateProfileInformation(){

@@ -98,7 +98,7 @@ class Page{
         console.log("This method clicks on chosen category");
         //Category number starts with 1
         return browser.driver.findElement(by.xpath(`//*[@id='root']/div/div[1]/div[2]/div[1]/div/div[1]/div/div[${categoryNumber}]/div/a`)).click();
-    }
+    }   	                                        
     
     waitForLoginButton(){
         console.log("This method waits for link Login to show")

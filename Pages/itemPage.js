@@ -17,9 +17,9 @@ class ItemPage extends Page.Page{
     get itemDetails(){ return browser.driver.findElement(by.css("div.product-details p")); }
     get itemDetailsLocator(){ return "div.product-details p"; }
     get placeBidButtonLocator(){ return ".basic-button"; }
-    get userName(){ return browser.driver.findElement(by.className("bider-name-text")); }
-    get bidPrice(){ return browser.driver.findElement(by.css("tr.bider-row td:nth-child(4)")); }
-    get bidDate(){ return browser.driver.findElement(by.css("tr.bider-row td:nth-child(3)")); }
+    get userName(){ return browser.driver.findElement(by.css("#single-product-table table tr:last-child td:nth-child(2)")); }
+    get bidPrice(){ return browser.driver.findElement(by.css("#single-product-table table tr:last-child td:nth-child(3)")); }
+    get bidDate(){ return browser.driver.findElement(by.css("#single-product-table table tr:last-child td:nth-child(4)")); }
     get userImgLocator(){ return ".bider-name-img"; }
     get statusSuccessLocator(){ return ".status-success"; }
     get statusInfoLocator(){ return ".status-info"; }

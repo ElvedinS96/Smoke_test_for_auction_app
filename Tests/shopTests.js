@@ -34,7 +34,7 @@ describe("013: Shop", function(){
         shopPage.testCategoriesFilters();
     }); 
     it("006: User isn't able to open two filters from 'Product categories'", function(){
-        shopPage.clickOnCategoryFilter(data.fashionCategoryFilter)
+        shopPage.clickOnElement(data.categoriesFilterTitle)
             .then(() => shopPage.clickOnElement(data.dressShopFilter))
             .then(() => shopPage.clickOnElement(data.jacketShopFilter))
             .then(() => shopPage.validateElements())
