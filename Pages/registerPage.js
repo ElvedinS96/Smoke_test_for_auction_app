@@ -116,7 +116,7 @@ class RegisterPage extends Page.Page{
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
 
                 }else if(email === data.emailTitle){
-                    return this.enterEmail(data.emptyString);
+                    return this.enterEmail();
                 }
             })
             .then(() => this.passwordField.sendKeys(passwordData))
@@ -124,15 +124,9 @@ class RegisterPage extends Page.Page{
             .then(() => this.clickOnElement(data.registerButtonTitle))
     }
 
-    enterEmail(email){
-        if(email===data.email2){
-            console.log(`This method sends ${email2} to email field`);
-            return this.emailField.sendKeys(email2);
-
-        }else{
+    enterEmail(){
             console.log("This method sends data to email field");
             return this.emailField.sendKeys(this.makeRandomEmail());
-        }
     }
 
     validateRegistrationMessage(registrationMessage){
