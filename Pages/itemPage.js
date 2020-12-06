@@ -71,9 +71,7 @@ class ItemPage extends Page.Page{
             .then(() => { if(bidStatus) return this.getElementValidation(data.userNameTitle)})
             .then((elementValidation) => this.validateUsersName(elementValidation))
             .then(() => { if(bidStatus) return this.getElementValidation(data.bidPriceTitle)})
-            .then((elementValidation) => this.validateBidWithDecimalPlaces(elementValidation))
-            .then(() => { if(bidStatus) return this.getElementValidation(data.bidPriceTitle)})
-            .then((elementValidation) => this.validateHigherBid(elementValidation))
+            .then((elementValidation) => this.validateBid(elementValidation))
             .then(() => { if(bidStatus) return this.getElementValidation(data.bidDateTitle)})
             .then((elementValidation) => this.validateDateOfBid(elementValidation))
             .then(() => { return this.getElementValidation(data.itemDetailsTitle)})
@@ -116,24 +114,10 @@ class ItemPage extends Page.Page{
         }
     }
 
-    validateUsersBid(userBid){
+    validateBid(userBid){
         if(userBid === data.bidAssert){
             console.log("This method validates User's bid price after placed bid");
-            return expect(userBid).toBe(data.bidAssert);    
-        }
-    }
-
-    validateHigherBid(userBid){
-        if(userBid === data.bidAssertFiveThousandDollars){
-            console.log("This method validates User's bid price after placed bid");
-            return expect(userBid).toBe(data.bidAssertFiveThousandDollars);
-        }
-    }
-
-    validateBidWithDecimalPlaces(userBid){
-        if(userBid === data.bidAssertWithDecimalPlaces){
-            console.log("This method validates User's bid price with decimal places after placed bid");
-            return expect(userBid).toBe(data.bidAssertWithDecimalPlaces);
+            return expect(userBid).toBe(data.bidAssert);
         }
     }
 
@@ -153,7 +137,10 @@ class ItemPage extends Page.Page{
 
     enterBid(bid){
         console.log("This method enters bid in input field");
-        return this.bidField.sendKeys(bid)
+        data.collectedTime = (super.getDate().getHours())*3600 + (super.getDate().getMinutes())*60 + super.getDate().getSeconds();
+        data.finalBidPrice=bid+data.collectedTime;
+        data.bidAssert=`$${data.finalBidPrice}`
+        return this.bidField.sendKeys(data.finalBidPrice)
             .then(() => this.clickOnElement(data.bidButtonTitle))
     }
 }

@@ -69,7 +69,7 @@ describe("016: My Account", function(){
     })
     it("013: User is able to see his bids in 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.homePageLink)
-            .then(() => UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces))
+            .then(() => UITasks.bidOnItemFromFashionCategory(data.blackJacket,data.bidWithDecimalPlaces))
             .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
             .then(() => myAccountPage.clickOnLinks(data.yourBidsTitle))
             .then(() => myAccountPage.validateElement(data.viewButton))
@@ -81,7 +81,7 @@ describe("016: My Account", function(){
     })
     it("015: User is able to open item's page from 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.homePageLink)
-            .then(() => UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces))
+            .then(() => UITasks.bidOnItemFromFashionCategory(data.blackJacket,data.bidWithDecimalPlaces))
             .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
             .then(() => myAccountPage.clickOnLinks(data.yourBidsTitle))
             .then(() => myAccountPage.clickOnElement(data.viewButton))

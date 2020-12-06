@@ -18,7 +18,7 @@ describe ("001: Smoke test", function(){
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(data.blackJacket))
             .then(() => itemPage.clickOnElement(data.imageSliderTitle))
-            .then(() => itemPage.enterBid(data.bidForSmokeTest))
+            .then(() => itemPage.enterBid(data.fiveThousandDollars))
             .then(() => itemPage.waitForElement(data.waitForUserImg))
             .then(() => itemPage.validateBidElements())
             .then(() => homePage.clickOnLinks(data.logoutButtonTitle))
