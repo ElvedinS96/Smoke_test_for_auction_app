@@ -20,6 +20,7 @@ class UITasks {
     }
 
     userOverBid(){
+        console.log("This method checks that User can overbid another User")
         return homePage.clickOnElement(data.fashionCategoryTitle)
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(data.brownJacket))

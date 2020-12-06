@@ -66,6 +66,7 @@ class Shop extends Page.Page{
     }
 
     clickOnElement(element){
+        console.log(`This method clicks on ${element}`)
         switch(element){
             case data.bidButtonShopTitle:
                 return this.bidButton.click();

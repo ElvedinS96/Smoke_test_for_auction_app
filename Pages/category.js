@@ -21,8 +21,8 @@ class Category extends Page.Page{
         console.log("This method waits for Product Item to show up");
         return browser.wait(EC.presenceOf($(this.productLocator)), 7000)
     }
-
 }
+
 module.exports = {
     Category: Category
 }

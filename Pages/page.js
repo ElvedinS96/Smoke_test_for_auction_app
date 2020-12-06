@@ -112,11 +112,9 @@ class Page{
             .then((titleParagraph) => {
                 if(titleParagraph === data.someTitleHere){
                     return expect(titleParagraph).toBe(data.someTitleHere);   
-
-                } else if(titleParagraph === data.introductionParagraph){
+                }else if(titleParagraph === data.introductionParagraph){
                     return expect(titleParagraph).toBe(data.introductionParagraph);
-                    
-                } else if(titleParagraph === data.aboutUsParagraph){
+                }else if(titleParagraph === data.aboutUsParagraph){
                     return expect(titleParagraph).toBe(data.aboutUsParagraph);
                 }
             })

@@ -23,7 +23,7 @@ class RegisterPage extends Page.Page{
     get passwordValidationMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(5) small label")); }
     get confirmPasswordMessage(){ return browser.driver.findElement(by.css("div.form div:nth-child(6) small label")); }
     get wordLogin(){ return browser.driver.findElement(by.className("login-word")); }
-    get wordLoginLocator(){ return ".login-word" }
+    get wordLoginLocator(){ return ".login-word"; }
     get statusErrorLocator(){ return ".status-error"; }
 
     // ACTIONS
@@ -106,15 +106,12 @@ class RegisterPage extends Page.Page{
             .then(() => {
                 if(email === data.makeEmailWithoutDomain){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutDomain));
-
                 }else if(email === data.sendStaticEmail){
                     console.log(`This method sends ${data.email2} to email field`);
                     data.email2=`moy${Math.round(Math.random()*100)}@mail.com`
                     return this.emailField.sendKeys(data.email2);
-                    
                 }else if(email === data.emailWithoutat){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
-
                 }else if(email === data.emailTitle){
                     return this.enterEmail();
                 }
