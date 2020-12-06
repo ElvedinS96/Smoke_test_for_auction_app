@@ -11,7 +11,7 @@ describe("008: New Arrivals", function(){
         homePage.openPageURL(data.homepageLink)
             .then(() => homePage.clickOnElement(data.newArrivalsTitle))
             .then(() => homePage.clickOnElement(data.firstItemForLinksTitle))
-            .then(() => itemPage.validateBidElements(data.booleanFalse))
+            .then(() => itemPage.validateBidElements(false))
 
     })
 })

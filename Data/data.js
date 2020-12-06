@@ -22,7 +22,7 @@ class Data{
         this.bidConfirmationTextTitle="Bid confirmation text",
         this.email1="gigedov2",
         this.emailDomain="@getnada.com",
-        this.email2="moy@mail.com",
+        this.email2="",
         this.emailWithoutDomain="@live",
         this.emailWithoutAt="live.com",
         this.userRafaNadal = "rafa@mail.com",

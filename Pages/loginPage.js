@@ -41,6 +41,7 @@ class LoginPage extends Page.Page{
             .then(() => this.passwordField.sendKeys(password))
             .then(() => this.loginButton.click())
             .then(() => { if(waitForCategories) homePage.waitForCategories()} )
+            .then(() => browser.sleep(2000))
     }
 
     validateLoginPageURL(){

@@ -109,8 +109,9 @@ class RegisterPage extends Page.Page{
 
                 }else if(email === data.sendStaticEmail){
                     console.log(`This method sends ${data.email2} to email field`);
+                    data.email2=`moy${Math.round(Math.random()*100)}@mail.com`
                     return this.emailField.sendKeys(data.email2);
-
+                    
                 }else if(email === data.emailWithoutat){
                     return this.emailField.sendKeys(this.makeRandomEmailWithoutdomain(data.emailWithoutAt));
 
