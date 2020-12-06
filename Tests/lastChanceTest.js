@@ -11,7 +11,7 @@ describe("010: Last Chance", function(){
         homePage.openPageURL(data.homepageLink)
             .then(() => homePage.clickOnElement(data.lastChanceTitle))
             .then(() => homePage.clickOnElement(data.firstItemForLinksTitle))
-            .then(() => itemPage.validateBidElements(data.booleanFalse))
+            .then(() => itemPage.validateBidElements(false))
 
     })
 })
