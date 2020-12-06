@@ -1,7 +1,6 @@
 const Page = require("./page");
 var EC = protractor.ExpectedConditions,
-    data = require("../Data/data.js"),
-    itemPage = require ("../Pages/itemPage");
+    data = require("../Data/data.js");
 
 class Shop extends Page.Page{
     constructor(){

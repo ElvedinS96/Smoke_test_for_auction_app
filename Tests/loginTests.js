@@ -9,7 +9,6 @@ browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
 
 describe("003: Login", function(){
-    
     beforeEach(() => {
         homePage.openPageURL(data.homepageLink);
     })
@@ -37,7 +36,7 @@ describe("003: Login", function(){
     })
     it("004: User isn't able to log in without password", function(){
         homePage.clickOnLinks(data.loginLinkTitle)
-        .then(() => loginPage.logIn(data.userRafaNadal,data.emptyString,false))
+            .then(() => loginPage.logIn(data.userRafaNadal,data.emptyString,false))
             .then(() => browser.sleep(2000))
             .then(() => loginPage.validateLoginMessage())
     })

@@ -105,7 +105,6 @@ class Page{
         return browser.wait(EC.presenceOf($(this.loginButtonLocator), 7000))
     }
 
-
     validateTitleParagraph(){
         console.log("This method validates title paragraph");
         return browser.wait(EC.presenceOf($(this.helperLocator)), 5000)

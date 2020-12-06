@@ -115,11 +115,14 @@ class MyAccountPage extends Page.Page{
         }
     }
 
-    emptyFields(){
+    emptyFields(element){
+    console.log("This method clears fields in 'Profile' information")
+    if(element === data.phoneNumberTitle){
         for(let i=0;i<20;i++){
             this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
         }
         return this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
+    }
     }
 }
 

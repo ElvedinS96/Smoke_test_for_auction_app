@@ -13,7 +13,7 @@ class UITasks {
     // ACTIONS
     bidOnItemFromFashionCategory(item,bidPrice){
     console.log("This method clicks on item from Fashion category, enters and places bid, and validates elements");
-        homePage.clickOnElement(data.fashionCategoryTitle)
+        return homePage.clickOnElement(data.fashionCategoryTitle)
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(item))
             .then(() => itemPage.enterBid(bidPrice))
@@ -38,7 +38,7 @@ class UITasks {
             .then(() => myAccountPage.genderDropdown.click())
             .then(() => myAccountPage.otherValueFromGenderDropdown.click())
             .then(() => myAccountPage.monthBirthDropdown.click())
-            .then(() => myAccountPage.emptyFields())
+            .then(() => myAccountPage.emptyFields(data.phoneNumberTitle))
             .then(() => myAccountPage.phoneNumber.sendKeys(data.phoneNumber))
             .then(() => myAccountPage.februaryBirthDropdown.click())
             .then(() => myAccountPage.dayBirthDropdown.click())

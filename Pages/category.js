@@ -1,5 +1,4 @@
 const Page = require("./page");
-
 var EC = protractor.ExpectedConditions;
 
 class Category extends Page.Page{

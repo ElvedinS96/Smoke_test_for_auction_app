@@ -10,6 +10,7 @@ class Data{
         this.fashionCategory=1,
         this.lastNameTester="123",
         this.phoneNumber="999-999-999",
+        this.phoneNumberTitle="Phone number in Profile section"
         this.passwordTester="testing1",
         this.fiveSpaces="     ",
         this.emptyString="",
