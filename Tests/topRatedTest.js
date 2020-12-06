@@ -11,6 +11,6 @@ describe("009: Top Rated", function(){
         homePage.openPageURL(data.homepageLink)
             .then(() => homePage.clickOnElement(data.topRatedTitle))
             .then(() => homePage.clickOnElement(data.firstItemForLinksTitle))
-            .then(() => itemPage.validateBidElements(data.booleanFalse))
+            .then(() => itemPage.validateBidElements(false))
     })
 })
