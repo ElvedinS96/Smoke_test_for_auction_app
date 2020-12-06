@@ -1,6 +1,5 @@
 var homePage = require('../Pages/homePage.js'),
     loginPage = require('../Pages/loginPage'),
-    fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
     itemPage = require ("../Pages/itemPage"),
     UITasks = require("../Pages/UITasks"),
     data = require("../Data/data.js");

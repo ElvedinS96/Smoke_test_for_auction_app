@@ -18,6 +18,7 @@ class Page{
     get createAnAccount(){ return browser.driver.findElement(by.css("a.header-text")); }
     get helperLocator(){ return ".helper"; }
     get paragraph(){ return browser.driver.findElement(by.css(".helper h2")); }
+    get homeLink(){ return browser.driver.findElement(by.css(".header-nav :nth-child(1)"));}
     get shopLink(){ return browser.driver.findElement(by.css(".header-nav :nth-child(2)")); }
     get myAccountLink(){ return browser.driver.findElement(by.css(".my-account-header")); }
     get profileLink(){ return browser.driver.findElement(by.css(".dropdown-content :nth-child(1)")); }
@@ -53,6 +54,9 @@ class Page{
             
             case data.shopTitle:
                 return this.shopLink.click();
+            
+            case data.homePageLink:
+                return this.homeLink.click();
             
             case data.myAccountTitle:
                 return browser.actions().mouseMove(this.myAccountLink).perform();

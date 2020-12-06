@@ -1,8 +1,10 @@
 var myAccountPage = require("../Pages/myAccountPage"),
     homePage = require("../Pages/homePage"),
     loginPage = require('../Pages/loginPage'),
-    data = require("../Data/data.js");
-
+    data = require("../Data/data.js"),
+    UITasks = require("../Pages/UITasks"),
+    itemPage = require("../Pages/itemPage");
+    
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
 browser.manage().window().maximize();
@@ -11,7 +13,7 @@ describe("016: My Account", function(){
     beforeEach(() => {
         homePage.openPageURL(data.homepageLink)
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
-            .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
+            .then(() => loginPage.logIn(data.userTester2,data.passwordTester1))
             .then(() => myAccountPage.clickOnLinks(data.myAccountTitle));
     })
     it("001: User is able to open 'Profile' page", function(){
@@ -81,6 +83,31 @@ describe("016: My Account", function(){
             .then(() => myAccountPage.validateElement(data.settingsTitle))
     })
     it("013: User is able to see his bids in 'Your Bids' section", function(){
-        
+        myAccountPage.clickOnLinks(data.homePageLink)
+            .then(() => UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces))
+            .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
+            .then(() => myAccountPage.clickOnLinks(data.yourBidsTitle))
+            .then(() => myAccountPage.validateElement(data.viewButton))
+    })
+    it("014: User is able to check options from 'Policy and Community' which is located in 'Settings' section", function(){
+        myAccountPage.clickOnLinks(data.settingsTitle)
+            .then(() => myAccountPage.clickOnElement(data.checkboxesTitle))
+            .then(() => myAccountPage.validateElement(data.checkboxesTitle))
+    })
+    it("015: User is able to open item's page from 'Your Bids' section", function(){
+        myAccountPage.clickOnLinks(data.homePageLink)
+            .then(() => UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces))
+            .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
+            .then(() => myAccountPage.clickOnLinks(data.yourBidsTitle))
+            .then(() => myAccountPage.clickOnElement(data.viewButton))
+            .then(() => itemPage.validateBidElements(false))
+    })
+    /* it("016: User is able to change profile photo", function(){
+        myAccountPage.clickOnLinks(data.profileLinkTitle)
+            .then(() =>  myAccountPage.clickOnElement(data.changePhotoButton))
+    }) */
+    it("017: User is able to change profile information", function(){
+        myAccountPage.clickOnLinks(data.profileLinkTitle)
+            .then(() => UITasks.updateProfileInformation())
     })
 })

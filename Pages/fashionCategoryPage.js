@@ -1,5 +1,6 @@
 const Category = require("./category");
-var data = require("../Data/data.js");
+var data = require("../Data/data.js"),
+    EC = protractor.ExpectedConditions;
 
 class FashionCategoryPage extends Category.Category{
     constructor(){
@@ -12,6 +13,11 @@ class FashionCategoryPage extends Category.Category{
         console.log("This method validates collection URL");
         this.getPageURL()
         .then((URL) => { return expect(URL).toBe(data.featureCollectionLink) });
+    }
+
+    waitForProductItem(){
+        console.log("This method waits for Product Item to show up");
+        return browser.wait(EC.presenceOf($(this.productLocator)), 7000)
     }
 }
 
