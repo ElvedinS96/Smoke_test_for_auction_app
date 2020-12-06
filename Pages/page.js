@@ -69,7 +69,6 @@ class Page{
             
             case data.settingsTitle:
                 return this.settingsLink.click();
-
         }    
     }
 

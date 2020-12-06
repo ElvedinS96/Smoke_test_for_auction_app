@@ -95,12 +95,6 @@ class ItemPage extends Page.Page{
         }
     }
 
-    validateTitleJacket(title){
-        console.log("This method validates Jacket title")
-        // This method couldn't be part of validateElement() because it has to split parameteres, and then validate only on of them.
-        return expect(title.split(" ")[1]).toBe(data.titleJacket);
-    }
-
     validateHighestBidder(bidConfirmationText){
         if(bidConfirmationText === data.highestBidderMessage){
             console.log("This method validates if User is the highest bidder")

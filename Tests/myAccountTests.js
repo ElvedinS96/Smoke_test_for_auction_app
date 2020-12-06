@@ -21,36 +21,21 @@ describe("016: My Account", function(){
             .then(() => myAccountPage.validateElement(data.profileHeadingTitle))
     }) 
     it("002: User isn't able to check 'Profile' if he isn't logged in", function(){
-        homePage.clickOnLinks(data.logoutButtonTitle)
-            .then(() => homePage.waitForCategories())
-            .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
-            .then(() => myAccountPage.clickOnLinks(data.profileLinkTitle))
-            .then(() => loginPage.waitForElement(data.emailInputTitle))
-            .then(() => loginPage.validateLoginPageURL())
+        UITasks.checkMyAccountSection(data.profileLinkTitle)
     })
     it("003: User is able to open 'Your bids' page", function(){
         myAccountPage.clickOnLinks(data.yourBidsTitle)
             .then(() => myAccountPage.validateElement(data.yourBidsTable))
     })
     it("004: User isn't able to check 'Your bids' if he isn't logged in", function(){
-        homePage.clickOnLinks(data.logoutButtonTitle)
-            .then(() => homePage.waitForCategories())
-            .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
-            .then(() => myAccountPage.clickOnLinks(data.yourBidsTitle))
-            .then(() => loginPage.waitForElement(data.emailInputTitle))
-            .then(() => loginPage.validateLoginPageURL())
+        UITasks.checkMyAccountSection(data.yourBidsTitle)
     })
     it("005: User is able to open 'Settings' page", function(){
         myAccountPage.clickOnLinks(data.settingsTitle)
             .then(() => myAccountPage.validateElement(data.settingsTitle))
     })
     it("006: User isn't able to open 'Settings' page if he isn't logged in", function(){
-        homePage.clickOnLinks(data.logoutButtonTitle)
-            .then(() => homePage.waitForCategories())
-            .then(() => myAccountPage.clickOnLinks(data.myAccountTitle))
-            .then(() => myAccountPage.clickOnLinks(data.settingsTitle))
-            .then(() => loginPage.waitForElement(data.emailInputTitle))
-            .then(() => loginPage.validateLoginPageURL())
+        UITasks.checkMyAccountSection(data.settingsTitle)
     })
     it("007: User is able to open 'Profile' page from 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.yourBidsTitle)
@@ -102,12 +87,11 @@ describe("016: My Account", function(){
             .then(() => myAccountPage.clickOnElement(data.viewButton))
             .then(() => itemPage.validateBidElements(false))
     })
-    /* it("016: User is able to change profile photo", function(){
-        myAccountPage.clickOnLinks(data.profileLinkTitle)
-            .then(() =>  myAccountPage.clickOnElement(data.changePhotoButton))
-    }) */
     it("017: User is able to change profile information", function(){
         myAccountPage.clickOnLinks(data.profileLinkTitle)
             .then(() => UITasks.updateProfileInformation())
+    })
+    afterEach(() => {
+        homePage.clickOnLinks(data.logoutButtonTitle);
     })
 })

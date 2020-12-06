@@ -14,7 +14,8 @@ class MyAccountPage extends Page.Page{
     get settingsFormLocator(){ return ".settings-heading"; }
     get profileButton(){ return browser.driver.findElement(by.id("user-page-header-profile")); }
     get profileHeadingLocator(){ return ".profile-heading"; }
-    get bidsTableLocator(){ return browser.driver.findElement(by.id("user-page-header-bids")); }
+    get bidsTableLocator(){ return ".user-bids"; }
+    get bidButton(){ return browser.driver.findElement(by.id("user-page-header-bids")); }
     get bidsButtonLocator(){ return ".user-bids-item"; }
     get settingsButton(){ return browser.driver.findElement(by.id("user-page-header-settings")); }
     get notifEmail(){ return browser.driver.findElement(by.id("notf-email")); }
@@ -94,7 +95,7 @@ class MyAccountPage extends Page.Page{
                     .then(() => browser.wait(EC.presenceOf($(this.profileHeadingLocator)), 7000))
             
             case data.bidsButton:
-                return this.bidsButton.click()
+                return this.bidButton.click()
                     .then(() => browser.wait(EC.presenceOf($(this.bidsTableLocator)), 7000))
             
             case data.settingsButton:
@@ -112,6 +113,13 @@ class MyAccountPage extends Page.Page{
             case data.changePhotoButton:
                 return this.changePhotoButton.sendKeys("pp")
         }
+    }
+
+    emptyFields(){
+        for(let i=0;i<20;i++){
+            this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
+        }
+        return this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
     }
 }
 

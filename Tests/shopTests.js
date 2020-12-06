@@ -1,7 +1,8 @@
 var homePage = require('../Pages/homePage.js'),
     data = require("../Data/data.js"),
     itemPage = require ("../Pages/itemPage"),
-    shopPage= require("../Pages/shop");
+    shopPage= require("../Pages/shop"),
+    UITasks = require("../Pages/UITasks");
 
 browser.waitForAngularEnabled(false);
 browser.ignoreSynchronization = true;
@@ -43,6 +44,6 @@ describe("013: Shop", function(){
             .then(() => shopPage.clickAndMoveSlider(data.rightSlider,data.hundred))
     })
     it("008: User is able to use filter 'Fashion' from 'Product categories'", function(){
-        shopPage.filterAndClickOnItem(data.listViewButton,data.categoriesFilterTitle,data.jacketShopFilter,data.bidButtonTitle,data.bidButtonShopTitle,data.itemDetailsTitle,false)
+        UITasks.filterAndClickOnItem(data.listViewButton,data.categoriesFilterTitle,data.jacketShopFilter,data.bidButtonTitle,data.bidButtonShopTitle,data.itemDetailsTitle,false)
     })
 })

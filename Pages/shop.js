@@ -25,17 +25,6 @@ class Shop extends Page.Page{
     filterNumber(number){ return browser.driver.findElement(by.css(`#shop-filter-cat-single:nth-child(${number})`)); }
     
     // ACTIONS
-    filterAndClickOnItem(viewButton,category,categoryFilter,button,bidButton,itemDetails,boolean){
-        console.log("This method clicks on category on shop page, clicks on filter, waits for elements to filter, click on bid button, and verifies that item is opened")
-        return this.clickOnElement(viewButton)
-            .then(() => this.clickOnElement(category))
-            .then(() => this.clickOnElement(categoryFilter))
-            .then(() => this.waitForElement(button))
-            .then(() => this.clickOnElement(bidButton))
-            .then(() => itemPage.waitForElement(itemDetails))
-            .then(() => itemPage.validateBidElements(boolean))
-    }
-    
     getElement(element){
         switch(element){
             case data.textFromFilterPopUp:
@@ -101,8 +90,10 @@ class Shop extends Page.Page{
     testCategoriesFilters(){
         for(let i=1;i<=10;i++){
             console.log("This method clicks on Category Filters");
-                return this.filterNumber(i).click()
-                    .then(() => browser.sleep(1000))
+            this.filterNumber(i).click();
+            for(let j=i;j<i+1;j++){
+                this.filterNumber(j).click();
+            }
         }
     }
 
