@@ -10,7 +10,7 @@ describe("007: Privacy and Policy", function (){
         homePage.openPageURL(data.homepageLink)
         })
     it ("001: User is able to open 'Privacy and Policy' section", function(){
-        homePage.clickOnPrivacyAndPolicy()
+        homePage.clickOnLinks(data.privacyAndPolictyTitle)
             .then(() => homePage.validateTitleParagraph())
     }) 
 })
