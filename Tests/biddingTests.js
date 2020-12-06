@@ -15,11 +15,11 @@ describe("004: Bidding", function(){
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
     })
     it("001: User is able to make a bid with decimal values", function (){
-        UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.bidWithDecimalPlaces)
+        UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.bidWithDecimalPlaces)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }); 
     it("002: User is able to make a bid with round values", function(){
-        UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.fiveThousandDollars)
+        UITasks.bidOnItemFromFashionCategory(data.brownJacket,data.fiveThousandDollars)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }) 
     it("003: User isn't able to make bid which is lower than starting price", function(){

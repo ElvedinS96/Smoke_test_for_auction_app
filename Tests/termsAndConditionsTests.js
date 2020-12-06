@@ -10,7 +10,7 @@ describe("006: Terms and Conditions", function (){
         homePage.openPageURL(data.homepageLink)
         })
     it ("001: User is able to open 'Terms and Conditions' section", function(){
-        homePage.clickOnTermsAndConditions()
+        homePage.clickOnLinks(data.termsAndConditionstitle)
             .then(() => homePage.validateTitleParagraph())
     })
 })
