@@ -23,13 +23,13 @@ class UITasks {
         console.log("This method checks that User can overbid another User")
         return homePage.clickOnElement(data.fashionCategoryTitle)
             .then(() => fashionCategoryPage.waitForProductItem())
-            .then(() => fashionCategoryPage.clickOnItem(data.brownJacket))
+            .then(() => fashionCategoryPage.clickOnItem(data.blackJacket2))
             .then(() => itemPage.enterBid(data.fiveThousandDollars))
             .then(() => homePage.clickOnLinks(data.logoutButtonTitle))
             .then(() => homePage.openPageURL(data.homepageLink))
             .then(() => homePage.clickOnLinks(data.loginLinkTitle))
             .then(() => loginPage.logIn(data.userTester1,data.passwordTester1))
-            .then(() => this.bidOnItemFromFashionCategory(data.brownJacket,data.sixThousandDollars))
+            .then(() => this.bidOnItemFromFashionCategory(data.blackJacket2,data.sixThousandDollars))
     }
 
     updateProfileInformation(){
