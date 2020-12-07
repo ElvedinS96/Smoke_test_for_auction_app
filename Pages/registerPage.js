@@ -99,7 +99,7 @@ class RegisterPage extends Page.Page{
         }
     }
 
-    registrateAnAccount(firstNameData,lastNameData,email,passwordData,confirmPasswordData){
+    registrateAnAccount(firstNameData,lastNameData,email,passwordData,confirmPasswordData,validate=true){
         console.log("This method enters data in First Name, Last Name, Email, Password and Confirm Password")
         return this.firstName.sendKeys(firstNameData)
             .then(() => this.lastName.sendKeys(lastNameData))
@@ -119,6 +119,7 @@ class RegisterPage extends Page.Page{
             .then(() => this.passwordField.sendKeys(passwordData))
             .then(() => this.confirmPasswordField.sendKeys(confirmPasswordData))
             .then(() => this.clickOnElement(data.registerButtonTitle))
+            .then(() => { if(validate){this.validateInputMessages()}})
     }
 
     enterEmail(){

@@ -2,7 +2,7 @@ var homePage = require('../Pages/homePage.js'),
     loginPage = require('../Pages/loginPage'),
     fashionCategoryPage = require ("../Pages/fashionCategoryPage"),
     itemPage = require ("../Pages/itemPage"),
-    myAccountPage = require("./myAccountPage"),
+    myAccountPage = require("../Pages/myAccountPage"),
     data = require("../Data/data.js"),
     shopPage= require("../Pages/shop");
 
