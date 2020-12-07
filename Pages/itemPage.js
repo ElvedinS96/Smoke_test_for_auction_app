@@ -135,10 +135,10 @@ class ItemPage extends Page.Page{
         }
     }
 
-    enterBid(bid){
+    enterBid(bid,addValueOnBidPrice=true){
         console.log("This method enters bid in input field");
         data.collectedTime = (super.getDate().getHours())*3600 + (super.getDate().getMinutes())*60 + super.getDate().getSeconds();
-        data.finalBidPrice=bid+data.collectedTime;
+        if(addValueOnBidPrice){ data.finalBidPrice=bid+data.collectedTime}else{data.finalBidPrice=bid;}
         data.bidAssert=`$${data.finalBidPrice}`
         return this.bidField.sendKeys(data.finalBidPrice)
             .then(() => this.clickOnElement(data.bidButtonTitle))

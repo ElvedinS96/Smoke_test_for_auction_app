@@ -11,12 +11,12 @@ class UITasks {
         this.title="UI Tasks";
     }
     // ACTIONS
-    bidOnItemFromFashionCategory(item,bidPrice){
+    bidOnItemFromFashionCategory(item,bidPrice,addValueOnBidPrice){
     console.log("This method clicks on item from Fashion category, enters and places bid, and validates elements");
         return homePage.clickOnElement(data.fashionCategoryTitle)
             .then(() => fashionCategoryPage.waitForProductItem())
             .then(() => fashionCategoryPage.clickOnItem(item))
-            .then(() => itemPage.enterBid(bidPrice))
+            .then(() => itemPage.enterBid(bidPrice,addValueOnBidPrice))
     }
 
     userOverBid(){

@@ -23,7 +23,7 @@ describe("004: Bidding", function(){
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }) 
     it("003: User isn't able to make bid which is lower than starting price", function(){
-        UITasks.bidOnItemFromFashionCategory(data.whiteJacket,data.fiftyDollars)
+        UITasks.bidOnItemFromFashionCategory(data.blackJacket3,data.fiftyDollars,false)
             .then(() => itemPage.waitAndValidateElement(data.statusInfoTitle,false))
     })
     it("004: User is able to over-bid another User", function(){
