@@ -115,6 +115,12 @@ class MyAccountPage extends Page.Page{
         }
     }
 
+    openAndValidateSections(element1,element2,validateItem){
+        return this.clickOnLinks(element1)
+            .then(() => this.clickOnElement(element2))
+            .then(() => this.validateElement(validateItem))
+    }
+
     emptyFields(element){
         console.log("This method clears fields in 'Profile' information")
         if(element === data.phoneNumberTitle){

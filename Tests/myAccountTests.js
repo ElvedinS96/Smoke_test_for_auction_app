@@ -38,34 +38,22 @@ describe("016: My Account", function(){
         UITasks.checkMyAccountSection(data.settingsTitle)
     })
     it("007: User is able to open 'Profile' page from 'Your Bids' section", function(){
-        myAccountPage.clickOnLinks(data.yourBidsTitle)
-            .then(() => myAccountPage.clickOnElement(data.profileButton))
-            .then(() => myAccountPage.validateElement(data.profileHeadingTitle))
+        myAccountPage.openAndValidateSections(data.yourBidsTitle,data.profileButton,data.profileHeadingTitle)
     })
     it("008: User is able to open 'Profile' page from 'Settings' section", function(){
-        myAccountPage.clickOnLinks(data.settingsTitle)
-            .then(() => myAccountPage.clickOnElement(data.profileButton))
-            .then(() => myAccountPage.validateElement(data.profileHeadingTitle))
+        myAccountPage.openAndValidateSections(data.settingsTitle,data.profileButton,data.profileHeadingTitle)
     })
     it("009: User is able to open 'Your Bids' page from 'Profile' section", function(){
-        myAccountPage.clickOnLinks(data.profileLinkTitle)
-            .then(() => myAccountPage.clickOnElement(data.bidsButton))
-            .then(() => myAccountPage.validateElement(data.yourBidsTable))
+        myAccountPage.openAndValidateSections(data.profileLinkTitle,data.bidsButton,data.yourBidsTable)
     })
     it("010: User is able to open 'Your Bids' page from 'Settings' section", function(){
-        myAccountPage.clickOnLinks(data.settingsTitle)
-            .then(() => myAccountPage.clickOnElement(data.bidsButton))
-            .then(() => myAccountPage.validateElement(data.yourBidsTable))
+        myAccountPage.openAndValidateSections(data.settingsTitle,data.bidsButton,data.yourBidsTable)
     })
     it("011: User is able to open 'Settings' page from 'Profile' section", function(){
-        myAccountPage.clickOnLinks(data.profileLinkTitle)
-            .then(() => myAccountPage.clickOnElement(data.settingsButton))
-            .then(() => myAccountPage.validateElement(data.settingsTitle))
+        myAccountPage.openAndValidateSections(data.profileLinkTitle,data.settingsButton,data.settingsTitle)
     })
     it("012: User is able to open 'Settings' page from 'Your Bids' section", function(){
-        myAccountPage.clickOnLinks(data.yourBidsTitle)
-            .then(() => myAccountPage.clickOnElement(data.settingsButton))
-            .then(() => myAccountPage.validateElement(data.settingsTitle))
+        myAccountPage.openAndValidateSections(data.yourBidsTitle,data.settingsButton,data.settingsTitle)
     })
     it("013: User is able to see his bids in 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.homePageLink)
@@ -75,9 +63,7 @@ describe("016: My Account", function(){
             .then(() => myAccountPage.validateElement(data.viewButton))
     })
     it("014: User is able to check options from 'Policy and Community' which is located in 'Settings' section", function(){
-        myAccountPage.clickOnLinks(data.settingsTitle)
-            .then(() => myAccountPage.clickOnElement(data.checkboxesTitle))
-            .then(() => myAccountPage.validateElement(data.checkboxesTitle))
+        myAccountPage.openAndValidateSections(data.settingsTitle,data.checkboxesTitle,data.checkboxesTitle)
     })
     it("015: User is able to open item's page from 'Your Bids' section", function(){
         myAccountPage.clickOnLinks(data.homePageLink)
