@@ -15,15 +15,15 @@ describe("004: Bidding", function(){
             .then(() => loginPage.logIn(data.userRafaNadal,data.passwordUserRafaNadal))
     })
     it("001: User is able to make a bid with decimal values", function (){
-        UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.bidWithDecimalPlaces)
+        UITasks.bidOnItemFromFashionCategory(data.blueJacket,data.bidWithDecimalPlaces)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }); 
     it("002: User is able to make a bid with round values", function(){
-        UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.fiveThousandDollars)
+        UITasks.bidOnItemFromFashionCategory(data.blueJacket,data.fiveThousandDollars)
             .then(() => itemPage.waitAndValidateElement(data.waitForUserImg))
     }) 
     it("003: User isn't able to make bid which is lower than starting price", function(){
-        UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.fiftyDollars)
+        UITasks.bidOnItemFromFashionCategory(data.blueJacket,data.fiftyDollars)
             .then(() => itemPage.waitAndValidateElement(data.statusInfoTitle,false))
     })
     it("004: User is able to over-bid another User", function(){
@@ -33,7 +33,7 @@ describe("004: Bidding", function(){
     it("005: Non-logged User can't place bid", function(){
         homePage.clickOnLinks(data.logoutButtonTitle)
             .then(() => homePage.waitForLoginButton())
-            .then(() => UITasks.bidOnItemFromFashionCategory(data.blackJacket2,data.fiveThousandDollars))
+            .then(() => UITasks.bidOnItemFromFashionCategory(data.blueJacket,data.fiveThousandDollars))
             .then(() => loginPage.waitForElement(data.formTitle))
             .then(() => loginPage.validateLoginPageURL())
     })

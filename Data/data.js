@@ -38,7 +38,7 @@ class Data{
         this.titleJacket="Jacket",
         this.titleDress="Dress",
         this.nineHundredDolars="$900",
-        this.fiveThousandDollars=500000.00,
+        this.fiveThousandDollars=5000.00,
         this.sixThousandDollars=6000.00,
         this.bidWithDecimalPlaces=5000.25,
         this.fiftyDollars=50,
