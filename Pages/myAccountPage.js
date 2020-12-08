@@ -1,3 +1,4 @@
+const { brownJacket } = require("../Data/data");
 const Page = require("./page");
 var EC = protractor.ExpectedConditions,
     data = require("../Data/data");
@@ -36,6 +37,17 @@ class MyAccountPage extends Page.Page{
     get phoneNumber(){ return browser.driver.findElement(by.id("phoneNumber")); }
     get emailField(){ return browser.driver.findElement(by.id("email")); }
     get saveInfoButton(){ return browser.driver.findElement(by.css(".save-info-button button")); }
+    get emailValidationMessage(){ return browser.driver.findElement(by.css("#user-page-personal :last-child :nth-child(6) small label")); }
+    get phoneNumberValidationMessage(){ return browser.driver.findElement(by.css("#user-page-personal :last-child :nth-child(5) small label")); }
+    get paypalCheckbox(){ return browser.driver.findElement(by.id("paypal")); }
+    get creditCardCheckbox(){ return browser.driver.findElement(by.id("card")); }
+    get nameOnCard(){ return browser.driver.findElement(by.id("nameOnCard")); }
+    get cardNumber(){ return browser.driver.findElement(by.id("cardNumber")); }
+    get cvc(){ return browser.driver.findElement(by.id("cvc")); }
+    get yearCardExpiration(){ return browser.driver.findElement(by.id("user-card-exp-year")); }
+    get year2020CardExpiration(){return browser.driver.findElement(by.css("#user-card-exp-year :nth-child(121)")); }
+    get monthCardExpiration(){ return browser.driver.findElement(by.id("user-card-exp-month")); }
+    get marchCardExpiration(){ return browser.driver.findElement(by.css("#user-card-exp-month :nth-child(3)")); }
 
     // ACTIONS
     getElementValidation(element){
@@ -49,6 +61,12 @@ class MyAccountPage extends Page.Page{
             
             case data.settingsTitle:
                 return this.settingsForm.getText();
+            
+            case data.emailTitle:
+                return this.emailValidationMessage.getText();
+
+            case data.phoneNumberTitle:
+                return this.phoneNumberValidationMessage.getText();
         }
     }
 
@@ -69,7 +87,46 @@ class MyAccountPage extends Page.Page{
                 .then(() => expect(this.notifTextMessage.isSelected()).toBe(true))
         }else if(elementToValidate === data.viewButton){
             return expect(this.viewButtonFromYourBids.isDisplayed()).toBe(true);
+        }else if(elementToValidate === data.emailTitle){
+            return this.getElementValidation(elementToValidate)
+                .then((invalidEmail) => this.validateInvalidEmail(invalidEmail))
+        }else if(elementToValidate === data.phoneNumberTitle){
+            return this.getElementValidation(elementToValidate)
+                .then((invalidPhoneNumber) => this.validatePhoneNumber(invalidPhoneNumber))
         }
+    }
+
+    updateProfileInformation(phoneNumber){
+        console.log("This method updates First Name, Last Name, Date of birth, Phone Number")
+        return this.clickOnLinks(data.profileLinkTitle)
+            .then(() => this.firstNameProfileInformation.sendKeys(data.lastNameTester))
+            .then(() => this.lastNameProfileInformation.sendKeys(data.lastNameTester))
+            .then(() => this.genderDropdown.click())
+            .then(() => this.otherValueFromGenderDropdown.click())
+            .then(() => this.monthBirthDropdown.click())
+            .then(() => this.clearAndEnterPhoneNumber(phoneNumber))
+            .then(() => this.februaryBirthDropdown.click())
+            .then(() => this.dayBirthDropdown.click())
+            .then(() => this.thirdBirthDropdown.click())
+            .then(() => this.yearBirthDropdown.click())
+            .then(() => this.twoThousandBirthDropdown.click())
+            .then(() => this.saveInfoButton.click())
+    }
+
+    clearAndEnterPhoneNumber(phoneNumber){
+        console.log("This method clears phone number field, and then enters new phone number");
+        return this.emptyFields(data.phoneNumberTitle)
+            .then(() => this.phoneNumber.sendKeys(phoneNumber))
+    }
+
+    validatePhoneNumber(phoneNumber){
+        console.log("This method valites invalid phone number");
+        return expect(phoneNumber).toBe(data.invalidPhoneNumberMessage)
+    }
+
+    validateInvalidEmail(invalidEmail){
+        console.log("This method validates invalid email update");
+        return expect(invalidEmail).toBe(data.emailRequiredMessage)
     }
 
     validateProfilePage(profileText){
@@ -110,11 +167,21 @@ class MyAccountPage extends Page.Page{
             case data.viewButton:
                 return this.viewButtonFromYourBids.click();
 
-            case data.changePhotoButton:
-                return this.changePhotoButton.sendKeys("pp")
+            case data.paypalTitle:
+                return this.paypalCheckbox.click();
+
+            case data.creditCard:
+                return this.creditCardCheckbox.click();
+            
+            case data.cardInfo:
+                    return this.yearCardExpiration.click()
+                        .then(() => this.year2020CardExpiration.click())
+                        .then(() => this.monthCardExpiration.click())
+                        .then(() => this.marchCardExpiration.click())
+                        .then(() => this.saveInfoButton.click())
         }
     }
-
+    
     openAndValidateSections(element1,element2,validateItem){
         return this.clickOnLinks(element1)
             .then(() => this.clickOnElement(element2))
@@ -124,11 +191,27 @@ class MyAccountPage extends Page.Page{
     emptyFields(element){
         console.log("This method clears fields in 'Profile' information")
         if(element === data.phoneNumberTitle){
-        for(let i=0;i<20;i++){
-            this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
-        }
+            for(let i=0;i<15;i++){
+                this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
+            }
         return this.phoneNumber.sendKeys(protractor.Key.BACK_SPACE)
+        }else if(element === data.emailTitle){
+            for(let i=0;i<20;i++){
+                this.emailField.sendKeys(protractor.Key.BACK_SPACE)
+            }
+            return this.emailField.sendKeys(protractor.Key.BACK_SPACE)
         }
+    }
+
+    updateEmailInformation(email,invalidEmail=false){
+        console.log("This method updates User's email information")
+        this.emptyFields(data.emailTitle)
+            .then(() => this.emailField.sendKeys(email))
+            .then(() => this.saveInfoButton.click())
+            .then(() => {
+                if(invalidEmail){ this.validateElement(data.emailTitle)
+                }else{ itemPage.waitForElement(data.successMessage) }
+            })
     }
 }
 

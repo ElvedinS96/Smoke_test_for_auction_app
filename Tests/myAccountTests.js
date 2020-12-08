@@ -74,8 +74,31 @@ describe("016: My Account", function(){
             .then(() => itemPage.validateBidElements(false))
     })
     it("017: User is able to change profile information", function(){
+        myAccountPage.updateProfileInformation(data.phoneNumber)
+            .then(() => itemPage.waitForElement(data.successMessage))
+    })
+    it("018: User is able to update card information", function(){
         myAccountPage.clickOnLinks(data.profileLinkTitle)
-            .then(() => UITasks.updateProfileInformation())
+            .then(() => myAccountPage.clickOnElement(data.paypalTitle))
+            .then(() => myAccountPage.clickOnElement(data.creditCard))
+            .then(() => myAccountPage.clickOnElement(data.creditCard))
+            .then(() => myAccountPage.nameOnCard.sendKeys(data.firstNameTester))
+            .then(() => myAccountPage.cardNumber.sendKeys(data.cardNumber))
+            .then(() => myAccountPage.cvc.sendKeys(data.cvc))
+            .then(() => myAccountPage.clickOnElement(data.cardInfo))
+    })
+    it("019: User isn't able to enter invalid email", function(){
+        myAccountPage.updateProfileInformation(data.phoneNumber)
+            .then(() => myAccountPage.updateEmailInformation(data.email1,true));
+    })
+    it("020: User isn't able to enter phone number with invalid format", function(){
+        myAccountPage.updateProfileInformation(data.invalidPhoneNumber)
+            .then(() => myAccountPage.validateElement(data.phoneNumberTitle))
+    })
+    it("021: User is able to see his updated information in 'Contact information' section", function(){
+        myAccountPage.updateProfileInformation(data.phoneNumber)
+            .then(() => itemPage.waitForElement(data.successMessage))
+            .then(() => myAccountPage.clickOnElement(data.settingsButton))
     })
     afterEach(() => {
         homePage.clickOnLinks(data.logoutButtonTitle);

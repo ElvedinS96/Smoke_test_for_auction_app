@@ -32,24 +32,6 @@ class UITasks {
             .then(() => this.bidOnItemFromFashionCategory(data.blackJacket2,data.sixThousandDollars))
     }
 
-    updateProfileInformation(){
-        console.log("This method updates First Name, Last Name, Date of birth, Phone Number")
-        return myAccountPage.firstNameProfileInformation.sendKeys(data.lastNameTester)
-            .then(() => myAccountPage.lastNameProfileInformation.sendKeys(data.lastNameTester))
-            .then(() => myAccountPage.genderDropdown.click())
-            .then(() => myAccountPage.otherValueFromGenderDropdown.click())
-            .then(() => myAccountPage.monthBirthDropdown.click())
-            .then(() => myAccountPage.emptyFields(data.phoneNumberTitle))
-            .then(() => myAccountPage.phoneNumber.sendKeys(data.phoneNumber))
-            .then(() => myAccountPage.februaryBirthDropdown.click())
-            .then(() => myAccountPage.dayBirthDropdown.click())
-            .then(() => myAccountPage.thirdBirthDropdown.click())
-            .then(() => myAccountPage.yearBirthDropdown.click())
-            .then(() => myAccountPage.twoThousandBirthDropdown.click())
-            .then(() => myAccountPage.saveInfoButton.click())
-            .then(() => itemPage.waitForElement(data.successMessage))
-    }
-
     filterAndClickOnItem(viewButton,category,categoryFilter,button,bidButton,itemDetails,boolean){
         console.log("This method clicks on category on shop page, clicks on filter, waits for elements to filter, click on bid button, and verifies that item is opened")
         return shopPage.clickOnElement(viewButton)
