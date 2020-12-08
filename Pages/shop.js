@@ -53,7 +53,9 @@ class Shop extends Page.Page{
             return expect(filterText).toBe(data.titleJacket)
         }else if(filterText === data.colorToSearch){
             return expect(filterText).toBe(data.colorToSearch)
-        }   
+        }else if(filterText === data.dataWithInvalidCharacters){
+            return expect(filterText).toBe(data.dataWithInvalidCharacters)
+        }
     }
 
     validatePricesFromFilterByPrice(prices){

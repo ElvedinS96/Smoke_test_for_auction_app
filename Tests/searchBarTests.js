@@ -20,4 +20,7 @@ describe("015: Search bar", function(){
     it("003: User is able to search data by pressing 'ENTER'", function(){
         shop.searchAndValidateElements(data.titleJacket,data.searchByKeyEnter)
     })
+    it("004: User isn't able to see items when entering invalid input", function(){
+        shop.searchAndValidateElements(data.dataWithInvalidCharacters,data.searchByKeyEnter)
+    })
 })
