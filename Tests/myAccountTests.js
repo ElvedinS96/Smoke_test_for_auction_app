@@ -78,14 +78,7 @@ describe("016: My Account", function(){
             .then(() => itemPage.waitForElement(data.successMessage))
     })
     it("018: User is able to update card information", function(){
-        myAccountPage.clickOnLinks(data.profileLinkTitle)
-            .then(() => myAccountPage.clickOnElement(data.paypalTitle))
-            .then(() => myAccountPage.clickOnElement(data.creditCard))
-            .then(() => myAccountPage.clickOnElement(data.creditCard))
-            .then(() => myAccountPage.nameOnCard.sendKeys(data.firstNameTester))
-            .then(() => myAccountPage.cardNumber.sendKeys(data.cardNumber))
-            .then(() => myAccountPage.cvc.sendKeys(data.cvc))
-            .then(() => myAccountPage.clickOnElement(data.cardInfo))
+        myAccountPage.updateCardInformation()
     })
     it("019: User isn't able to enter invalid email", function(){
         myAccountPage.updateProfileInformation(data.phoneNumber)

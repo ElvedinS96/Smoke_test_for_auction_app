@@ -1,7 +1,7 @@
-const { brownJacket } = require("../Data/data");
 const Page = require("./page");
 var EC = protractor.ExpectedConditions,
-    data = require("../Data/data");
+    data = require("../Data/data"),
+    itemPage = require("./itemPage");
 
 class MyAccountPage extends Page.Page{
     constructor(){
@@ -183,9 +183,23 @@ class MyAccountPage extends Page.Page{
     }
     
     openAndValidateSections(element1,element2,validateItem){
+        console.log("This method opens and validates sections");
         return this.clickOnLinks(element1)
             .then(() => this.clickOnElement(element2))
             .then(() => this.validateElement(validateItem))
+    }
+
+    updateCardInformation(){
+        return this.clickOnLinks(data.profileLinkTitle)
+            .then(() => this.clickOnElement(data.paypalTitle))
+            .then(() => this.clickOnElement(data.creditCard))
+            .then(() => this.clickOnElement(data.creditCard))
+            .then(() => this.emptyFields(data.cardInfo))
+            .then(() => this.nameOnCard.sendKeys(data.firstNameTester))
+            .then(() => this.cardNumber.sendKeys(data.cardNumber))
+            .then(() => this.cvc.sendKeys(data.cvc))
+            .then(() => this.clickOnElement(data.cardInfo))
+            .then(() => itemPage.waitForElement(data.successMessage))
     }
 
     emptyFields(element){
@@ -200,6 +214,17 @@ class MyAccountPage extends Page.Page{
                 this.emailField.sendKeys(protractor.Key.BACK_SPACE)
             }
             return this.emailField.sendKeys(protractor.Key.BACK_SPACE)
+        }else if(element === data.cardInfo){
+            for(let i=0;i<10;i++){
+                this.nameOnCard.sendKeys(protractor.Key.BACK_SPACE)
+            }
+            for(let i=0;i<20;i++){
+                this.cardNumber.sendKeys(protractor.Key.BACK_SPACE)
+            }
+            for(let i=0;i<8;i++){
+                this.cvc.sendKeys(protractor.Key.BACK_SPACE)
+            }
+            return this.nameOnCard.sendKeys(protractor.Key.BACK_SPACE)
         }
     }
 
