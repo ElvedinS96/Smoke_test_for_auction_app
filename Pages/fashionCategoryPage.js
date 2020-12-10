@@ -1,30 +1,24 @@
-var EC = protractor.ExpectedConditions;
+const Category = require("./category");
+var data = require("../Data/data.js"),
+    EC = protractor.ExpectedConditions;
 
-class FashionCategoryPage{
+class FashionCategoryPage extends Category.Category{
     constructor(){
+        super();
         this.title ="Fashion Category"    
     }
-    
-    // GETTERS
 
-    productItem(item){
-        return browser.actions().mouseMove(element(by.xpath(`//*[@id='root']/div/div[1]/div[3]/div/div[${item}]/div/div/a/img`)))
-    }
-
-    get productLocator(){
-        return ".landing-product";
-    }
-    
     // ACTIONS
+    validateCollectionURL(){
+        console.log("This method validates collection URL");
+        this.getPageURL()
+        .then((URL) => { return expect(URL).toBe(data.featureCollectionLink) });
+    }
 
     waitForProductItem(){
         console.log("This method waits for Product Item to show up");
-        browser.wait(EC.presenceOf($(this.productLocator)), 5000)
-    }
-    
-    clickOnItem(item){
-        console.log("This method receives desired class item, and clicks on it");
-        return this.productItem(item).click().perform();
+        return browser.wait(EC.presenceOf($(this.productLocator)), 7000)
     }
 }
+
 module.exports = new FashionCategoryPage();

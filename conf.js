@@ -1,5 +1,7 @@
 exports.config = {
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   framework : "jasmine",
+  seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ["./Tests/biddingTests.js",
   "./Tests/aboutUsTests.js",
   "./Tests/loginTests.js",
@@ -13,16 +15,9 @@ exports.config = {
   "./Tests/featureCollectionTest.js",
   "./Tests/featureProductsTest.js",
   "./Tests/searchBarTests.js",
-  "./Tests/myAccountTests.js"
-],
+  "./Tests/myAccountTests.js",
+  "./Tests/smokeTest.js"],
   jasmineNodeOpts: {
     defaultTimeoutInterval: 2500000
-    },
-   /* capabilities: {
-      browserName: 'chrome',
-    
-    chromeOptions: {
-        args: [ "--headless", "--disable-gpu", "--window-size=800,600" ]
-       }
-  } */
-}
+  }
+} 

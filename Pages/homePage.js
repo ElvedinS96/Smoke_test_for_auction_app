@@ -1,68 +1,65 @@
-var EC = protractor.ExpectedConditions;
+const Page = require("./page");
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js");
 
-class HomePage{
+
+class HomePage extends Page.Page{
     constructor(){
+        super();
         this.title= "HomePage"
     }
     
     // GETTERS
-
-    get loginButton(){
-        return browser.driver.findElement(by.className("header-text"));
-    }
-
-    get loginButtonLocator(){
-        return ".header-text";
-    }
-
-    get categoryLocator(){
-        return ".category-item"
-    }
-
-    get fashionCategory(){
-        return browser.driver.findElement(by.css("div.category-item a"));
-    }
-
-    get logoutButton(){
-        return browser.driver.findElement(by.css("div.login-acccount button"));
-    }
+    get newArrivalsButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(1)")); }
+    get topRatedButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(2)")); }
+    get lastChanceButton(){ return browser.driver.findElement(by.css(".home-nav button:nth-child(3)")); }
+    get firstItemForLinks(){ return browser.driver.findElement(by.css(".arrivals div div div div a")); }
+    get featureCollectionItems(){ return browser.driver.findElement(by.css("#home-feature-single-collection div div a")); }
+    get featureCollectionProduct(){ return browser.driver.findElement(by.css("#feature-products-list div div")); }
+    get categoryLocator(){ return ".category-item"; }
     
     // ACTIONS
+    clickOnElement(element){
+        console.log(`This method clicks on ${element} title`)
+        switch (element){
+            case data.featureCollectionProductsTitle:
+                return this.featureCollectionProduct.click();
+
+            case data.featureCollectionCollectionTitle:
+                return this.featureCollectionItems.click();
+
+            case data.firstItemForLinksTitle:
+                return this.firstItemForLinks.click();
+
+            case data.newArrivalsTitle:
+                return this.newArrivalsButton.click();
+
+            case data.topRatedTitle:
+                return this.topRatedButton.click();
+
+            case data.lastChanceTitle:
+                return this.lastChanceButton.click();
+                
+            case data.fashionCategoryTitle:
+                return super.clickOnCategory(data.fashionCategory);
+        }
+    }
 
     waitForCategories(){
-        console.log("This method waits for Category to show")
-        browser.wait(EC.presenceOf($(this.categoryLocator)), 5000)
+        console.log("This method waits for Category to show");
+        return browser.wait(EC.presenceOf($(this.categoryLocator)), 7000);
     }
 
-    waitForLoginButton(){
-        console.log("This method waits for link Login to show")
-        return browser.wait(EC.presenceOf($(this.loginButtonLocator), 5000))
+    validateHomePageURL(){
+        console.log("This method validates home page URL");
+        this.getPageURL()
+        .then((URL) => { return expect(URL).toBe(data.homepageLink) });
     }
 
-    clickOnLogin(){
-        console.log("This method clicks on link Login")
-        this.loginButton.click();
+    openPageURL(URL){
+        return super.openPageURL(URL)
+            .then(() => this.waitForLoginButton())
     }
-
-    clickOnLogoutButton(){
-        console.log("This method clicks on logout button")
-        this.logoutButton.click();
-    }
-
-    clickOnFashionCategory(){
-        console.log("This method clicks on Category link")
-        this.fashionCategory.click();
-    }
-
-    clickOnLogin(){
-        console.log("This method clicks on link Login")
-        this.loginButton.click();
-    }
-
-    openPageURL(url){
-        console.log("This method opens URL")
-        return browser.get(url);
-    }
-    
 }
+
 module.exports = new HomePage();

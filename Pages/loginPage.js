@@ -1,48 +1,54 @@
-var EC = protractor.ExpectedConditions;
+const Page = require("./page");
+var EC = protractor.ExpectedConditions,
+    data = require("../Data/data.js"),
+    homePage = require('../Pages/homePage.js');
 
-class loginPage{
+class LoginPage extends Page.Page{
     constructor(){
+        super();
         this.title="LoginPage"    
     }
 
     // GETTERS
-
-    get emailField(){
-        return browser.driver.findElement(by.id("email"));
-    }
-
-    get passwordField(){
-        return browser.driver.findElement(by.id("password"));
-    }
-
-    get emailLocator(){
-        return "#email";
-    }
-
-    get loginButton(){
-        return browser.driver.findElement(by.className("btn-login"));
-    }
+    get emailField(){ return browser.driver.findElement(by.id("email")); }
+    get formTitleLocator(){ return ".form-title"; }
+    get passwordField(){ return browser.driver.findElement(by.id("password")); }
+    get emailLocator(){ return "#email"; }
+    get loginButton(){ return browser.driver.findElement(by.className("btn-login")); }
+    get validationMessage(){ return browser.driver.findElement(by.xpath("//*[@id='root']/div/div[1]/div[3]/div/small/label")); }
     
     // ACTIONS
-
-    waitForEmailInput(){
-        console.log("This method waits for email input to load")
-        browser.wait(EC.presenceOf($(this.emailLocator)), 5000)
+    validateLoginMessage(){
+        console.log("This method validates login message")
+        return this.validationMessage.getText()
+            .then((field) => expect(field).toBe(data.invalidUsernameOrEmail))
     }
 
-    enterEmail(email){
-        console.log("This method enters data in email field")
-        this.emailField.sendKeys(email);
+    waitForElement(element){
+        if(element === data.emailInputTitle){
+            console.log("This method waits for email input to load");
+            return browser.wait(EC.presenceOf($(this.emailLocator)), 7000);
+        }else if(element === data.formTitle){
+            console.log("This method wait for Form title");
+            return browser.wait(EC.presenceOf($(this.formTitleLocator), 7000));
+        }
     }
 
-    enterPassword(password){
-        console.log("This method enters data in password field")
-        this.passwordField.sendKeys(password);
+    logIn(email,password,waitForCategories=true){
+    // waitForCategories=data.booleanTrue means that this method should wait for Categories to load on lading page, if log in is successsful, and if log in isn't successfull, then method shoulnd't wait for Categories, because they won't show
+        console.log("This method sends data do Email, Password and clicks on login button");
+        return this.emailField.sendKeys(email)
+            .then(() => this.passwordField.sendKeys(password))
+            .then(() => this.loginButton.click())
+            .then(() => { if(waitForCategories) homePage.waitForCategories()} )
+            .then(() => browser.sleep(2000))
     }
-    
-    clickOnLoginButton(){
-        console.log("This method click on Login button")
-        this.loginButton.click();
+
+    validateLoginPageURL(){
+        console.log("This method validates Login page URL");
+        this.getPageURL()
+            .then((URL) => { return expect(URL).toBe(data.loginpageLink) });
     }
 }
-module.exports = new loginPage();
+
+module.exports = new LoginPage()
