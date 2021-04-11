@@ -1,7 +1,7 @@
 These are tests for the application, which on of the ABH Intern coded, and it is deployed on this link :
 https://auct-app2-frontend.herokuapp.com/ 
 
-Test Cases can be found on this link: 
+Test Cases can be found here: 
 https://docs.google.com/spreadsheets/d/1BHNHM0gNf0OmJclWZVer6qTCvZIqQZCb9ZSFrXkzajQ/edit#gid=0 
 
 Setup:
