@@ -153,7 +153,8 @@ class Data{
         this.invalidConfirmPasswordValidationMessage ="Password is not matching",
         this.firstNameWithSpecialCharacters ="First Name cannot contain special characters",
         this.lastNameWithSpecialCharacters = "Last Name cannot contain special characters",
-        this.featureCollectionLink="https://auct-app2-frontend.herokuapp.com/products?category=1&feature=true"
+        this.featureCollectionLink="https://auct-app2-frontend.herokuapp.com/products?category=1&feature=true",
+        this.name="name"
     }
 }
 module.exports = new Data();
